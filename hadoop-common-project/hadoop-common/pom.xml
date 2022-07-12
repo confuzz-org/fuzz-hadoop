@@ -376,7 +376,7 @@
     <dependency>
       <groupId>edu.berkeley.cs.jqf</groupId>
       <artifactId>jqf-fuzz</artifactId>
-      <version>1.7</version>
+      <version>1.8</version>
     </dependency>
     <!-- JUnit-QuickCheck: API to write generators -->
     <dependency>
@@ -415,7 +415,7 @@
       <plugin>
         <groupId>edu.berkeley.cs.jqf</groupId>
         <artifactId>jqf-maven-plugin</artifactId>
-        <version>1.7</version>
+        <version>1.8</version>
       </plugin>
       <plugin>
         <groupId>org.xolstice.maven.plugins</groupId>
