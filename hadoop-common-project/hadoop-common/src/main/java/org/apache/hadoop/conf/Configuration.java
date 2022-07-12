@@ -1224,6 +1224,14 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     }
   }
 
+  private String getStackTrace() {
+    String stacktrace = " ";
+    for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+      stacktrace = stacktrace.concat(element.getClassName() + "\t");
+    }
+    return stacktrace;
+  }
+
   /**
    * Get the value of the <code>name</code> property, <code>null</code> if
    * no such property exists. If the key is deprecated, it returns the value of
@@ -1240,11 +1248,14 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    *         or null if no such property exists.
    */
   public String get(String name) {
+    String ctestParam = name; //CTEST
     String[] names = handleDeprecation(deprecationContext.get(), name);
     String result = null;
     for(String n : names) {
+      ctestParam = n; //CTEST
       result = substituteVars(getProps().getProperty(n));
     }
+    LOG.warn("[CTEST][GET-PARAM] " + ctestParam + " = " + result); //CTEST
     return result;
   }
 
@@ -1332,11 +1343,14 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    *         its replacing property and null if no such property exists.
    */
   public String getRaw(String name) {
+    String ctestParam = name; //CTEST
     String[] names = handleDeprecation(deprecationContext.get(), name);
     String result = null;
     for(String n : names) {
+      ctestParam = n; //CTEST
       result = getProps().getProperty(n);
     }
+    LOG.warn("[CTEST][GET-PARAM] " + ctestParam + " = " + result); //CTEST
     return result;
   }
 
@@ -1371,6 +1385,10 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     return altNames;
   }
 
+  public void set(String name, String value, String source) {
+    set(name, value, source, true);
+  }
+
   /** 
    * Set the <code>value</code> of the <code>name</code> property. If 
    * <code>name</code> is deprecated or there is a deprecated name associated to it,
@@ -1396,7 +1414,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    * (For debugging).
    * @throws IllegalArgumentException when the value or name is null.
    */
-  public void set(String name, String value, String source) {
+  public void set(String name, String value, String source,  boolean log_enabled) {
     Preconditions.checkArgument(
         name != null,
         "Property name must not be null");
@@ -1408,6 +1426,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     if (deprecations.getDeprecatedKeyMap().isEmpty()) {
       getProps();
     }
+    if(log_enabled) LOG.warn("[CTEST][SET-PARAM] " + name + " = " + value + " " + getStackTrace()); //CTEST
     getOverlay().setProperty(name, value);
     getProps().setProperty(name, value);
     String newSource = (source == null ? "programmatically" : source);
@@ -1418,6 +1437,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       if(altNames != null) {
         for(String n: altNames) {
           if(!n.equals(name)) {
+            if(log_enabled) LOG.warn("[CTEST][SET-PARAM] " + n + " = " + value + " " + getStackTrace()); //CTEST
             getOverlay().setProperty(n, value);
             getProps().setProperty(n, value);
             putIntoUpdatingResource(n, new String[] {newSource});
@@ -1429,6 +1449,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       String[] names = handleDeprecation(deprecationContext.get(), name);
       String altSource = "because " + name + " is deprecated";
       for(String n : names) {
+        if(log_enabled) LOG.warn("[CTEST][SET-PARAM] " + n + " = " + value + " " + getStackTrace()); //CTEST
         getOverlay().setProperty(n, value);
         getProps().setProperty(n, value);
         putIntoUpdatingResource(n, new String[] {altSource});
@@ -1501,11 +1522,14 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    *         doesn't exist.                    
    */
   public String get(String name, String defaultValue) {
+    String ctestParam = name; //CTEST
     String[] names = handleDeprecation(deprecationContext.get(), name);
     String result = null;
     for(String n : names) {
+      ctestParam = n; //CTEST
       result = substituteVars(getProps().getProperty(n, defaultValue));
     }
+    LOG.warn("[CTEST][GET-PARAM] " + ctestParam + " = " + result); //CTEST
     return result;
   }
 
