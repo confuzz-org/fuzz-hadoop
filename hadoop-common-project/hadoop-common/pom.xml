@@ -372,6 +372,19 @@
       <artifactId>lz4-java</artifactId>
       <scope>provided</scope>
     </dependency>
+    <!-- JQF: test dependency for @Fuzz annotation -->
+    <dependency>
+      <groupId>edu.berkeley.cs.jqf</groupId>
+      <artifactId>jqf-fuzz</artifactId>
+      <version>1.7</version>
+    </dependency>
+    <!-- JUnit-QuickCheck: API to write generators -->
+    <dependency>
+      <groupId>com.pholser</groupId>
+      <artifactId>junit-quickcheck-generators</artifactId>
+      <version>1.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -399,6 +412,11 @@
       </resource>
     </resources>
     <plugins>
+      <plugin>
+        <groupId>edu.berkeley.cs.jqf</groupId>
+        <artifactId>jqf-maven-plugin</artifactId>
+        <version>1.7</version>
+      </plugin>
       <plugin>
         <groupId>org.xolstice.maven.plugins</groupId>
         <artifactId>protobuf-maven-plugin</artifactId>

@@ -22,6 +22,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.junit.Test;
 
 import java.util.List;
@@ -32,6 +33,12 @@ import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
 import org.apache.hadoop.conf.Configuration;
 
+import org.junit.runner.RunWith;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import com.pholser.junit.quickcheck.From;
+
+@RunWith(JQF.class)
 public class TestIdentityProviders {
   public class FakeSchedulable implements Schedulable {
     public FakeSchedulable() {
@@ -51,12 +58,14 @@ public class TestIdentityProviders {
     }
   }
 
-  @Test
-  public void testPluggableIdentityProvider() {
-    Configuration conf = new Configuration();
-    conf.set(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY,
-      "org.apache.hadoop.ipc.UserIdentityProvider");
-
+  @Fuzz
+  public void testPluggableIdentityProvider(Configuration confFuzz) {
+    Configuration conf = new Configuration(confFuzz);
+//    conf.set(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY,
+//      "org.apache.hadoop.ipc.UserIdentityProvider");
+//        conf.set(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY,
+//      confFuzz);
+    System.out.println("IPC_IDENTITY_PROVIDER_KEY = " + conf.get(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY));
     List<IdentityProvider> providers = conf.getInstances(
       CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY,
       IdentityProvider.class);
@@ -65,7 +74,7 @@ public class TestIdentityProviders {
 
     IdentityProvider ip = providers.get(0);
     assertNotNull(ip);
-    assertEquals(ip.getClass(), UserIdentityProvider.class);
+    //assertEquals(ip.getClass(), UserIdentityProvider.class);
   }
 
   @Test
@@ -78,5 +87,10 @@ public class TestIdentityProviders {
     String username = ugi.getUserName();
 
     assertEquals(username, identity);
+  }
+
+  @Fuzz
+  public void testPluggableIdentityProviderFuzz(@From(ConfigurationGenerator.class) Configuration conf) {
+    testPluggableIdentityProvider(conf);
   }
 }
