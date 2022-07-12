@@ -48,10 +48,17 @@ import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.mock;
 import static org.junit.Assert.*;
 
+import org.apache.hadoop.conf.ConfigurationGenerator;
+import org.junit.runner.RunWith;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import com.pholser.junit.quickcheck.From;
+
 /**
  * Basic test case that the ConfServlet can write configuration
  * to its output in XML and JSON format.
  */
+@RunWith(JQF.class)
 public class TestConfServlet {
   private static final String TEST_KEY = "testconfservlet.key";
   private static final String TEST_VAL = "testval";
@@ -67,6 +74,12 @@ public class TestConfServlet {
     TEST_PROPERTIES.put("test.key3", "value3");
     TEST_FORMATS.put(ConfServlet.FORMAT_XML, "application/xml");
     TEST_FORMATS.put(ConfServlet.FORMAT_JSON, "application/json");
+  }
+
+  private Configuration getTestConf(Configuration conf) {
+    Configuration testConf = new Configuration(conf);
+    testConf.set(TEST_KEY, TEST_VAL);
+    return testConf;
   }
 
   private Configuration getTestConf() {
@@ -188,11 +201,11 @@ public class TestConfServlet {
     }
   }
 
-  @Test
+  @Fuzz
   @SuppressWarnings("unchecked")
-  public void testWriteJson() throws Exception {
+  public void testWriteJson(@From(ConfigurationGenerator.class) Configuration conf) throws Exception {
     StringWriter sw = new StringWriter();
-    ConfServlet.writeResponse(getTestConf(), sw, "json");
+    ConfServlet.writeResponse(getTestConf(conf), sw, "json");
     String json = sw.toString();
     boolean foundSetting = false;
     Object parsed = JSON.parse(json);
@@ -202,7 +215,7 @@ public class TestConfServlet {
       String key = (String)propertyInfo.get("key");
       String val = (String)propertyInfo.get("value");
       String resource = (String)propertyInfo.get("resource");
-      System.err.println("k: " + key + " v: " + val + " r: " + resource);
+      //System.err.println("k: " + key + " v: " + val + " r: " + resource);
       if (TEST_KEY.equals(key) && TEST_VAL.equals(val)
           && "programmatically".equals(resource)) {
         foundSetting = true;
