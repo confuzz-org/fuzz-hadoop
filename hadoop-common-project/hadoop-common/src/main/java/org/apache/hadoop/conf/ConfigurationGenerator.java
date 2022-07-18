@@ -62,7 +62,15 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             if (!isNullOrEmpty(entry.getValue())) {
-                conf.set(entry.getKey(), randomValue(random, entry.getValue()));
+                //System.out.println("No." + i++ + "Looping " + entry.getKey());
+                try {
+                    String randomValue = randomValue(entry.getKey(), entry.getValue(), random);
+                    conf.set(entry.getKey(), randomValue);
+                } catch (Exception e) {
+                    System.out.println(" Configuration Name: " + entry.getKey() + " value " + entry.getValue() + " Exception:");
+                    e.printStackTrace();
+                    continue;
+                }
             }
         }
 	    return conf;
@@ -73,7 +81,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
      * @param value
      * @return
      */
-    private static String randomValue(SourceOfRandomness random, String value) {
+    private static String randomValue(String name, String value, SourceOfRandomness random) {
         // TODO: Next to find a way to randomly generate string that we don't know
         // Some parameter may only be able to fit into such values
         if (isBoolean(value)) {
@@ -84,7 +92,10 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             return String.valueOf(random.nextFloat());
         } 
         // for now we only fuzz numeric and boolean configuration parameters.
-        return value;
+        String returnStr = String.valueOf(random.nextBytes(10));
+        //System.out.println("Generating random String for " + name + " : " + returnStr);
+        return returnStr;
+        //return value;
     }
 
     /**
@@ -111,10 +122,14 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         }
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
+        int index;
         while ((line = br.readLine()) != null) {
-            int index = line.indexOf("=");
+            index = line.indexOf("=");
             if (index != -1) {
-                mapping.put(line.substring(0, index - 1).trim(), line.substring(index + 1).trim());
+                String name = line.substring(0, index - 1).trim();
+                String value = line.substring(index + 1).trim();
+                mapping.put(name, value);
+                //System.out.println(name + " = " + value);
             }
         }
         br.close();
@@ -152,23 +167,23 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         return value == null || value.equals("");
     }
 
-
     /** For Internal test */
     public static void main(String[] args) {
         Path file = Paths.get("/home/swang516/xlab/test_file");
         try {
-            SourceOfRandomness random = new SourceOfRandomness(new Random());
-            curTestMapping = readFileToMapping(file);
-            // for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
-            //     System.out.println(entry.getKey() + "=" + entry.getValue());
-            // }
+            ConfigurationGenerator cg = new ConfigurationGenerator();
+            // SourceOfRandomness random = new SourceOfRandomness(new Random());
+            // curTestMapping = readFileToMapping(file);
+            // // for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
+            // //     System.out.println(entry.getKey() + "=" + entry.getValue());
+            // // }
 
-            for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
-                if (!isNullOrEmpty(entry.getValue())) {
-                    System.out.println(entry.getKey() + "= old: " + entry.getValue() + " new: " + randomValue(random, entry.getValue()));
-                }
-            }
-        } catch(IOException e) {
+            // for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
+            //     if (!isNullOrEmpty(entry.getValue())) {
+            //         System.out.println(entry.getKey() + "= old: " + entry.getValue() + " new: " + randomValue(entry.getKey(), entry.getValue(), random));
+            //     }
+            // }
+        } catch(Exception e) {
            e.printStackTrace();
         }
     }
