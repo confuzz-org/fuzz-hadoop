@@ -7,17 +7,22 @@ import com.pholser.junit.quickcheck.random.SourceOfRandomness;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Map;
-import java.util.Random;
-import java.util.HashMap;
+import java.util.*;
 
 public class ConfigurationGenerator extends Generator<Configuration> {
+
+    private static String PARAM_EQUAL_MARK = "=";
+    private static String PARAM_VALUE_SPLITOR = ";";
 
     /* Current Fuzzing Test Class Name; Set with -Dclass=XXX */
     private static String clzName = null;
     /* Currently Fuzzing Test Method Name; Set with -Dmethod=XXX */
     private static String methodName = null;
 
+    /* File name that stores all parameter constrains (e.g., valid values) */
+    private static String constrainFile = null;
+    /* Mapping that keeps all parameter valid values supportted */
+    private static Map<String, List<String>> paramConstrainMapping = null;
 
     /* Mapping directory that stores all test-param mapping files. Set with -Dmapping.dir=XXX */
     private static String mappingDir = null;
@@ -31,8 +36,10 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         super(Configuration.class);
         clzName = System.getProperty("class");
         methodName = System.getProperty("method");
-        mappingDir = System.getProperty("mapping.dir");
-        curTestMapping = readTestParamMapping(clzName, methodName);
+        mappingDir = System.getProperty("mapping.dir", "mappingDir");
+        constrainFile = System.getProperty("constrain.file", "constrain");
+        curTestMapping = parseTestParam(clzName, methodName);
+        paramConstrainMapping = parseParamConstrain();
     }
 
     /**
@@ -84,6 +91,9 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     private static String randomValue(String name, String value, SourceOfRandomness random) {
         // TODO: Next to find a way to randomly generate string that we don't know
         // Some parameter may only be able to fit into such values
+        if (paramHasConstrains(name)) {
+            return randomValueFromConstrain(name, random);
+        }
         if (isBoolean(value)) {
             return String.valueOf(random.nextBoolean());
         } else if (isInteger(value)) {
@@ -98,6 +108,38 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         //return value;
     }
 
+    private static String randomValueFromConstrain(String name, SourceOfRandomness random) {
+        return random.choose(paramConstrainMapping.get(name));
+    }
+
+    private static boolean paramHasConstrains(String name) {
+        return paramConstrainMapping.containsKey(name);
+    }
+
+    private static Map<String, List<String>> parseParamConstrain() throws IOException {
+        Map<String, List<String>> result = new HashMap<String, List<String>>();
+        File file = Paths.get(mappingDir, constrainFile).toFile();
+        if (!file.exists() || !file.isFile()){
+            throw new IOException("Unable to read file: " + file.getPath());
+        }
+        BufferedReader br = new BufferedReader(new FileReader(file));
+        String line;
+        int index;
+        while ((line = br.readLine()) != null) {
+            index = line.indexOf(PARAM_EQUAL_MARK);
+            if (index != -1) {
+                String name = line.substring(0, index - 1).trim();
+                /* Only continue parsing when this parameter is used by current fuzzing test */
+                if (curTestMapping.containsKey(name)) {
+                    String[] values = line.substring(index + 1).split(PARAM_VALUE_SPLITOR);
+                    List<String> valueList = new ArrayList(Arrays.asList(values));
+                    result.put(name, valueList);
+                }
+            }
+        }
+        return result;
+    }
+
     /**
      * Read configuration parameters and their exercised value in className#methodName
      * @param className
@@ -105,7 +147,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
      * @return
      * @throws IOException
      */
-    private static Map<String, String> readTestParamMapping(String className, String methodName) throws IOException {
+    private static Map<String, String> parseTestParam(String className, String methodName) throws IOException {
         /* Here Get Param Name and Param Value from file */
         if (mappingDir == null) {
             throw new RuntimeException("Unable to get test-parameter mapping directory");
@@ -124,7 +166,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         String line;
         int index;
         while ((line = br.readLine()) != null) {
-            index = line.indexOf("=");
+            index = line.indexOf(PARAM_EQUAL_MARK);
             if (index != -1) {
                 String name = line.substring(0, index - 1).trim();
                 String value = line.substring(index + 1).trim();
@@ -164,10 +206,23 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     }
 
     private static boolean isNullOrEmpty(String value) {
-        return value == null || value.equals("");
+        return value.equals("null") || value == null || value.equals("");
     }
 
     /** For Internal test */
+    public static void printMap(Map<String, List<String>> map) {
+        System.out.println("In printing!!");
+        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+            String name = entry.getKey();
+            String value = "";
+            for (String s : entry.getValue()) {
+                value = value + ";" + s;
+            }
+            System.out.println(name + "=" + value);
+        }
+    }
+
+
     public static void main(String[] args) {
         Path file = Paths.get("/home/swang516/xlab/test_file");
         try {
