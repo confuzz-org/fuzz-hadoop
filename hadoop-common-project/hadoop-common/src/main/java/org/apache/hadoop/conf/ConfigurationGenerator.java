@@ -128,7 +128,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         while ((line = br.readLine()) != null) {
             index = line.indexOf(PARAM_EQUAL_MARK);
             if (index != -1) {
-                String name = line.substring(0, index - 1).trim();
+                String name = line.substring(0, index).trim();
                 /* Only continue parsing when this parameter is used by current fuzzing test */
                 if (curTestMapping.containsKey(name)) {
                     String[] values = line.substring(index + 1).split(PARAM_VALUE_SPLITOR);
