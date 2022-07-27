@@ -5,6 +5,9 @@ import com.pholser.junit.quickcheck.generator.Generator;
 import com.pholser.junit.quickcheck.random.SourceOfRandomness;
 
 import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -30,6 +33,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     private static String mappingDir = null;
     /* Mapping that let generator know which configuration parameter to fuzz */
     private static Map<String, String> curTestMapping = null;
+
+    private static Writer out;
 
     /**
      * Constructor for Configuration Generator
@@ -68,10 +73,11 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
         // conf.set(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY, random.nextBytes(100).toString());
         // conf.setInt("fs.ftp.host.port", random.nextInt());
+        //int i = 0;
 
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             if (!isNullOrEmpty(entry.getValue())) {
-                //System.out.println("No." + i++ + "Looping " + entry.getKey());
+         //       System.out.println("No." + i++ + "Looping " + entry.getKey());
                 try {
                     String randomValue = randomValue(entry.getKey(), entry.getValue(), random);
                     conf.set(entry.getKey(), randomValue);
@@ -90,12 +96,16 @@ public class ConfigurationGenerator extends Generator<Configuration> {
      * @param value
      * @return
      */
-    private static String randomValue(String name, String value, SourceOfRandomness random) {
+    private static String randomValue(String name, String value, SourceOfRandomness random) throws IOException {
         // TODO: Next to find a way to randomly generate string that we don't know
         // Some parameter may only be able to fit into such values
         if (paramHasConstrains(name)) {
+            System.out.println("why wont this print");
+            //out.write("good" + "\n");
             RandomStringGenerator randomStringGenerator = new RandomStringGenerator(random.toJDKRandom());
-            return randomStringGenerator.generateByRegex(paramConstrainMapping.get(name));
+            String returnStr = randomStringGenerator.generateByRegex(paramConstrainMapping.get(name));
+            out.write(name + " " + returnStr + "\n");
+            return returnStr;
         }
         if (isBoolean(value)) {
             return String.valueOf(random.nextBoolean());
@@ -127,7 +137,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         while ((line = br.readLine()) != null) {
             index = line.indexOf(PARAM_EQUAL_MARK);
             if (index != -1) {
-                String name = line.substring(0, index - 1).trim();
+                String name = line.substring(0, index).trim();
+                System.out.println(name);
                 /* Only continue parsing when this parameter is used by current fuzzing test */
                 String value = line.substring(index + 1).trim();
                 result.put(name, value);
@@ -140,6 +151,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
                 */
             }
         }
+        br.close();
+        System.out.println(result.containsKey("fs.getspaceused.classname"));
         return result;
     }
 
@@ -172,6 +185,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             index = line.indexOf(PARAM_EQUAL_MARK);
             if (index != -1) {
                 String name = line.substring(0, index - 1).trim();
+                System.out.println("Something "+name);
                 String value = line.substring(index + 1).trim();
                 mapping.put(name, value);
                 //System.out.println(name + " = " + value);
