@@ -72,7 +72,6 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
         // conf.set(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY, random.nextBytes(100).toString());
         // conf.setInt("fs.ftp.host.port", random.nextInt());
-        //int i = 0;
 
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             if (!isNullOrEmpty(entry.getValue())) {

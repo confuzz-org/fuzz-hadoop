@@ -25,3 +25,6 @@ fs.getspaceused.classname=rg.apache.hadoop.fs.DU|org.apache.hadoop.fs.WindowsGet
 hadoop.user.group.static.mapping.overrides=([a-zA-Z][a-zA-Z0-9]*=([a-zA-Z][a-zA-Z0-9]*,?)*;)+
 ha.zookeeper.acl=([a-zA-Z][a-zA-Z0-9]?:?)+
 ipc.[port_number].decay-scheduler.thresholds=([1-9][0-9]*,?)+
+hadoop.zk.acl=([a-zA-Z][a-zA-Z0-9]?:?)+
+hadoop.service.shutdown.timeout=([0-9]+h)?([0-9]d+m)?([0-9]d+s)?
+hadoop.http.authentication.kerberos.principal=HTTP/[a-zA-Z]+@[a-zA-Z]+
