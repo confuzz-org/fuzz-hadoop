@@ -66,7 +66,6 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             throw new RuntimeException("Unable to get configuration mapping for current test: " + clzName + "#" +
                     methodName);
         }
-        // System.out.println("Current generate value for: " + clzName + "#" + methodName);
         // Here should be a for loop to set all the configuration parameter that used in the set;
         // For now we use TestIdentityProviders#testPluggableIdentityProvider as an example, which
         // only sets one param: CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY
@@ -77,7 +76,6 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             if (!isNullOrEmpty(entry.getValue())) {
-         //       System.out.println("No." + i++ + "Looping " + entry.getKey());
                 try {
                     String randomValue = randomValue(entry.getKey(), entry.getValue(), random);
                     conf.set(entry.getKey(), randomValue);
@@ -100,11 +98,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         // TODO: Next to find a way to randomly generate string that we don't know
         // Some parameter may only be able to fit into such values
         if (paramHasConstrains(name)) {
-            System.out.println("why wont this print");
-            //out.write("good" + "\n");
             RandomStringGenerator randomStringGenerator = new RandomStringGenerator(random.toJDKRandom());
             String returnStr = randomStringGenerator.generateByRegex(paramConstrainMapping.get(name));
-            out.write(name + " " + returnStr + "\n");
             return returnStr;
         }
         if (isBoolean(value)) {
@@ -116,7 +111,6 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         } 
         // for now we only fuzz numeric and boolean configuration parameters.
         String returnStr = String.valueOf(random.nextBytes(10));
-        //System.out.println("Generating random String for " + name + " : " + returnStr);
         return returnStr;
     }
 
@@ -138,21 +132,14 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             index = line.indexOf(PARAM_EQUAL_MARK);
             if (index != -1) {
                 String name = line.substring(0, index).trim();
-                System.out.println(name);
                 /* Only continue parsing when this parameter is used by current fuzzing test */
-                String value = line.substring(index + 1).trim();
-                result.put(name, value);
-                /*
                 if (curTestMapping.containsKey(name)) {
-                    String[] values = line.substring(index + 1).split(PARAM_VALUE_SPLITOR);
-                    List<String> valueList = new ArrayList(Arrays.asList(values));
-                    result.put(name, valueList);
+                    String value = line.substring(index + 1).trim();
+                    result.put(name, value);
                 }
-                */
             }
         }
         br.close();
-        System.out.println(result.containsKey("fs.getspaceused.classname"));
         return result;
     }
 
@@ -185,10 +172,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             index = line.indexOf(PARAM_EQUAL_MARK);
             if (index != -1) {
                 String name = line.substring(0, index - 1).trim();
-                System.out.println("Something "+name);
                 String value = line.substring(index + 1).trim();
                 mapping.put(name, value);
-                //System.out.println(name + " = " + value);
             }
         }
         br.close();
