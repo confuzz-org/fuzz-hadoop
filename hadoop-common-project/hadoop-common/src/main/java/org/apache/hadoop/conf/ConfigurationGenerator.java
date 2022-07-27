@@ -9,6 +9,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+import net.moznion.random.string.RandomStringGenerator;
+
 public class ConfigurationGenerator extends Generator<Configuration> {
 
     private static String PARAM_EQUAL_MARK = "=";
@@ -22,7 +24,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     /* File name that stores all parameter constrains (e.g., valid values) */
     private static String constrainFile = null;
     /* Mapping that keeps all parameter valid values supportted */
-    private static Map<String, List<String>> paramConstrainMapping = null;
+    private static Map<String, String> paramConstrainMapping = null;
 
     /* Mapping directory that stores all test-param mapping files. Set with -Dmapping.dir=XXX */
     private static String mappingDir = null;
@@ -92,7 +94,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         // TODO: Next to find a way to randomly generate string that we don't know
         // Some parameter may only be able to fit into such values
         if (paramHasConstrains(name)) {
-            return randomValueFromConstrain(name, random);
+            RandomStringGenerator randomStringGenerator = new RandomStringGenerator(random.toJDKRandom());
+            return randomStringGenerator.generateByRegex(paramConstrainMapping.get(name));
         }
         if (isBoolean(value)) {
             return String.valueOf(random.nextBoolean());
@@ -105,19 +108,15 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         String returnStr = String.valueOf(random.nextBytes(10));
         //System.out.println("Generating random String for " + name + " : " + returnStr);
         return returnStr;
-        //return value;
     }
 
-    private static String randomValueFromConstrain(String name, SourceOfRandomness random) {
-        return random.choose(paramConstrainMapping.get(name));
-    }
 
     private static boolean paramHasConstrains(String name) {
         return paramConstrainMapping.containsKey(name);
     }
 
-    private static Map<String, List<String>> parseParamConstrain() throws IOException {
-        Map<String, List<String>> result = new HashMap<String, List<String>>();
+    private static Map<String, String> parseParamConstrain() throws IOException {
+        Map<String, String> result = new HashMap<String, String>();
         File file = Paths.get(mappingDir, constrainFile).toFile();
         if (!file.exists() || !file.isFile()){
             throw new IOException("Unable to read file: " + file.getPath());
@@ -130,11 +129,15 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             if (index != -1) {
                 String name = line.substring(0, index - 1).trim();
                 /* Only continue parsing when this parameter is used by current fuzzing test */
+                String value = line.substring(index + 1).trim();
+                result.put(name, value);
+                /*
                 if (curTestMapping.containsKey(name)) {
                     String[] values = line.substring(index + 1).split(PARAM_VALUE_SPLITOR);
                     List<String> valueList = new ArrayList(Arrays.asList(values));
                     result.put(name, valueList);
                 }
+                */
             }
         }
         return result;
