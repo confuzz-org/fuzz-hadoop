@@ -22,3 +22,6 @@ hadoop.ssl.hostname.verifier=DEFAULT|STRICT|STRICT_IE6|DEFAULT_AND_LOCALHOST|ALL
 fs.adl.oauth2.access.token.provider.type=ClientCredential|RefreshToken|MSI|DeviceCode|Custom
 adl.ssl.channel.mode=default-empty|OpenSSL|Default_JSE|Default
 fs.getspaceused.classname=rg.apache.hadoop.fs.DU|org.apache.hadoop.fs.WindowsGetSpaceUsed|org.apache.hadoop.fs.DFCachingGetSpaceUsed|org.apache.hadoop.hdfs.server.datanode.fsdataset.impl.ReplicaCachingGetSpaceUsed
+hadoop.user.group.static.mapping.overrides=(\w[\w\d]*=(\w[\w\d]*,?)*;)+
+ha.zookeeper.acl=(\w[\w\d]?:?)+
+ipc.[port_number].decay-scheduler.thresholds=([1-9]\d*,?)+
