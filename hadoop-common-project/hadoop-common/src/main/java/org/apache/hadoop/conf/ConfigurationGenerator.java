@@ -13,7 +13,12 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
     private static String PARAM_EQUAL_MARK = "=";
     private static String PARAM_VALUE_SPLITOR = ";";
-
+    private static final String LOWERCASE_CHARS = "abcdefghijklmnopqrstuvwxyz";
+    private static final String UPPERCASE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String NUMBERS = "0123456789";
+    private static final String SPECIAL_CHARS = ".-\\;:_@[]^/|}{";
+    private static final String ALL_MY_CHARS = LOWERCASE_CHARS
+            + UPPERCASE_CHARS + NUMBERS + SPECIAL_CHARS;
     /* Current Fuzzing Test Class Name; Set with -Dclass=XXX */
     private static String clzName = null;
     /* Currently Fuzzing Test Method Name; Set with -Dmethod=XXX */
@@ -101,10 +106,19 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         } else if (isFloat(value)) {
             return String.valueOf(random.nextFloat());
         } 
+        // if not above type, return a random string
+        int length = random.nextInt(100);
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(ALL_MY_CHARS.length());
+            sb.append(ALL_MY_CHARS.charAt(randomIndex));
+        }
+        System.out.println("Generating random String for " + name + " : " + sb);
+        return sb.toString();
         // for now we only fuzz numeric and boolean configuration parameters.
-        String returnStr = String.valueOf(random.nextBytes(10));
+        // String returnStr = String.valueOf(random.nextBytes(10));
         //System.out.println("Generating random String for " + name + " : " + returnStr);
-        return returnStr;
+        // return returnStr;
         //return value;
     }
 
@@ -181,25 +195,25 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     /** Helper Functions */
     private static boolean isInteger(String value) {
         try {
-            int i = Integer.parseInt(value);
+            Integer.parseInt(value);
         } catch (NumberFormatException e) {
+            return false;
+        } catch (NullPointerException e) {
             return false;
         }
         return true;
     }
 
     private static boolean isBoolean(String value) {
-        String trimStr = value.toLowerCase().trim();
-        if (trimStr.equals("true") || trimStr.equals("false")) {
-            return true;
-        }
-        return false;
+        return "true".equals(value) || "false".equals(value);
     }
 
     private static boolean isFloat(String value) {
         try {
-            float f = Float.parseFloat(value);
+            Float.parseFloat(value);
         } catch (NumberFormatException e) {
+            return false;
+        } catch (NullPointerException e) {
             return false;
         }
         return true;
