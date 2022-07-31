@@ -12,7 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-import net.moznion.random.string.RandomStringGenerator;
+import com.mifmif.common.regex.Generex;
 
 public class ConfigurationGenerator extends Generator<Configuration> {
 
@@ -66,12 +66,6 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             throw new RuntimeException("Unable to get configuration mapping for current test: " + clzName + "#" +
                     methodName);
         }
-        // Here should be a for loop to set all the configuration parameter that used in the set;
-        // For now we use TestIdentityProviders#testPluggableIdentityProvider as an example, which
-        // only sets one param: CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY
-
-        // conf.set(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY, random.nextBytes(100).toString());
-        // conf.setInt("fs.ftp.host.port", random.nextInt());
 
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             if (!isNullOrEmpty(entry.getValue())) {
@@ -79,7 +73,9 @@ public class ConfigurationGenerator extends Generator<Configuration> {
                     String randomValue = randomValue(entry.getKey(), entry.getValue(), random);
                     conf.set(entry.getKey(), randomValue);
                 } catch (Exception e) {
-                    System.out.println(" Configuration Name: " + entry.getKey() + " value " + entry.getValue() + " Exception:");
+                    System.out.println(" Configuration Name: " + entry.getKey() 
+                                     + " value " + entry.getValue()
+                                     + " Exception:");
                     e.printStackTrace();
                     continue;
                 }
@@ -97,9 +93,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         // TODO: Next to find a way to randomly generate string that we don't know
         // Some parameter may only be able to fit into such values
         if (paramHasConstrains(name)) {
-            RandomStringGenerator randomStringGenerator = new RandomStringGenerator(random.toJDKRandom());
-            String returnStr = randomStringGenerator.generateByRegex(paramConstrainMapping.get(name));
-            return returnStr;
+            Generex generex = new Generex(paramConstrainMapping.get(name), random.toJDKRandom());
+            return generex.random();
         }
         if (isBoolean(value)) {
             return String.valueOf(random.nextBoolean());
