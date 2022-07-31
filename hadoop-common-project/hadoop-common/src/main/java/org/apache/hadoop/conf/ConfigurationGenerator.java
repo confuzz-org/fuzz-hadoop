@@ -13,6 +13,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
     private static String PARAM_EQUAL_MARK = "=";
     private static String PARAM_VALUE_SPLITOR = ";";
+
     private static final String LOWERCASE_CHARS = "abcdefghijklmnopqrstuvwxyz";
     private static final String UPPERCASE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String NUMBERS = "0123456789";
@@ -105,21 +106,11 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             return String.valueOf(random.nextInt());
         } else if (isFloat(value)) {
             return String.valueOf(random.nextFloat());
-        } 
-        // if not above type, return a random string
-        int length = random.nextInt(100);
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            int randomIndex = random.nextInt(ALL_MY_CHARS.length());
-            sb.append(ALL_MY_CHARS.charAt(randomIndex));
+        } else{
+            // if not above type, return a random string
+            return randomString(random);
         }
-        System.out.println("Generating random String for " + name + " : " + sb);
-        return sb.toString();
-        // for now we only fuzz numeric and boolean configuration parameters.
-        // String returnStr = String.valueOf(random.nextBytes(10));
-        //System.out.println("Generating random String for " + name + " : " + returnStr);
-        // return returnStr;
-        //return value;
+        
     }
 
     private static String randomValueFromConstrain(String name, SourceOfRandomness random) {
@@ -193,12 +184,20 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     }
 
     /** Helper Functions */
+    private static String randomString(SourceOfRandomness random) {
+        int length = random.nextInt(100);
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int randomIndex = random.nextInt(ALL_MY_CHARS.length());
+            sb.append(ALL_MY_CHARS.charAt(randomIndex));
+        }
+        return sb.toString();
+    }    
+
     private static boolean isInteger(String value) {
         try {
             Integer.parseInt(value);
-        } catch (NumberFormatException e) {
-            return false;
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             return false;
         }
         return true;
@@ -211,9 +210,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     private static boolean isFloat(String value) {
         try {
             Float.parseFloat(value);
-        } catch (NumberFormatException e) {
-            return false;
-        } catch (NullPointerException e) {
+        } catch (NumberFormatException| NullPointerException e) {
             return false;
         }
         return true;
