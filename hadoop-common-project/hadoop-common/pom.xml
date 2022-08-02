@@ -513,16 +513,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
         <configuration>
-          <systemPropertyVariables>
-            <runningWithNative>${runningWithNative}</runningWithNative>
-          </systemPropertyVariables>
-          <properties>
-            <property>
-              <name>listener</name>
-              <value>org.apache.hadoop.test.TimedOutTestsListener</value>
-            </property>
-          </properties>
+          <argLine>@{argLine}</argLine>
         </configuration>
       </plugin>
       <plugin>
@@ -653,45 +646,22 @@
         </configuration>
       </plugin>
       <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.8.8</version>
-            <executions>
-              <execution>
-                <id>default-prepare-agent</id>
-                <goals>
-                    <goal>prepare-agent</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>default-report</id>
-                <phase>test</phase>
-                <goals>
-                <goal>report</goal>
-                </goals>
-              </execution>
-              <execution>
-               <id>default-check</id>
-               <goals>
-               <goal>check</goal>
-               </goals>
-               <configuration>
-               <rules>
-                <rule>
-                 <element>BUNDLE</element>
-                 <limits>
-                  <limit>
-                    <counter>COMPLEXITY</counter>
-                    <value>COVEREDRATIO</value>
-                    <minimum>0.60</minimum>
-                  </limit>
-                 </limits>
-                </rule>
-                </rules>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.6</version>
+
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals><goal>prepare-agent</goal></goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals><goal>report</goal></goals>
+                    </execution>
+                </executions>
+      </plugin>
     </plugins>
   </build>
 
@@ -951,28 +921,6 @@
                 </configuration>
               </execution>
             </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <testFailureIgnore>${ignoreTestFailure}</testFailureIgnore>
-              <forkCount>${testsThreadCount}</forkCount>
-              <reuseForks>false</reuseForks>
-              <argLine>${maven-surefire-plugin.argLine} -DminiClusterDedicatedDirs=true</argLine>
-              <systemPropertyVariables>
-                <testsThreadCount>${testsThreadCount}</testsThreadCount>
-                <test.build.data>${test.build.data}/${surefire.forkNumber}</test.build.data>
-                <test.build.dir>${test.build.dir}/${surefire.forkNumber}</test.build.dir>
-                <hadoop.tmp.dir>${hadoop.tmp.dir}/${surefire.forkNumber}</hadoop.tmp.dir>
-
-                <!-- Due to a Maven quirk, setting this to just -->
-                <!-- surefire.forkNumber won't do the parameter substitution. -->
-                <!-- Putting a prefix in front of it like "fork-" makes it -->
-                <!-- work. -->
-                <test.unique.fork.id>fork-${surefire.forkNumber}</test.unique.fork.id>
-              </systemPropertyVariables>
-            </configuration>
           </plugin>
         </plugins>
       </build>
