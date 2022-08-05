@@ -20,7 +20,7 @@ package org.apache.hadoop.security.token.delegation.web;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
-
+import java.util.logging.Logger;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.security.UserGroupInformation;
@@ -29,13 +29,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
+import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class TestDelegationTokenManager {
 
   private static final long DAY_IN_SECS = 86400;
+  private final static Logger LOGGER = Logger.getLogger(TestDelegationTokenManager.class.getName());
 
-  @Parameterized.Parameters
+  @Parameters(name="{index}: fib({0})={1}")
   public static Collection<Object[]> headers() {
     return Arrays.asList(new Object[][] { { false }, { true } });
   }
@@ -49,6 +50,7 @@ public class TestDelegationTokenManager {
   @SuppressWarnings("unchecked")
   @Test
   public void testDTManager() throws Exception {
+    LOGGER.info("enableZKKEY: " + enableZKKey);
     Configuration conf = new Configuration(false);
     conf.setLong(DelegationTokenManager.UPDATE_INTERVAL, DAY_IN_SECS);
     conf.setLong(DelegationTokenManager.MAX_LIFETIME, DAY_IN_SECS);
