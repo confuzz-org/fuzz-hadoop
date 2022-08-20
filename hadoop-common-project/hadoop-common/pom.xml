@@ -543,6 +543,25 @@
         </configuration>
       </plugin>
       <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.6</version>
+                <configuration>
+                <append>false</append>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals><goal>prepare-agent</goal></goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <phase>test</phase>
+                        <goals><goal>report</goal></goals>
+                    </execution>
+                </executions>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
@@ -580,7 +599,49 @@
               </target>
             </configuration>
           </execution>
+          <execution>
+                <id>default-report</id>
+                <phase>test</phase>
+                <goals>
+                    <goal>run</goal>
+                </goals>
+                <configuration>
+                    <target>
+                        <taskdef name="report" classname="org.jacoco.ant.ReportTask" classpathref="maven.plugin.classpath" />
+                        <report>
+                            <executiondata>
+                                <file file="${project.build.directory}/jacoco.exec" />
+                            </executiondata>
+                            <structure name="Coverage">
+                                <classfiles>
+                                    <fileset dir="${project.build.directory}/classes"/>
+                                    <fileset dir="${project.build.directory}/test-classes"/>
+                                </classfiles>
+                                <sourcefiles encoding="UTF-8">
+                                    <fileset dir="src/main/java"/>
+                                    <fileset dir="src/test/java"/>
+                                </sourcefiles>
+                            </structure>
+                            <check failonviolation="true" violationsproperty="violation">
+                                <rule element="BUNDLE">
+                                    <limit counter="INSTRUCTION" value="COVEREDRATIO" minimum="0" />
+                                </rule>
+                            </check>
+                            <html destdir="${project.build.directory}/jacoco-internal"/>
+                            <csv destfile="${project.build.directory}/jacoco-internal/report.csv"/>
+                            <xml destfile="${project.build.directory}/jacoco-internal/report.xml"/>
+                        </report>
+                    </target>
+                </configuration>
+            </execution>
         </executions>
+        <dependencies>
+            <dependency>
+                <groupId>org.jacoco</groupId>
+                <artifactId>org.jacoco.ant</artifactId>
+                <version>0.8.6</version>
+            </dependency>
+        </dependencies>
       </plugin>
 
       <plugin>
@@ -652,23 +713,6 @@
             </fileset>
           </filesets>
         </configuration>
-      </plugin>
-      <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.6</version>
-
-                <executions>
-                    <execution>
-                        <id>prepare-agent</id>
-                        <goals><goal>prepare-agent</goal></goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>test</phase>
-                        <goals><goal>report</goal></goals>
-                    </execution>
-                </executions>
       </plugin>
     </plugins>
   </build>
@@ -1032,7 +1076,7 @@
         <plugins>
           <plugin>
             <artifactId>maven-antrun-plugin</artifactId>
-            <executions>
+            <!-- <executions>
                 <execution>
                     <id>common-test-bats-driver</id>
                     <phase>test</phase>
@@ -1049,7 +1093,7 @@
                       </target>
                     </configuration>
                 </execution>
-            </executions>
+            </executions> -->
           </plugin>
         </plugins>
       </build>
