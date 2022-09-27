@@ -786,6 +786,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     // Add default resources
     addDefaultResource("core-default.xml");
     addDefaultResource("core-site.xml");
+    addDefaultResource("core-ctest.xml");
 
     // print deprecation warning if hadoop-site.xml is found in classpath
     ClassLoader cL = Thread.currentThread().getContextClassLoader();
