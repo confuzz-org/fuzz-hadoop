@@ -67,6 +67,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         // conf.set(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY, random.nextBytes(100).toString());
         // conf.setInt("fs.ftp.host.port", random.nextInt());
 
+        // TODO: The order may be different so it would be helpful to sort the mapping before iterating it.
+        // TODO: monitor config dynamically
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             if (!isNullOrEmpty(entry.getValue())) {
                 //System.out.println("No." + i++ + "Looping " + entry.getKey());
@@ -82,12 +84,15 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         }
 	    return conf;
     }
- 
+
     /**
      * Return a random value based on the type of @param value
      * @param value
      * @return
      */
+    // TODO: Types can be cached the type rather than doing it for mutiple times.
+    // Pass the type instead of the value and check the type
+
     private static String randomValue(String name, String value, SourceOfRandomness random) {
         // TODO: Next to find a way to randomly generate string that we don't know
         // Some parameter may only be able to fit into such values
@@ -157,6 +162,9 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     }
 
     private static Map<String, String> readFileToMapping(Path filePath) throws IOException {
+        if(true) {
+            return new Configuration().getValByRegex(".*");
+        }
         Map<String, String> mapping = new HashMap<>();
         File file = filePath.toFile();
         if (!file.exists() || !file.isFile()) {

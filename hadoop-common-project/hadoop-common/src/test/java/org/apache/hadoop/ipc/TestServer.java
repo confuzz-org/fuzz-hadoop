@@ -35,15 +35,23 @@ import org.apache.hadoop.ipc.Server.Call;
 import org.junit.Test;
 import org.slf4j.Logger;
 
+import org.apache.hadoop.conf.ConfigurationGenerator;
+import org.junit.runner.RunWith;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import com.pholser.junit.quickcheck.From;
+
 /**
  * This is intended to be a set of unit tests for the 
  * org.apache.hadoop.ipc.Server class.
  */
+@RunWith(JQF.class)
 public class TestServer {
 
-  @Test
-  public void testBind() throws Exception {
-    Configuration conf = new Configuration();
+  @Fuzz
+  public void testBind(@From(ConfigurationGenerator.class) Configuration conf) throws Exception {
+    //Configuration conf = new Configuration(conf);
+    System.err.println(conf.get("ipc.server.max.connections"));
     ServerSocket socket = new ServerSocket();
     InetSocketAddress address = new InetSocketAddress("0.0.0.0",0);
     socket.bind(address);

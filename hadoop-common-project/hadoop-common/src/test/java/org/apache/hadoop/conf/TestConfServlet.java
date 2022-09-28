@@ -204,6 +204,7 @@ public class TestConfServlet {
   @Fuzz
   @SuppressWarnings("unchecked")
   public void testWriteJson(@From(ConfigurationGenerator.class) Configuration conf) throws Exception {
+    System.out.println(conf.get("nfs3.mountd.port"));
     StringWriter sw = new StringWriter();
     ConfServlet.writeResponse(getTestConf(conf), sw, "json");
     String json = sw.toString();
