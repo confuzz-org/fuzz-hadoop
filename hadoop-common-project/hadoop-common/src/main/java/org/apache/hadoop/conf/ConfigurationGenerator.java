@@ -19,10 +19,10 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     /* Currently Fuzzing Test Method Name; Set with -Dmethod=XXX */
     private static String methodName = null;
 
-    /* File name that stores all parameter constrains (e.g., valid values) */
-    private static String constrainFile = null;
+    /* File name that stores all parameter constraints (e.g., valid values) */
+    private static String constraintFile = null;
     /* Mapping that keeps all parameter valid values supportted */
-    private static Map<String, List<String>> paramConstrainMapping = null;
+    private static Map<String, List<String>> paramConstraintMapping = null;
 
     /* Mapping directory that stores all test-param mapping files. Set with -Dmapping.dir=XXX */
     private static String mappingDir = null;
@@ -37,9 +37,9 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         clzName = System.getProperty("class");
         methodName = System.getProperty("method");
         mappingDir = System.getProperty("mapping.dir", "mappingDir");
-        constrainFile = System.getProperty("constrain.file", "constrain");
+        constraintFile = System.getProperty("constraint.file", "constraint");
         curTestMapping = parseTestParam(clzName, methodName);
-        paramConstrainMapping = parseParamConstrain();
+        paramConstraintMapping = parseParamConstraint();
     }
 
     /**
@@ -91,8 +91,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     private static String randomValue(String name, String value, SourceOfRandomness random) {
         // TODO: Next to find a way to randomly generate string that we don't know
         // Some parameter may only be able to fit into such values
-        if (paramHasConstrains(name)) {
-            return randomValueFromConstrain(name, random);
+        if (paramHasConstraints(name)) {
+            return randomValueFromConstraint(name, random);
         }
         if (isBoolean(value)) {
             return String.valueOf(random.nextBoolean());
@@ -108,17 +108,17 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         //return value;
     }
 
-    private static String randomValueFromConstrain(String name, SourceOfRandomness random) {
-        return random.choose(paramConstrainMapping.get(name));
+    private static String randomValueFromConstraint(String name, SourceOfRandomness random) {
+        return random.choose(paramConstraintMapping.get(name));
     }
 
-    private static boolean paramHasConstrains(String name) {
-        return paramConstrainMapping.containsKey(name);
+    private static boolean paramHasConstraints(String name) {
+        return paramConstraintMapping.containsKey(name);
     }
 
-    private static Map<String, List<String>> parseParamConstrain() throws IOException {
+    private static Map<String, List<String>> parseParamConstraint() throws IOException {
         Map<String, List<String>> result = new HashMap<String, List<String>>();
-        File file = Paths.get(mappingDir, constrainFile).toFile();
+        File file = Paths.get(mappingDir, constraintFile).toFile();
         if (!file.exists() || !file.isFile()){
             throw new IOException("Unable to read file: " + file.getPath());
         }
