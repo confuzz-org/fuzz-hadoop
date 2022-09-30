@@ -21,13 +21,12 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
     /* File path that stores all parameter constraints (e.g., valid values) */
     private static String constraintFile = null;
-    /* Mapping that keeps all parameter valid values supportted */
+    /* Mapping that keeps all parameter valid values supported (from the constraint file) */
     private static Map<String, List<String>> paramConstraintMapping = null;
 
     /* Mapping that let generator know which configuration parameter to fuzz */
     private static Map<String, String> curTestMapping = null;
 
-    private static int debugCounter = 0;
 
     /**
      * Constructor for Configuration Generator
@@ -40,7 +39,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
         /* Use TreeMap to sort the configuration set to prevent ordering inconsistency;
            Initialize the mapping with all default configuration set for the first round */
-        curTestMapping = new TreeMap<>(getAllDefaultConfiguration());
+        curTestMapping = ConfigurationTracker.getInitConfigMap();
         paramConstraintMapping = parseParamConstraint();
     }
 
@@ -57,6 +56,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         if (clzName == null || methodName == null) {
             throw new RuntimeException("Must specify test class name and test method name!");
         }
+        curTestMapping = ConfigurationTracker.getAndFreshConfigMap();
         if (curTestMapping == null) {
             throw new RuntimeException("Unable to get configuration mapping for current test: " + clzName + "#" +
                     methodName);
@@ -147,9 +147,6 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         return result;
     }
 
-    private static Map<String, String> getAllDefaultConfiguration() throws IOException {
-        return new Configuration().getValByRegex(".*");
-    }
 
     /** Helper Functions */
     private static boolean isInteger(String value) {

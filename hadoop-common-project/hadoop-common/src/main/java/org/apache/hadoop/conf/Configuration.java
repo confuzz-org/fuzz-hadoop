@@ -1236,7 +1236,8 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   }
 
   private boolean ctestLogEnabled = Boolean.getBoolean("ctest.log");
-  public void logCTestValue(String ctestParam, String result, boolean isSet) {
+  public void trackConfig(String ctestParam, String result, boolean isSet) {
+    ConfigurationTracker.track(ctestParam, result);
     if (ctestLogEnabled) {
       if (isSet) {
  	      LOG.warn("[CTEST][SET-PARAM] " + ctestParam + " = " + result + " " + getStackTrace()); //CTEST
@@ -1269,7 +1270,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       ctestParam = n; //CTEST
       result = substituteVars(getProps().getProperty(n));
     }
-    logCTestValue(ctestParam, result, false);
+    trackConfig(ctestParam, result, false);
     return result;
   }
 
@@ -1364,7 +1365,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       ctestParam = n; //CTEST
       result = getProps().getProperty(n);
     }
-    logCTestValue(ctestParam, result, false);
+    trackConfig(ctestParam, result, false);
     return result;
   }
 
@@ -1440,7 +1441,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     if (deprecations.getDeprecatedKeyMap().isEmpty()) {
       getProps();
     }
-    logCTestValue(name, value, true);
+    trackConfig(name, value, true);
     getOverlay().setProperty(name, value);
     getProps().setProperty(name, value);
     String newSource = (source == null ? "programmatically" : source);
@@ -1451,7 +1452,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       if(altNames != null) {
         for(String n: altNames) {
           if(!n.equals(name)) {
-            logCTestValue(n, value, true);
+            trackConfig(n, value, true);
 	          getOverlay().setProperty(n, value);
             getProps().setProperty(n, value);
             putIntoUpdatingResource(n, new String[] {newSource});
@@ -1463,7 +1464,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       String[] names = handleDeprecation(deprecationContext.get(), name);
       String altSource = "because " + name + " is deprecated";
       for(String n : names) {
-        logCTestValue(n, value, true);
+        trackConfig(n, value, true);
 	      getOverlay().setProperty(n, value);
         getProps().setProperty(n, value);
         putIntoUpdatingResource(n, new String[] {altSource});
@@ -1543,7 +1544,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       ctestParam = n; //CTEST
       result = substituteVars(getProps().getProperty(n, defaultValue));
     }
-    logCTestValue(ctestParam, result, false);
+    trackConfig(ctestParam, result, false);
     return result;
   }
 
