@@ -38,7 +38,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         methodName = System.getProperty("method");
         //mappingDir = System.getProperty("mapping.dir", "mappingDir");
         constraintFile = System.getProperty("constraint.file", "constraint");
-        curTestMapping = getAllDefaultConfiguration();
+        // Use TreeMap to sort the configuration
+        curTestMapping = new TreeMap<>(getAllDefaultConfiguration());
         //paramConstraintMapping = parseParamConstraint();
     }
 
@@ -65,10 +66,10 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         // only sets one param: CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY
 
         // conf.set(CommonConfigurationKeys.IPC_IDENTITY_PROVIDER_KEY, random.nextBytes(100).toString());
-        // conf.setInt("fs.ftp.host.port", random.nextInt());
+        // conf.setInt("fs.ftp.host.port", random.nextInt())
 
-        // TODO: The order may be different so it would be helpful to sort the mapping before iterating it.
         // TODO: monitor config dynamically
+        // curTestMapping is a sorted TreeMap
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             if (!isNullOrEmpty(entry.getValue())) {
                 //System.out.println("No." + i++ + "Looping " + entry.getKey());
