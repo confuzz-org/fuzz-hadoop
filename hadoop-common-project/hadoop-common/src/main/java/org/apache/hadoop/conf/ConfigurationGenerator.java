@@ -19,13 +19,13 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     /* Currently Fuzzing Test Method Name; Set with -Dmethod=XXX */
     private static String methodName = null;
 
-    /* File name that stores all parameter constraints (e.g., valid values) */
+    /* File path that stores all parameter constraints (e.g., valid values) */
     private static String constraintFile = null;
     /* Mapping that keeps all parameter valid values supportted */
     private static Map<String, List<String>> paramConstraintMapping = null;
 
     /* Mapping directory that stores all test-param mapping files. Set with -Dmapping.dir=XXX */
-    private static String mappingDir = null;
+    // private static String mappingDir = null;
     /* Mapping that let generator know which configuration parameter to fuzz */
     private static Map<String, String> curTestMapping = null;
 
@@ -36,10 +36,10 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         super(Configuration.class);
         clzName = System.getProperty("class");
         methodName = System.getProperty("method");
-        mappingDir = System.getProperty("mapping.dir", "mappingDir");
+        //mappingDir = System.getProperty("mapping.dir", "mappingDir");
         constraintFile = System.getProperty("constraint.file", "constraint");
-        curTestMapping = parseTestParam(clzName, methodName);
-        paramConstraintMapping = parseParamConstraint();
+        curTestMapping = getAllDefaultConfiguration();
+        //paramConstraintMapping = parseParamConstraint();
     }
 
     /**
@@ -123,7 +123,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
     private static Map<String, List<String>> parseParamConstraint() throws IOException {
         Map<String, List<String>> result = new HashMap<String, List<String>>();
-        File file = Paths.get(mappingDir, constraintFile).toFile();
+        File file = Paths.get(constraintFile).toFile();
         if (!file.exists() || !file.isFile()){
             throw new IOException("Unable to read file: " + file.getPath());
         }
@@ -145,45 +145,24 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         return result;
     }
 
-    /**
-     * Read configuration parameters and their exercised value in className#methodName
-     * @param className
-     * @param methodName
-     * @return
-     * @throws IOException
-     */
-    private static Map<String, String> parseTestParam(String className, String methodName) throws IOException {
-        /* Here Get Param Name and Param Value from file */
-        if (mappingDir == null) {
-            throw new RuntimeException("Unable to get test-parameter mapping directory");
-        }
-        Path mappingFilePath = Paths.get(mappingDir, className + "#" + methodName);
-        return readFileToMapping(mappingFilePath);
-    }
+//    /**
+//     * Read configuration parameters and their exercised value in className#methodName
+//     * @param className
+//     * @param methodName
+//     * @return
+//     * @throws IOException
+//     */
+//    private static Map<String, String> parseTestParam(String className, String methodName) throws IOException {
+//        /* Here Get Param Name and Param Value from file */
+//        if (mappingDir == null) {
+//            throw new RuntimeException("Unable to get test-parameter mapping directory");
+//        }
+//        Path mappingFilePath = Paths.get(mappingDir, className + "#" + methodName);
+//        return readFileToMapping(mappingFilePath);
+//    }
 
-    private static Map<String, String> readFileToMapping(Path filePath) throws IOException {
-        if(true) {
-            return new Configuration().getValByRegex(".*");
-        }
-        Map<String, String> mapping = new HashMap<>();
-        File file = filePath.toFile();
-        if (!file.exists() || !file.isFile()) {
-            throw new IOException("Unable to read file: " + filePath);
-        }
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String line;
-        int index;
-        while ((line = br.readLine()) != null) {
-            index = line.indexOf(PARAM_EQUAL_MARK);
-            if (index != -1) {
-                String name = line.substring(0, index - 1).trim();
-                String value = line.substring(index + 1).trim();
-                mapping.put(name, value);
-                //System.out.println(name + " = " + value);
-            }
-        }
-        br.close();
-        return mapping;
+    private static Map<String, String> getAllDefaultConfiguration() throws IOException {
+        return new Configuration().getValByRegex(".*");
     }
 
     /** Helper Functions */
@@ -218,7 +197,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     }
 
     /** For Internal test */
-    public static void printMap(Map<String, List<String>> map) {
+    public static void printListMap(Map<String, List<String>> map) {
         System.out.println("In printing!!");
         for (Map.Entry<String, List<String>> entry : map.entrySet()) {
             String name = entry.getKey();
@@ -230,12 +209,22 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         }
     }
 
+    public static void printMap(Map<String, String> map) {
+        System.out.println("In printing!!");
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            String name = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(name + "=" + value);
+        }
+        System.out.println("Number of map size = " + map.size());
+    }
+
 
     public static void main(String[] args) {
         Path file = Paths.get("/home/swang516/xlab/test_file");
         try {
             ConfigurationGenerator cg = new ConfigurationGenerator();
-            // SourceOfRandomness random = new SourceOfRandomness(new Random());
+            printMap(curTestMapping);
             // curTestMapping = readFileToMapping(file);
             // // for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             // //     System.out.println(entry.getKey() + "=" + entry.getValue());
