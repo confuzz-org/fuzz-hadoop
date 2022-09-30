@@ -24,10 +24,10 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     /* Mapping that keeps all parameter valid values supportted */
     private static Map<String, List<String>> paramConstraintMapping = null;
 
-    /* Mapping directory that stores all test-param mapping files. Set with -Dmapping.dir=XXX */
-    // private static String mappingDir = null;
     /* Mapping that let generator know which configuration parameter to fuzz */
     private static Map<String, String> curTestMapping = null;
+
+    private static int debugCounter = 0;
 
     /**
      * Constructor for Configuration Generator
@@ -36,11 +36,12 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         super(Configuration.class);
         clzName = System.getProperty("class");
         methodName = System.getProperty("method");
-        //mappingDir = System.getProperty("mapping.dir", "mappingDir");
         constraintFile = System.getProperty("constraint.file", "constraint");
-        // Use TreeMap to sort the configuration
+
+        /* Use TreeMap to sort the configuration set to prevent ordering inconsistency;
+           Initialize the mapping with all default configuration set for the first round */
         curTestMapping = new TreeMap<>(getAllDefaultConfiguration());
-        //paramConstraintMapping = parseParamConstraint();
+        paramConstraintMapping = parseParamConstraint();
     }
 
     /**
@@ -145,22 +146,6 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         }
         return result;
     }
-
-//    /**
-//     * Read configuration parameters and their exercised value in className#methodName
-//     * @param className
-//     * @param methodName
-//     * @return
-//     * @throws IOException
-//     */
-//    private static Map<String, String> parseTestParam(String className, String methodName) throws IOException {
-//        /* Here Get Param Name and Param Value from file */
-//        if (mappingDir == null) {
-//            throw new RuntimeException("Unable to get test-parameter mapping directory");
-//        }
-//        Path mappingFilePath = Paths.get(mappingDir, className + "#" + methodName);
-//        return readFileToMapping(mappingFilePath);
-//    }
 
     private static Map<String, String> getAllDefaultConfiguration() throws IOException {
         return new Configuration().getValByRegex(".*");
