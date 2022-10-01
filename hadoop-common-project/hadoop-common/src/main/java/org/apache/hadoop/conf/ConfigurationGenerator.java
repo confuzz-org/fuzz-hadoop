@@ -26,7 +26,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
     /* Mapping that let generator know which configuration parameter to fuzz */
     private static Map<String, String> curTestMapping = null;
-
+    private static boolean debugEnabled = Boolean.getBoolean("generator.debug");
 
     /**
      * Constructor for Configuration Generator
@@ -52,11 +52,13 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     @Override
     public Configuration generate(SourceOfRandomness random, GenerationStatus generationStatus) {
         //Initialize a Configuration object
-        Configuration conf = new Configuration();
         if (clzName == null || methodName == null) {
             throw new RuntimeException("Must specify test class name and test method name!");
         }
-        curTestMapping = ConfigurationTracker.getAndFreshConfigMap();
+        debugPrint("Map size before freshMap = " + ConfigurationTracker.getMapSize());
+        curTestMapping = ConfigurationTracker.getConfigMap();
+        Configuration conf = new Configuration();
+        debugPrint("Mapping length = " + curTestMapping.size());
         if (curTestMapping == null) {
             throw new RuntimeException("Unable to get configuration mapping for current test: " + clzName + "#" +
                     methodName);
@@ -76,14 +78,16 @@ public class ConfigurationGenerator extends Generator<Configuration> {
                 //System.out.println("No." + i++ + "Looping " + entry.getKey());
                 try {
                     String randomValue = randomValue(entry.getKey(), entry.getValue(), random);
+                    debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);
                     conf.set(entry.getKey(), randomValue);
                 } catch (Exception e) {
-                    System.out.println(" Configuration Name: " + entry.getKey() + " value " + entry.getValue() + " Exception:");
+                    debugPrint(" Configuration Name: " + entry.getKey() + " value " + entry.getValue() + " Exception:");
                     e.printStackTrace();
                     continue;
                 }
             }
         }
+        ConfigurationTracker.freshMap();
 	    return conf;
     }
 
@@ -99,6 +103,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         // TODO: Next to find a way to randomly generate string that we don't know
         // Some parameter may only be able to fit into such values
         if (paramHasConstraints(name)) {
+            debugPrint("In Constraint!!");
             return randomValueFromConstraint(name, random);
         }
         if (isBoolean(value)) {
@@ -120,6 +125,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     }
 
     private static boolean paramHasConstraints(String name) {
+        debugPrint(String.valueOf(paramConstraintMapping.containsKey(name)));
         return paramConstraintMapping.containsKey(name);
     }
 
@@ -135,13 +141,10 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         while ((line = br.readLine()) != null) {
             index = line.indexOf(PARAM_EQUAL_MARK);
             if (index != -1) {
-                String name = line.substring(0, index - 1).trim();
-                /* Only continue parsing when this parameter is used by current fuzzing test */
-                if (curTestMapping.containsKey(name)) {
-                    String[] values = line.substring(index + 1).split(PARAM_VALUE_SPLITOR);
-                    List<String> valueList = new ArrayList(Arrays.asList(values));
-                    result.put(name, valueList);
-                }
+                String name = line.substring(0, index).trim();
+                String[] values = line.substring(index + 1).split(PARAM_VALUE_SPLITOR);
+                List<String> valueList = new ArrayList(Arrays.asList(values));
+                result.put(name, valueList);
             }
         }
         return result;
@@ -202,12 +205,18 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         System.out.println("Number of map size = " + map.size());
     }
 
+    public static void debugPrint(String str) {
+        if (debugEnabled) {
+            System.out.println(str);
+        }
+    }
+
 
     public static void main(String[] args) {
         Path file = Paths.get("/home/swang516/xlab/test_file");
         try {
-            ConfigurationGenerator cg = new ConfigurationGenerator();
-            printMap(curTestMapping);
+//            ConfigurationGenerator cg = new ConfigurationGenerator();
+//            printMap(curTestMapping);
             // curTestMapping = readFileToMapping(file);
             // // for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             // //     System.out.println(entry.getKey() + "=" + entry.getValue());

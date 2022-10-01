@@ -16,6 +16,7 @@ public class ConfigurationTracker {
     private static boolean trackerLogEnabled = Boolean.getBoolean("tracker.log");
     private static final Logger LOG =
             LoggerFactory.getLogger(ConfigurationTracker.class);
+    private static int counter = 0;
 
     public ConfigurationTracker(String curTestClass, String curTestName) {
         this.curTestClass = curTestClass;
@@ -32,6 +33,7 @@ public class ConfigurationTracker {
         if (trackerLogEnabled) {
             LOG.info("Tracker: " + key + " = " + value);
         }
+        counter++;
     }
 
     public static Map<String, String> getConfigMap() {
@@ -41,20 +43,16 @@ public class ConfigurationTracker {
         return configMap;
     }
 
-    public static Map<String, String> getAndFreshConfigMap() {
-        Map<String, String> res = getConfigMap();
-        if (!freshMap()) {
-            throw new RuntimeException("Unable to clean up config map in ConfigurationTracker!");
-        }
-        return res;
-    }
-
     public static Boolean freshMap() {
         configMap = new TreeMap<>();
         if (configMap.size() == 0) {
             return true;
         }
         return false;
+    }
+
+    public static int getMapSize() {
+        return configMap.size();
     }
 
     // Helper
