@@ -22,7 +22,11 @@ import static org.junit.Assert.fail;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
 
 import org.apache.hadoop.ipc.protobuf.TestProtos.EmptyRequestProto;
@@ -40,7 +44,9 @@ import org.junit.Test;
 import org.apache.hadoop.thirdparty.protobuf.BlockingService;
 import org.apache.hadoop.thirdparty.protobuf.RpcController;
 import org.apache.hadoop.thirdparty.protobuf.ServiceException;
+import org.junit.runner.RunWith;
 
+@RunWith(JQF.class)
 public class TestProtoBufRPCCompatibility {
 
   private static final String ADDRESS = "0.0.0.0";
@@ -129,6 +135,49 @@ public class TestProtoBufRPCCompatibility {
       Assert.assertEquals(16, clientId.length);
       return EmptyResponseProto.newBuilder().build();
     }
+  }
+
+  @Fuzz
+  public void testProtocolVersionMismatchFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws IOException, ServiceException {
+    conf = new Configuration(generatedConfig);
+    conf.setInt(CommonConfigurationKeys.IPC_MAXIMUM_DATA_LENGTH, 1024);
+    // Set RPC engine to protobuf RPC engine
+    RPC.setProtocolEngine(conf, NewRpcService.class, ProtobufRpcEngine2.class);
+
+    // Create server side implementation
+    NewServerImpl serverImpl = new NewServerImpl();
+    BlockingService service = NewProtobufRpcProto
+            .newReflectiveBlockingService(serverImpl);
+    // Get RPC server for server side implementation
+    server = new RPC.Builder(conf).setProtocol(NewRpcService.class)
+            .setInstance(service).setBindAddress(ADDRESS).setPort(PORT).build();
+    addr = NetUtils.getConnectAddress(server);
+
+    server.start();
+
+    RPC.setProtocolEngine(conf, OldRpcService.class, ProtobufRpcEngine2.class);
+
+    OldRpcService proxy = RPC.getProxy(OldRpcService.class, 0, addr, conf);
+    // Verify that exception is thrown if protocolVersion is mismatch between
+    // client and server.
+    EmptyRequestProto emptyRequest = EmptyRequestProto.newBuilder().build();
+    try {
+      proxy.ping(null, emptyRequest);
+      fail("Expected an exception to occur as version mismatch.");
+    } catch (Exception e) {
+      if (! (e.getMessage().contains("version mismatch"))){
+        // Exception type is not what we expected, re-throw it.
+        throw new IOException(e);
+      }
+    }
+
+    // Verify that missing of optional field is still compatible in RPC call.
+    RPC.setProtocolEngine(conf, NewerRpcService.class,
+            ProtobufRpcEngine2.class);
+    NewerRpcService newProxy = RPC.getProxy(NewerRpcService.class, 0, addr,
+            conf);
+    newProxy.echo(null, emptyRequest);
+
   }
 
   @Test
