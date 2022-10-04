@@ -17,11 +17,17 @@
  */
 package org.apache.hadoop.ipc;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(JQF.class)
 public class TestMultipleProtocolServer extends TestRpcBase {
 
   private static RPC.Server server;
@@ -38,6 +44,16 @@ public class TestMultipleProtocolServer extends TestRpcBase {
     server.stop();
   }
 
+  // Now test a PB service - a server  hosts both PB and Writable Rpcs.
+  @Fuzz
+  public void testPBServiceFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    // Set RPC engine to protobuf RPC engine
+    Configuration conf2 = new Configuration(generatedConfig);
+    RPC.setProtocolEngine(conf2, TestRpcService.class,
+            ProtobufRpcEngine2.class);
+    TestRpcService client = RPC.getProxy(TestRpcService.class, 0, addr, conf2);
+    TestProtoBufRpc.testProtoBufRpc(client);
+  }
 
   // Now test a PB service - a server  hosts both PB and Writable Rpcs.
   @Test

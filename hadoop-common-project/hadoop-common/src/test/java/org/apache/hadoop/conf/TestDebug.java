@@ -12,13 +12,15 @@ import java.util.Map;
 public class TestDebug {
 
     @Fuzz
-    public void test(@From(ConfigurationGenerator.class) Configuration conf) {
+    public void test(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
         int count = 0;
-        String str = conf.get("fs.s3a.select.output.csv.quote.fields");
+        String str = generatedConfig.get("fs.s3a.select.output.csv.quote.fields");
         if (str.equals("always")) {
             count ++;
         } else if (str.equals("asneeded")) {
+            generatedConfig.set("fake-config1","15");
             count --;
+            throw new Exception("Fake Bug");
         }
         //System.out.println("Conf Length : " + conf.size());
     }

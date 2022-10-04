@@ -19,7 +19,12 @@
 package org.apache.hadoop.ipc;
 import static org.junit.Assert.*;
 import java.util.Set;
+
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.CommonConfigurationKeysPublic;
 import org.apache.hadoop.fs.PathIOException;
 import org.apache.hadoop.io.retry.RetryPolicies;
@@ -28,11 +33,13 @@ import org.apache.hadoop.io.retry.TestConnectionRetryPolicy;
 import org.apache.hadoop.ipc.Client.ConnectionId;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * This class mainly tests behaviors of reusing RPC connections for various
  * retry policies.
  */
+@RunWith(JQF.class)
 public class TestReuseRpcConnections extends TestRpcBase {
   @Before
   public void setup() {
@@ -59,6 +66,51 @@ public class TestReuseRpcConnections extends TestRpcBase {
         defaultRetryPolicySpec,
         remoteExceptionToRetry);
   }
+
+  @Fuzz
+  public void testDefaultRetryPolicyReuseConnectionsFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    setupConf(generatedConfig);
+    RetryPolicy rp1 = null;
+    RetryPolicy rp2 = null;
+    RetryPolicy rp3 = null;
+
+    /* test the same setting */
+    rp1 = getDefaultRetryPolicy(true, "10000,2");
+    rp2 = getDefaultRetryPolicy(true, "10000,2");
+    verifyRetryPolicyReuseConnections(rp1, rp2, RetryPolicies.RETRY_FOREVER);
+
+    /* test enabled and different specifications */
+    rp1 = getDefaultRetryPolicy(true, "20000,3");
+    rp2 = getDefaultRetryPolicy(true, "20000,3");
+    rp3 = getDefaultRetryPolicy(true, "30000,4");
+    verifyRetryPolicyReuseConnections(rp1, rp2, rp3);
+
+    /* test disabled and the same specifications */
+    rp1 = getDefaultRetryPolicy(false, "40000,5");
+    rp2 = getDefaultRetryPolicy(false, "40000,5");
+    verifyRetryPolicyReuseConnections(rp1, rp2, RetryPolicies.RETRY_FOREVER);
+
+    /* test disabled and different specifications */
+    rp1 = getDefaultRetryPolicy(false, "50000,6");
+    rp2 = getDefaultRetryPolicy(false, "60000,7");
+    verifyRetryPolicyReuseConnections(rp1, rp2, RetryPolicies.RETRY_FOREVER);
+
+    /* test different remoteExceptionToRetry */
+    rp1 = getDefaultRetryPolicy(
+            true,
+            "70000,8",
+            new RemoteException(
+                    RpcNoSuchMethodException.class.getName(),
+                    "no such method exception").getClassName());
+    rp2 = getDefaultRetryPolicy(
+            true,
+            "70000,8",
+            new RemoteException(
+                    PathIOException.class.getName(),
+                    "path IO exception").getClassName());
+    verifyRetryPolicyReuseConnections(rp1, rp2, RetryPolicies.RETRY_FOREVER);
+  }
+
 
   @Test(timeout = 60000)
   public void testDefaultRetryPolicyReuseConnections() throws Exception {

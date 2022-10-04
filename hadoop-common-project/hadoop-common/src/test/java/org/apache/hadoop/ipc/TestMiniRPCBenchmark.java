@@ -17,14 +17,28 @@
  */
 package org.apache.hadoop.ipc;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.event.Level;
 
 /**
  * Test {@link MiniRPCBenchmark}
  */
+@RunWith(JQF.class)
 public class TestMiniRPCBenchmark {
+  @Fuzz
+  public void testSimpleFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    Configuration conf = new Configuration(generatedConfig);
+    conf.set("hadoop.security.authentication", "simple");
+    MiniRPCBenchmark mb = new MiniRPCBenchmark(Level.DEBUG);
+    mb.runMiniBenchmark(conf, 10, null, null);
+  }
+
   @Test
   public void testSimple() throws Exception {
     Configuration conf = new Configuration();

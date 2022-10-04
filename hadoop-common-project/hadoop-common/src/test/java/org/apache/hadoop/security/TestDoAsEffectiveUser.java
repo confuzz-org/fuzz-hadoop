@@ -209,6 +209,36 @@ public class TestDoAsEffectiveUser extends TestRpcBase {
     }
   }
 
+  @Fuzz
+  public void testRealUserAuthorizationSuccessFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws IOException {
+    final Configuration conf = new Configuration(generatedConfig);
+    configureSuperUserIPAddresses(conf, REAL_USER_SHORT_NAME);
+    conf.setStrings(DefaultImpersonationProvider.getTestProvider().
+                    getProxySuperuserGroupConfKey(REAL_USER_SHORT_NAME),
+            "group1");
+    RPC.setProtocolEngine(conf, TestRpcService.class,
+            ProtobufRpcEngine2.class);
+    UserGroupInformation.setConfiguration(conf);
+    final Server server = setupTestServer(conf, 5);
+
+    refreshConf(conf);
+    try {
+      UserGroupInformation realUserUgi = UserGroupInformation
+              .createRemoteUser(REAL_USER_NAME);
+      checkRemoteUgi(realUserUgi, conf);
+
+      UserGroupInformation proxyUserUgi = UserGroupInformation
+              .createProxyUserForTesting(PROXY_USER_NAME, realUserUgi, GROUP_NAMES);
+      checkRemoteUgi(proxyUserUgi, conf);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.fail();
+    } finally {
+      stop(server, client);
+    }
+  }
+
+
   @Test(timeout=4000)
   public void testRealUserAuthorizationSuccess() throws IOException {
     final Configuration conf = new Configuration();
@@ -233,6 +263,49 @@ public class TestDoAsEffectiveUser extends TestRpcBase {
     } catch (Exception e) {
       e.printStackTrace();
       Assert.fail();
+    } finally {
+      stop(server, client);
+    }
+  }
+
+  /*
+   * Tests authorization of superuser's ip.
+   */
+  @Fuzz
+  public void testRealUserIPAuthorizationFailureFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws IOException {
+    final Configuration conf = new Configuration(generatedConfig);
+    conf.setStrings(DefaultImpersonationProvider.getTestProvider().
+                    getProxySuperuserIpConfKey(REAL_USER_SHORT_NAME),
+            "20.20.20.20"); //Authorized IP address
+    conf.setStrings(DefaultImpersonationProvider.getTestProvider().
+                    getProxySuperuserGroupConfKey(REAL_USER_SHORT_NAME),
+            "group1");
+    RPC.setProtocolEngine(conf, TestRpcService.class,
+            ProtobufRpcEngine2.class);
+    UserGroupInformation.setConfiguration(conf);
+    final Server server = setupTestServer(conf, 5);
+
+    refreshConf(conf);
+
+    try {
+      UserGroupInformation realUserUgi = UserGroupInformation
+              .createRemoteUser(REAL_USER_NAME);
+
+      UserGroupInformation proxyUserUgi = UserGroupInformation
+              .createProxyUserForTesting(PROXY_USER_NAME, realUserUgi, GROUP_NAMES);
+      String retVal = proxyUserUgi
+              .doAs(new PrivilegedExceptionAction<String>() {
+                @Override
+                public String run() throws ServiceException {
+                  client = getClient(addr, conf);
+                  return client.getCurrentUser(null,
+                          newEmptyRequest()).getUser();
+                }
+              });
+
+      Assert.fail("The RPC must have failed " + retVal);
+    } catch (Exception e) {
+      e.printStackTrace();
     } finally {
       stop(server, client);
     }
@@ -280,7 +353,44 @@ public class TestDoAsEffectiveUser extends TestRpcBase {
       stop(server, client);
     }
   }
-  
+
+  @Fuzz
+  public void testRealUserIPNotSpecifiedFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws IOException {
+    final Configuration conf = new Configuration(generatedConfig);
+    conf.setStrings(DefaultImpersonationProvider.getTestProvider().
+            getProxySuperuserGroupConfKey(REAL_USER_SHORT_NAME), "group1");
+    RPC.setProtocolEngine(conf, TestRpcService.class,
+            ProtobufRpcEngine2.class);
+    UserGroupInformation.setConfiguration(conf);
+    final Server server = setupTestServer(conf, 2);
+
+    refreshConf(conf);
+
+    try {
+      UserGroupInformation realUserUgi = UserGroupInformation
+              .createRemoteUser(REAL_USER_NAME);
+
+      UserGroupInformation proxyUserUgi = UserGroupInformation
+              .createProxyUserForTesting(PROXY_USER_NAME, realUserUgi, GROUP_NAMES);
+      String retVal = proxyUserUgi
+              .doAs(new PrivilegedExceptionAction<String>() {
+                @Override
+                public String run() throws ServiceException {
+                  client = getClient(addr, conf);
+                  return client.getCurrentUser(null,
+                          newEmptyRequest()).getUser();
+                }
+              });
+
+      Assert.fail("The RPC must have failed " + retVal);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      stop(server, client);
+    }
+  }
+
+
   @Test
   public void testRealUserIPNotSpecified() throws IOException {
     final Configuration conf = new Configuration();
@@ -431,6 +541,59 @@ public class TestDoAsEffectiveUser extends TestRpcBase {
    *  The server sees only the the owner of the token as the
    *  user.
    */
+  @Fuzz
+  public void testProxyWithTokenFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    generatedConfig.set(CommonConfigurationKeysPublic.HADOOP_SECURITY_AUTH_TO_LOCAL,
+            "RULE:[2:$1@$0](.*@HADOOP.APACHE.ORG)s/@.*//" +
+                    "RULE:[1:$1@$0](.*@HADOOP.APACHE.ORG)s/@.*//"
+                    + "DEFAULT");
+    final Configuration conf = new Configuration(/*masterConf*/generatedConfig);
+    TestTokenSecretManager sm = new TestTokenSecretManager();
+    SecurityUtil.setAuthenticationMethod(AuthenticationMethod.KERBEROS, conf);
+    RPC.setProtocolEngine(conf, TestRpcService.class,
+            ProtobufRpcEngine2.class);
+    UserGroupInformation.setConfiguration(conf);
+    final Server server = setupTestServer(conf, 5, sm);
+
+    final UserGroupInformation current = UserGroupInformation
+            .createRemoteUser(REAL_USER_NAME);
+
+    TestTokenIdentifier tokenId = new TestTokenIdentifier(new Text(current
+            .getUserName()), new Text("SomeSuperUser"));
+    Token<TestTokenIdentifier> token = new Token<>(tokenId,
+            sm);
+    SecurityUtil.setTokenService(token, addr);
+    UserGroupInformation proxyUserUgi = UserGroupInformation
+            .createProxyUserForTesting(PROXY_USER_NAME, current, GROUP_NAMES);
+    proxyUserUgi.addToken(token);
+
+    refreshConf(conf);
+
+    String retVal = proxyUserUgi.doAs(new PrivilegedExceptionAction<String>() {
+      @Override
+      public String run() throws Exception {
+        try {
+          client = getClient(addr, conf);
+          return client.getCurrentUser(null,
+                  newEmptyRequest()).getUser();
+        } catch (Exception e) {
+          e.printStackTrace();
+          throw e;
+        } finally {
+          stop(server, client);
+        }
+      }
+    });
+    //The user returned by server must be the one in the token.
+    Assert.assertEquals(REAL_USER_NAME + " (auth:TOKEN) via SomeSuperUser (auth:SIMPLE)", retVal);
+  }
+
+
+  /*
+   *  Tests the scenario when token authorization is used.
+   *  The server sees only the the owner of the token as the
+   *  user.
+   */
   @Test
   public void testProxyWithToken() throws Exception {
     final Configuration conf = new Configuration(masterConf);
@@ -473,6 +636,56 @@ public class TestDoAsEffectiveUser extends TestRpcBase {
     //The user returned by server must be the one in the token.
     Assert.assertEquals(REAL_USER_NAME + " (auth:TOKEN) via SomeSuperUser (auth:SIMPLE)", retVal);
   }
+
+  /*
+   * The user gets the token via a superuser. Server should authenticate
+   * this user.
+   */
+  @Fuzz
+  public void testTokenBySuperUserFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    TestTokenSecretManager sm = new TestTokenSecretManager();
+    // Do the same set as masterConf
+    generatedConfig.set(CommonConfigurationKeysPublic.HADOOP_SECURITY_AUTH_TO_LOCAL,
+            "RULE:[2:$1@$0](.*@HADOOP.APACHE.ORG)s/@.*//" +
+                    "RULE:[1:$1@$0](.*@HADOOP.APACHE.ORG)s/@.*//"
+                    + "DEFAULT");
+    final Configuration newConf = new Configuration(/*masterConf*/generatedConfig);
+    SecurityUtil.setAuthenticationMethod(AuthenticationMethod.KERBEROS, newConf);
+    // Set RPC engine to protobuf RPC engine
+    RPC.setProtocolEngine(newConf, TestRpcService.class,
+            ProtobufRpcEngine2.class);
+    UserGroupInformation.setConfiguration(newConf);
+    final Server server = setupTestServer(newConf, 5, sm);
+
+    final UserGroupInformation current = UserGroupInformation
+            .createUserForTesting(REAL_USER_NAME, GROUP_NAMES);
+
+    refreshConf(newConf);
+
+    TestTokenIdentifier tokenId = new TestTokenIdentifier(new Text(current
+            .getUserName()), new Text("SomeSuperUser"));
+    Token<TestTokenIdentifier> token = new Token<>(tokenId, sm);
+    SecurityUtil.setTokenService(token, addr);
+    current.addToken(token);
+    String retVal = current.doAs(new PrivilegedExceptionAction<String>() {
+      @Override
+      public String run() throws Exception {
+        try {
+          client = getClient(addr, newConf);
+          return client.getCurrentUser(null,
+                  newEmptyRequest()).getUser();
+        } catch (Exception e) {
+          e.printStackTrace();
+          throw e;
+        } finally {
+          stop(server, client);
+        }
+      }
+    });
+    String expected = REAL_USER_NAME + " (auth:TOKEN) via SomeSuperUser (auth:SIMPLE)";
+    Assert.assertEquals(retVal + "!=" + expected, expected, retVal);
+  }
+
 
   /*
    * The user gets the token via a superuser. Server should authenticate
