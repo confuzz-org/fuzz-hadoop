@@ -18,6 +18,10 @@
 
 package org.apache.hadoop.ipc;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.thirdparty.protobuf.ServiceException;
 import org.apache.hadoop.HadoopIllegalArgumentException;
 import org.apache.hadoop.conf.Configuration;
@@ -51,6 +55,7 @@ import org.apache.hadoop.test.Whitebox;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
@@ -105,6 +110,7 @@ import static org.mockito.Mockito.verify;
 
 /** Unit tests for RPC. */
 @SuppressWarnings("deprecation")
+@RunWith(JQF.class)
 public class TestRPC extends TestRpcBase {
 
   public static final Logger LOG = LoggerFactory.getLogger(TestRPC.class);
@@ -621,6 +627,30 @@ public class TestRPC extends TestRpcBase {
     } finally {
       stop(server, null);
     }
+  }
+
+  @Fuzz
+  public void testAuthorizationFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    Configuration myConf = new Configuration(generatedConfig);
+    myConf.setBoolean(CommonConfigurationKeys.HADOOP_SECURITY_AUTHORIZATION,
+            true);
+
+    // Expect to succeed
+    myConf.set(ACL_CONFIG, "*");
+    doRPCs(myConf, false);
+
+    // Reset authorization to expect failure
+    myConf.set(ACL_CONFIG, "invalid invalid");
+    doRPCs(myConf, true);
+
+    myConf.setInt(CommonConfigurationKeys.IPC_SERVER_RPC_READ_THREADS_KEY, 2);
+    // Expect to succeed
+    myConf.set(ACL_CONFIG, "*");
+    doRPCs(myConf, false);
+
+    // Reset authorization to expect failure
+    myConf.set(ACL_CONFIG, "invalid invalid");
+    doRPCs(myConf, true);
   }
 
   @Test
@@ -1173,6 +1203,74 @@ public class TestRPC extends TestRpcBase {
   /**
    *  Test RPC backoff by response time of each priority level.
    */
+  //@Test (timeout=30000)
+  @Fuzz
+  public void testClientBackOffByResponseTimeFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    setupConf(generatedConfig);
+    final TestRpcService proxy;
+    boolean succeeded = false;
+    final int numClients = 1;
+
+    GenericTestUtils.setLogLevel(DecayRpcScheduler.LOG, Level.DEBUG);
+    GenericTestUtils.setLogLevel(RPC.LOG, Level.DEBUG);
+
+    final List<Future<Void>> res = new ArrayList<Future<Void>>();
+    final ExecutorService executorService =
+            Executors.newFixedThreadPool(numClients);
+    conf.setInt(CommonConfigurationKeys.IPC_CLIENT_CONNECT_MAX_RETRIES_KEY, 0);
+
+    final String ns = CommonConfigurationKeys.IPC_NAMESPACE + ".0";
+    Server server = setupDecayRpcSchedulerandTestServer(ns + ".");
+
+    @SuppressWarnings("unchecked")
+    CallQueueManager<Call> spy = spy((CallQueueManager<Call>) Whitebox
+            .getInternalState(server, "callQueue"));
+    Whitebox.setInternalState(server, "callQueue", spy);
+
+    Exception lastException = null;
+    proxy = getClient(addr, conf);
+
+    try {
+      // start a sleep RPC call that sleeps 3s.
+      for (int i = 0; i < numClients; i++) {
+        res.add(executorService.submit(
+                new Callable<Void>() {
+                  @Override
+                  public Void call() throws ServiceException, InterruptedException {
+                    proxy.sleep(null, newSleepRequest(3000));
+                    return null;
+                  }
+                }));
+        verify(spy, timeout(500).times(i + 1)).addInternal(any(), eq(false));
+      }
+      // Start another sleep RPC call and verify the call is backed off due to
+      // avg response time(3s) exceeds threshold (2s).
+      try {
+        // wait for the 1st response time update
+        Thread.sleep(5500);
+        proxy.sleep(null, newSleepRequest(100));
+      } catch (ServiceException e) {
+        RemoteException re = (RemoteException) e.getCause();
+        IOException unwrapExeption = re.unwrapRemoteException();
+        if (unwrapExeption instanceof RetriableException) {
+          succeeded = true;
+        } else {
+          lastException = unwrapExeption;
+        }
+      }
+    } finally {
+      executorService.shutdown();
+      stop(server, proxy);
+    }
+    if (lastException != null) {
+      LOG.error("Last received non-RetriableException:", lastException);
+    }
+    assertTrue("RetriableException not received", succeeded);
+  }
+
+  /**
+   *  Test RPC backoff by response time of each priority level.
+   */
   @Test (timeout=30000)
   public void testClientBackOffByResponseTime() throws Exception {
     final TestRpcService proxy;
@@ -1234,6 +1332,65 @@ public class TestRPC extends TestRpcBase {
       LOG.error("Last received non-RetriableException:", lastException);
     }
     assertTrue("RetriableException not received", succeeded);
+  }
+
+  /** Test that the metrics for DecayRpcScheduler are updated. */
+  //@Test (timeout=30000)
+  @Fuzz
+  public void testDecayRpcSchedulerMetricsFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    setupConf(generatedConfig);
+    final String ns = CommonConfigurationKeys.IPC_NAMESPACE + ".0";
+    Server server = setupDecayRpcSchedulerandTestServer(ns + ".");
+
+    MetricsRecordBuilder rb1 =
+            getMetrics("DecayRpcSchedulerMetrics2." + ns);
+    final long beginDecayedCallVolume = MetricsAsserts.getLongCounter(
+            "DecayedCallVolume", rb1);
+    final long beginRawCallVolume = MetricsAsserts.getLongCounter(
+            "CallVolume", rb1);
+    final int beginUniqueCaller = MetricsAsserts.getIntCounter("UniqueCallers",
+            rb1);
+
+    TestRpcService proxy = getClient(addr, conf);
+    try {
+      for (int i = 0; i < 2; i++) {
+        proxy.sleep(null, newSleepRequest(100));
+      }
+
+      // Lets Metric system update latest metrics
+      GenericTestUtils.waitFor(() -> {
+        MetricsRecordBuilder rb2 =
+                getMetrics("DecayRpcSchedulerMetrics2." + ns);
+        long decayedCallVolume1 = MetricsAsserts.getLongCounter(
+                "DecayedCallVolume", rb2);
+        long rawCallVolume1 = MetricsAsserts.getLongCounter(
+                "CallVolume", rb2);
+        int uniqueCaller1 = MetricsAsserts.getIntCounter(
+                "UniqueCallers", rb2);
+        long callVolumePriority0 = MetricsAsserts.getLongGauge(
+                "Priority.0.CompletedCallVolume", rb2);
+        long callVolumePriority1 = MetricsAsserts.getLongGauge(
+                "Priority.1.CompletedCallVolume", rb2);
+        double avgRespTimePriority0 = MetricsAsserts.getDoubleGauge(
+                "Priority.0.AvgResponseTime", rb2);
+        double avgRespTimePriority1 = MetricsAsserts.getDoubleGauge(
+                "Priority.1.AvgResponseTime", rb2);
+
+        LOG.info("DecayedCallVolume: {}", decayedCallVolume1);
+        LOG.info("CallVolume: {}", rawCallVolume1);
+        LOG.info("UniqueCaller: {}", uniqueCaller1);
+        LOG.info("Priority.0.CompletedCallVolume: {}", callVolumePriority0);
+        LOG.info("Priority.1.CompletedCallVolume: {}", callVolumePriority1);
+        LOG.info("Priority.0.AvgResponseTime: {}", avgRespTimePriority0);
+        LOG.info("Priority.1.AvgResponseTime: {}", avgRespTimePriority1);
+
+        return decayedCallVolume1 > beginDecayedCallVolume &&
+                rawCallVolume1 > beginRawCallVolume &&
+                uniqueCaller1 > beginUniqueCaller;
+      }, 30, 60000);
+    } finally {
+      stop(server, proxy);
+    }
   }
 
   /** Test that the metrics for DecayRpcScheduler are updated. */

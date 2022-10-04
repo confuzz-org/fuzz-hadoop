@@ -77,6 +77,13 @@ public class TestRpcBase {
     UserGroupInformation.setConfiguration(conf);
   }
 
+  protected void setupConf(Configuration generatedConfig) {
+    conf = new Configuration(generatedConfig);
+    // Set RPC engine to protobuf RPC engine
+    RPC.setProtocolEngine(conf, TestRpcService.class, ProtobufRpcEngine2.class);
+    UserGroupInformation.setConfiguration(conf);
+  }
+
   protected static RPC.Builder newServerBuilder(
       Configuration serverConf) throws IOException {
     // Create server side implementation
