@@ -86,7 +86,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
                 }
             }
         }
-        ConfigTracker.freshMap();
+        //ConfigTracker.freshMap();  // --> Comment out if we want to incrementally collect exercised config set.
 	    return conf;
     }
 
