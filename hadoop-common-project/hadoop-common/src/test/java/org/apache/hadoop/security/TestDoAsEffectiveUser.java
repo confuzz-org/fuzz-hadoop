@@ -17,6 +17,10 @@
  */
 package org.apache.hadoop.security;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.thirdparty.protobuf.ServiceException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.CommonConfigurationKeysPublic;
@@ -32,6 +36,7 @@ import org.apache.hadoop.security.token.Token;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,6 +50,7 @@ import java.util.Enumeration;
 /**
  * Test do as effective user.
  */
+@RunWith(JQF.class)
 public class TestDoAsEffectiveUser extends TestRpcBase {
   final private static String REAL_USER_NAME = "realUser1@HADOOP.APACHE.ORG";
   final private static String REAL_USER_SHORT_NAME = "realUser1";
@@ -141,6 +147,36 @@ public class TestDoAsEffectiveUser extends TestRpcBase {
         return null;
       }
     });    
+  }
+
+  @Fuzz
+  public void testRealUserSetupFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws IOException {
+    final Configuration conf = new Configuration(generatedConfig);
+    conf.setStrings(DefaultImpersonationProvider.getTestProvider().
+            getProxySuperuserGroupConfKey(REAL_USER_SHORT_NAME), "group1");
+    configureSuperUserIPAddresses(conf, REAL_USER_SHORT_NAME);
+    // Set RPC engine to protobuf RPC engine
+    RPC.setProtocolEngine(conf, TestRpcService.class,
+            ProtobufRpcEngine2.class);
+    UserGroupInformation.setConfiguration(conf);
+    final Server server = setupTestServer(conf, 5);
+
+    refreshConf(conf);
+    try {
+      UserGroupInformation realUserUgi = UserGroupInformation
+              .createRemoteUser(REAL_USER_NAME);
+      checkRemoteUgi(realUserUgi, conf);
+
+      UserGroupInformation proxyUserUgi =
+              UserGroupInformation.createProxyUserForTesting(
+                      PROXY_USER_NAME, realUserUgi, GROUP_NAMES);
+      checkRemoteUgi(proxyUserUgi, conf);
+    } catch (Exception e) {
+      e.printStackTrace();
+      Assert.fail();
+    } finally {
+      stop(server, client);
+    }
   }
   
   @Test(timeout=4000)
@@ -313,7 +349,45 @@ public class TestDoAsEffectiveUser extends TestRpcBase {
       stop(server, client);
     }
   }
-  
+
+  @Fuzz
+  public void testRealUserGroupAuthorizationFailureFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws IOException {
+    final Configuration conf = new Configuration(generatedConfig);
+    configureSuperUserIPAddresses(conf, REAL_USER_SHORT_NAME);
+    conf.setStrings(DefaultImpersonationProvider.getTestProvider().
+                    getProxySuperuserGroupConfKey(REAL_USER_SHORT_NAME),
+            "group3");
+    RPC.setProtocolEngine(conf, TestRpcService.class,
+            ProtobufRpcEngine2.class);
+    UserGroupInformation.setConfiguration(conf);
+    final Server server = setupTestServer(conf, 2);
+
+    refreshConf(conf);
+
+    try {
+      UserGroupInformation realUserUgi = UserGroupInformation
+              .createRemoteUser(REAL_USER_NAME);
+
+      UserGroupInformation proxyUserUgi = UserGroupInformation
+              .createProxyUserForTesting(PROXY_USER_NAME, realUserUgi, GROUP_NAMES);
+      String retVal = proxyUserUgi
+              .doAs(new PrivilegedExceptionAction<String>() {
+                @Override
+                public String run() throws ServiceException {
+                  client = getClient(addr, conf);
+                  return client.getCurrentUser(null,
+                          newEmptyRequest()).getUser();
+                }
+              });
+
+      Assert.fail("The RPC must have failed " + retVal);
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      stop(server, client);
+    }
+  }
+
   @Test
   public void testRealUserGroupAuthorizationFailure() throws IOException {
     final Configuration conf = new Configuration();
