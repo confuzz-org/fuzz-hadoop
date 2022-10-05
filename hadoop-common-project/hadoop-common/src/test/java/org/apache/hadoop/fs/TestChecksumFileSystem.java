@@ -20,6 +20,10 @@ package org.apache.hadoop.fs;
 
 import java.util.Arrays;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.permission.FsPermission;
@@ -27,8 +31,10 @@ import static org.apache.hadoop.fs.FileSystemTestHelper.*;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.test.GenericTestUtils;
 import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
 
+import static org.junit.Assert.*;
+@RunWith(JQF.class)
 public class TestChecksumFileSystem {
   static final String TEST_ROOT_DIR =
       GenericTestUtils.getTempPath("work-dir/localfs");
@@ -38,6 +44,11 @@ public class TestChecksumFileSystem {
   @Before
   public void resetLocalFs() throws Exception {
     localFs = FileSystem.getLocal(new Configuration());
+    localFs.setVerifyChecksum(true);
+  }
+
+  public void resetLocalFsFuzz(Configuration generatedConfig) throws Exception {
+    localFs = FileSystem.getLocal(new Configuration(generatedConfig));
     localFs.setVerifyChecksum(true);
   }
 
@@ -155,7 +166,25 @@ public class TestChecksumFileSystem {
     String str = readFile(localFs, testPath, 1024).toString();
     assertTrue("read", "testing truncation".equals(str));
   }
-  
+
+  @Fuzz
+  public void testStreamTypeFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    resetLocalFsFuzz(generatedConfig);
+    Path testPath = new Path(TEST_ROOT_DIR, "testStreamType");
+    localFs.create(testPath).close();
+    FSDataInputStream in = null;
+
+    localFs.setVerifyChecksum(true);
+    in = localFs.open(testPath);
+    assertTrue("stream is input checker",
+            in.getWrappedStream() instanceof FSInputChecker);
+
+    localFs.setVerifyChecksum(false);
+    in = localFs.open(testPath);
+    assertFalse("stream is not input checker",
+            in.getWrappedStream() instanceof FSInputChecker);
+  }
+
   @Test
   public void testStreamType() throws Exception {
     Path testPath = new Path(TEST_ROOT_DIR, "testStreamType");

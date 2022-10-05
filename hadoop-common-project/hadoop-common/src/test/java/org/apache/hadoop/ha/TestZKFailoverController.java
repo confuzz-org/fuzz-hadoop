@@ -22,7 +22,12 @@ import static org.junit.Assert.*;
 import java.security.NoSuchAlgorithmException;
 
 import java.util.function.Supplier;
+
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.ha.HAServiceProtocol.HAServiceState;
 import org.apache.hadoop.ha.HAServiceProtocol.StateChangeRequestInfo;
 import org.apache.hadoop.ha.HealthMonitor.State;
@@ -38,9 +43,10 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.slf4j.event.Level;
-
+@RunWith(JQF.class)
 public class TestZKFailoverController extends ClientBaseWithFixes {
   private Configuration conf;
   private MiniZKFCCluster cluster;
@@ -76,6 +82,15 @@ public class TestZKFailoverController extends ClientBaseWithFixes {
   @Before
   public void setupConfAndServices() {
     conf = new Configuration();
+    conf.set(ZKFailoverController.ZK_ACL_KEY, TEST_ACL);
+    conf.set(ZKFailoverController.ZK_AUTH_KEY, TEST_AUTH_GOOD);
+
+    conf.set(ZKFailoverController.ZK_QUORUM_KEY, hostPort);
+    this.cluster = new MiniZKFCCluster(conf, getServer(serverFactory));
+  }
+
+  public void setupConfAndServicesFuzz(Configuration generatedConfig) {
+    conf = new Configuration(generatedConfig);
     conf.set(ZKFailoverController.ZK_ACL_KEY, TEST_ACL);
     conf.set(ZKFailoverController.ZK_AUTH_KEY, TEST_AUTH_GOOD);
 
@@ -197,6 +212,23 @@ public class TestZKFailoverController extends ClientBaseWithFixes {
     } catch (KeeperException.NoAuthException nae) {
       // expected
     }
+  }
+
+  /**
+   * Test that the ZKFC won't run if fencing is not configured for the
+   * local service.
+   */
+  @Fuzz
+  public void testFencingMustBeConfiguredFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    setupConfAndServicesFuzz(generatedConfig);
+    DummyHAService svc = Mockito.spy(cluster.getService(0));
+    Mockito.doThrow(new BadFencingConfigurationException("no fencing"))
+            .when(svc).checkFencingConfigured();
+    // Format the base dir, should succeed
+    assertEquals(0, runFC(svc, "-formatZK"));
+    // Try to run the actual FC, should fail without a fencer
+    assertEquals(ZKFailoverController.ERR_CODE_NO_FENCER,
+            runFC(svc));
   }
   
   /**
@@ -615,6 +647,38 @@ public class TestZKFailoverController extends ClientBaseWithFixes {
     // Graceful failovers
     cluster.getZkfc(1).gracefulFailoverToYou();
     cluster.getZkfc(0).gracefulFailoverToYou();
+  }
+
+  @Fuzz
+  public void testGracefulFailoverMultipleZKfcsFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    setupConfAndServicesFuzz(generatedConfig);
+    cluster.start(3);
+
+    cluster.waitForActiveLockHolder(0);
+
+    // failover to first
+    cluster.getService(1).getZKFCProxy(conf, 5000).gracefulFailover();
+    cluster.waitForActiveLockHolder(1);
+
+    // failover to second
+    cluster.getService(2).getZKFCProxy(conf, 5000).gracefulFailover();
+    cluster.waitForActiveLockHolder(2);
+
+    // failover back to original
+    cluster.getService(0).getZKFCProxy(conf, 5000).gracefulFailover();
+    cluster.waitForActiveLockHolder(0);
+
+    GenericTestUtils.waitFor(new Supplier<Boolean>() {
+      @Override
+      public Boolean get() {
+        return cluster.getService(0).fenceCount == 0 &&
+                cluster.getService(1).fenceCount == 0 &&
+                cluster.getService(2).fenceCount == 0 &&
+                cluster.getService(0).activeTransitionCount == 2 &&
+                cluster.getService(1).activeTransitionCount == 1 &&
+                cluster.getService(2).activeTransitionCount == 1;
+      }
+    }, 100, 60 * 1000);
   }
 
   @Test

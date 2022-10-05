@@ -22,3 +22,7 @@ hadoop.ssl.hostname.verifier=DEFAULT;STRICT;STRICT_IE6;DEFAULT_AND_LOCALHOST;ALL
 fs.adl.oauth2.access.token.provider.type=ClientCredential;RefreshToken;MSI;DeviceCode;Custom
 adl.ssl.channel.mode=default-empty;OpenSSL;Default_JSE;Default
 fs.getspaceused.classname=rg.apache.hadoop.fs.DU;org.apache.hadoop.fs.WindowsGetSpaceUsed;org.apache.hadoop.fs.DFCachingGetSpaceUsed;org.apache.hadoop.hdfs.server.datanode.fsdataset.impl.ReplicaCachingGetSpaceUsed
+hadoop.security.auth_to_local.mechanism=hadoop;MIT
+hadoop.security.auth_to_local=RULE:[1:$1] RULE:[2:$1]
+rpc.metrics.timeunit=NANOSECONDS;MICROSECONDS;MILLISECONDS;SECONDS
+hadoop.rpc.socket.factory.class.default=org.apache.hadoop.security.ssl.DelegatingSSLSocketFactory;org.apache.hadoop.security.LdapSslSocketFactory;org.apache.hadoop.net.SocksSocketFactory;org.apache.hadoop.net.StandardSocketFactory

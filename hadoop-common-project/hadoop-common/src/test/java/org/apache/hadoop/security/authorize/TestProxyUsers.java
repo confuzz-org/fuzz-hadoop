@@ -27,17 +27,22 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Collection;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.CommonConfigurationKeysPublic;
 import org.apache.hadoop.security.Groups;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.util.NativeCodeLoader;
 import org.apache.hadoop.util.StringUtils;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
+@RunWith(JQF.class)
 public class TestProxyUsers {
   private static final Logger LOG =
       LoggerFactory.getLogger(TestProxyUsers.class);
@@ -394,6 +399,28 @@ public class TestProxyUsers {
             getProxySuperuserGroupConfKey(REAL_USER_NAME));
     
     assertEquals (1,groupsToBeProxied.size());
+  }
+
+
+  @Fuzz
+  public void testWithDuplicateProxyHostsFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    Configuration conf = new Configuration(generatedConfig);
+    conf.set(
+            DefaultImpersonationProvider.getTestProvider()
+                    .getProxySuperuserGroupConfKey(REAL_USER_NAME),
+            StringUtils.join(",", Arrays.asList(GROUP_NAMES)));
+    conf.set(
+            DefaultImpersonationProvider.getTestProvider().
+                    getProxySuperuserIpConfKey(REAL_USER_NAME),
+            StringUtils.join(",", Arrays.asList(PROXY_IP,PROXY_IP)));
+    ProxyUsers.refreshSuperUserGroupsConfiguration(conf);
+
+    Collection<String> hosts =
+            ProxyUsers.getDefaultImpersonationProvider().getProxyHosts().get(
+                    DefaultImpersonationProvider.getTestProvider().
+                            getProxySuperuserIpConfKey(REAL_USER_NAME));
+
+    assertEquals (1,hosts.size());
   }
   
   @Test

@@ -20,18 +20,31 @@ package org.apache.hadoop.crypto.random;
 import java.io.IOException;
 import java.util.Arrays;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.commons.lang3.SystemUtils;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.util.Shell.ShellCommandExecutor;
 import org.junit.Assume;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(JQF.class)
 public class TestOsSecureRandom {
 
   private static OsSecureRandom getOsSecureRandom() throws IOException {
     Assume.assumeTrue(SystemUtils.IS_OS_LINUX);
     OsSecureRandom random = new OsSecureRandom();
     random.setConf(new Configuration());
+    return random;
+  }
+
+  private static OsSecureRandom getOsSecureRandomFuzz(Configuration generatedConfig) throws IOException {
+    Assume.assumeTrue(SystemUtils.IS_OS_LINUX);
+    OsSecureRandom random = new OsSecureRandom();
+    random.setConf(new Configuration(generatedConfig));
     return random;
   }
 
@@ -108,6 +121,22 @@ public class TestOsSecureRandom {
     float rand2 = random.nextFloat();
     while (rand1 == rand2) {
       rand2 = random.nextFloat();
+    }
+    random.close();
+  }
+
+  /**
+   * Test will timeout if secure random implementation always returns a
+   * constant value.
+   */
+  @Fuzz
+  public void testRandomDoubleFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    OsSecureRandom random = getOsSecureRandomFuzz(generatedConfig);
+
+    double rand1 = random.nextDouble();
+    double rand2 = random.nextDouble();
+    while (rand1 == rand2) {
+      rand2 = random.nextDouble();
     }
     random.close();
   }

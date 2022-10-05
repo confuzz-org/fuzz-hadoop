@@ -28,6 +28,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.times;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,13 +55,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import org.apache.hadoop.security.UserGroupInformation;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.ipc.CallQueueManager.CallQueueOverflowException;
 import org.apache.hadoop.ipc.protobuf.RpcHeaderProtos.RpcResponseHeaderProto.RpcStatusProto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@RunWith(JQF.class)
 public class TestFairCallQueue {
   private FairCallQueue<Schedulable> fcq;
 
@@ -104,6 +109,57 @@ public class TestFairCallQueue {
     assertThat(fairCallQueue.remainingCapacity()).isEqualTo(1025);
     fairCallQueue = new FairCallQueue<Schedulable>(7, 1025, "ns", conf);
     assertThat(fairCallQueue.remainingCapacity()).isEqualTo(1025);
+  }
+
+  @Fuzz
+  public void testPrioritizationFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) {
+    int numQueues = 10;
+    Configuration conf = new Configuration(generatedConfig);
+    fcq = new FairCallQueue<Schedulable>(numQueues, numQueues, "ns", conf);
+
+    //Schedulable[] calls = new Schedulable[numCalls];
+    List<Schedulable> calls = new ArrayList<>();
+    for (int i=0; i < numQueues; i++) {
+      Schedulable call = mockCall("u", i);
+      calls.add(call);
+      fcq.add(call);
+    }
+
+    final AtomicInteger currentIndex = new AtomicInteger();
+    fcq.setMultiplexer(new RpcMultiplexer(){
+      @Override
+      public int getAndAdvanceCurrentIndex() {
+        return currentIndex.get();
+      }
+    });
+
+    // if there is no call at a given index, return the next highest
+    // priority call available.
+    //   v
+    //0123456789
+    currentIndex.set(3);
+    assertSame(calls.get(3), fcq.poll());
+    assertSame(calls.get(0), fcq.poll());
+    assertSame(calls.get(1), fcq.poll());
+    //      v
+    //--2-456789
+    currentIndex.set(6);
+    assertSame(calls.get(6), fcq.poll());
+    assertSame(calls.get(2), fcq.poll());
+    assertSame(calls.get(4), fcq.poll());
+    //        v
+    //-----5-789
+    currentIndex.set(8);
+    assertSame(calls.get(8), fcq.poll());
+    //         v
+    //-----5-7-9
+    currentIndex.set(9);
+    assertSame(calls.get(9), fcq.poll());
+    assertSame(calls.get(5), fcq.poll());
+    assertSame(calls.get(7), fcq.poll());
+    //----------
+    assertNull(fcq.poll());
+    assertNull(fcq.poll());
   }
 
   @Test

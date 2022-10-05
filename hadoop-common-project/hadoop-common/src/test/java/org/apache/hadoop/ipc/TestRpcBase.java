@@ -70,14 +70,14 @@ public class TestRpcBase {
   protected static InetSocketAddress addr;
   protected static Configuration conf;
 
-  protected void setupConf() {
+  protected void setupConfFuzz() {
     conf = new Configuration();
     // Set RPC engine to protobuf RPC engine
     RPC.setProtocolEngine(conf, TestRpcService.class, ProtobufRpcEngine2.class);
     UserGroupInformation.setConfiguration(conf);
   }
 
-  protected void setupConf(Configuration generatedConfig) {
+  protected void setupConfFuzz(Configuration generatedConfig) {
     conf = new Configuration(generatedConfig);
     // Set RPC engine to protobuf RPC engine
     RPC.setProtocolEngine(conf, TestRpcService.class, ProtobufRpcEngine2.class);

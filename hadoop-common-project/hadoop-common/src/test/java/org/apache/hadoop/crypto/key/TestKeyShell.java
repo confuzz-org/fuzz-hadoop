@@ -23,18 +23,23 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.UUID;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.security.ProviderUtils;
 import org.apache.hadoop.test.GenericTestUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
+@RunWith(JQF.class)
 public class TestKeyShell {
   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
   private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
@@ -237,6 +242,22 @@ public class TestKeyShell {
     rc = ks.run(args1);
     assertEquals(1, rc);
     assertTrue(outContent.toString().contains(KeyShell.NO_VALID_PROVIDERS));
+  }
+
+  @Fuzz
+  public void testStrictFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    outContent.reset();
+    int rc = 0;
+    KeyShell ks = new KeyShell();
+    ks.setConf(new Configuration(generatedConfig));
+    final String[] args1 = {"create", "hello", "-provider", jceksProvider,
+            "-strict"};
+    rc = ks.run(args1);
+    assertEquals(1, rc);
+    assertTrue(outContent.toString()
+            .contains(ProviderUtils.NO_PASSWORD_ERROR));
+    assertTrue(outContent.toString()
+            .contains(ProviderUtils.NO_PASSWORD_INSTRUCTIONS_DOC));
   }
 
   @Test

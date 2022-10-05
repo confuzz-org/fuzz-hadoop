@@ -54,7 +54,7 @@ public class TestRPCServerShutdown extends TestRpcBase {
 
   @Before
   public void setup() {
-    setupConf();
+    setupConfFuzz();
   }
 
   /**
@@ -62,7 +62,7 @@ public class TestRPCServerShutdown extends TestRpcBase {
    */
   @Fuzz
   public void testRPCServerShutdownFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
-    setupConf(generatedConfig);
+    setupConfFuzz(generatedConfig);
     final int numClients = 3;
     final List<Future<Void>> res = new ArrayList<Future<Void>>();
     final ExecutorService executorService =

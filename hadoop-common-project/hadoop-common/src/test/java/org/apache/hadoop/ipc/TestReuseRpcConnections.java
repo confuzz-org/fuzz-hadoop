@@ -43,7 +43,7 @@ import org.junit.runner.RunWith;
 public class TestReuseRpcConnections extends TestRpcBase {
   @Before
   public void setup() {
-    setupConf();
+    setupConfFuzz();
   }
 
   private static RetryPolicy getDefaultRetryPolicy(
@@ -69,7 +69,7 @@ public class TestReuseRpcConnections extends TestRpcBase {
 
   @Fuzz
   public void testDefaultRetryPolicyReuseConnectionsFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
-    setupConf(generatedConfig);
+    setupConfFuzz(generatedConfig);
     RetryPolicy rp1 = null;
     RetryPolicy rp2 = null;
     RetryPolicy rp3 = null;

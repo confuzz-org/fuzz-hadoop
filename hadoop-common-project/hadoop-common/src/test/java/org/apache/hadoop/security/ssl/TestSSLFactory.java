@@ -20,7 +20,11 @@ package org.apache.hadoop.security.ssl;
 import static org.apache.hadoop.security.ssl.KeyStoreTestUtil.TRUST_STORE_PASSWORD_DEFAULT;
 import static org.junit.Assert.assertTrue;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.FileUtil;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.security.alias.CredentialProviderFactory;
@@ -32,6 +36,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
@@ -49,7 +54,7 @@ import java.security.KeyPair;
 import java.security.cert.X509Certificate;
 import java.util.Collections;
 import java.util.Map;
-
+@RunWith(JQF.class)
 public class TestSSLFactory {
   private static final Logger LOG = LoggerFactory
       .getLogger(TestSSLFactory.class);
@@ -80,6 +85,14 @@ public class TestSSLFactory {
     Configuration conf = new Configuration();
     KeyStoreTestUtil.setupSSLConfig(KEYSTORES_DIR, sslConfsDir, conf,
       clientCert, trustStore, excludeCiphers);
+    return conf;
+  }
+
+  private Configuration createConfigurationFuzz(boolean clientCert, boolean trustStore, Configuration generatedConfig)
+          throws Exception {
+    Configuration conf = new Configuration(generatedConfig);
+    KeyStoreTestUtil.setupSSLConfig(KEYSTORES_DIR, sslConfsDir, conf,
+            clientCert, trustStore, excludeCiphers);
     return conf;
   }
 
@@ -302,6 +315,25 @@ public class TestSSLFactory {
     SSLFactory sslFactory = new SSLFactory(SSLFactory.Mode.CLIENT, conf);
     try {
       sslFactory.init();
+    } finally {
+      sslFactory.destroy();
+    }
+  }
+
+  @Fuzz
+  public void testConnectionConfiguratorFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    Configuration conf = createConfigurationFuzz(false, true, generatedConfig);
+    conf.set(SSLFactory.SSL_HOSTNAME_VERIFIER_KEY, "STRICT_IE6");
+    SSLFactory sslFactory = new SSLFactory(SSLFactory.Mode.CLIENT, conf);
+    try {
+      sslFactory.init();
+      HttpsURLConnection sslConn =
+              (HttpsURLConnection) new URL("https://foo").openConnection();
+      Assert.assertNotSame("STRICT_IE6",
+              sslConn.getHostnameVerifier().toString());
+      sslFactory.configure(sslConn);
+      Assert.assertEquals("STRICT_IE6",
+              sslConn.getHostnameVerifier().toString());
     } finally {
       sslFactory.destroy();
     }

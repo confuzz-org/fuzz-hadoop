@@ -34,7 +34,7 @@ public class TestMultipleProtocolServer extends TestRpcBase {
 
   @Before
   public void setUp() throws Exception {
-    super.setupConf();
+    super.setupConfFuzz();
 
     server = setupTestServer(conf, 2);
   }

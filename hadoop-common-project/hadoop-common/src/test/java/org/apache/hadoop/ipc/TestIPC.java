@@ -66,7 +66,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.net.SocketFactory;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
 import org.apache.hadoop.fs.CommonConfigurationKeysPublic;
 import org.apache.hadoop.io.IOUtils;
@@ -97,6 +101,7 @@ import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
@@ -109,7 +114,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@RunWith(JQF.class)
 /** Unit tests for IPC. */
 public class TestIPC {
   public static final Logger LOG = LoggerFactory.getLogger(TestIPC.class);
@@ -127,6 +132,13 @@ public class TestIPC {
   @Before
   public void setupConf() {
     conf = new Configuration();
+    Client.setPingInterval(conf, PING_INTERVAL);
+    // tests may enable security, so disable before each test
+    UserGroupInformation.setConfiguration(conf);
+  }
+
+  public void setupConfFuzz(Configuration generatedConfig) {
+    conf = new Configuration(generatedConfig);
     Client.setPingInterval(conf, PING_INTERVAL);
     // tests may enable security, so disable before each test
     UserGroupInformation.setConfiguration(conf);
@@ -545,6 +557,15 @@ public class TestIPC {
         LongWritable.class,
         LongWritable.class,
         LongWritable.class);
+  }
+
+  @Fuzz
+  public void testIOEOnServerReadParamFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    setupConfFuzz(generatedConfig);
+    doErrorTest(LongWritable.class,
+            IOEOnReadWritable.class,
+            LongWritable.class,
+            LongWritable.class);
   }
 
   @Test(timeout=60000)

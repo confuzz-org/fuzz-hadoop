@@ -29,6 +29,10 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeoutException;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.test.GenericTestUtils;
 import org.apache.hadoop.util.FakeTimer;
 import org.junit.Before;
@@ -43,11 +47,12 @@ import static org.junit.Assert.fail;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@RunWith(JQF.class)
 public class TestGroupsCaching {
   public static final Logger TESTLOG =
       LoggerFactory.getLogger(TestGroupsCaching.class);
@@ -63,6 +68,16 @@ public class TestGroupsCaching {
     conf.setClass(CommonConfigurationKeys.HADOOP_SECURITY_GROUP_MAPPING,
       FakeGroupMapping.class,
       ShellBasedUnixGroupsMapping.class);
+  }
+
+  public void setupFuzz(Configuration generatedConfig) throws IOException {
+    FakeGroupMapping.clearAll();
+    ExceptionalGroupMapping.resetRequestCount();
+
+    conf = new Configuration(generatedConfig);
+    conf.setClass(CommonConfigurationKeys.HADOOP_SECURITY_GROUP_MAPPING,
+            FakeGroupMapping.class,
+            ShellBasedUnixGroupsMapping.class);
   }
 
   public static class FakeGroupMapping extends ShellBasedUnixGroupsMapping {
@@ -248,6 +263,39 @@ public class TestGroupsCaching {
       invoked = true;
       return super.getGroups(user);
     }
+  }
+
+  /*
+   * Group lookup should not happen for static users
+   */
+  @Fuzz
+  public void testGroupLookupForStaticUsersFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    setupFuzz(generatedConfig);
+    conf.setClass(CommonConfigurationKeys.HADOOP_SECURITY_GROUP_MAPPING,
+            FakeunPrivilegedGroupMapping.class, ShellBasedUnixGroupsMapping.class);
+    conf.set(CommonConfigurationKeys.HADOOP_USER_GROUP_STATIC_OVERRIDES, "me=;user1=group1;user2=group1,group2");
+    Groups groups = new Groups(conf);
+    List<String> userGroups = groups.getGroups("me");
+    assertTrue("non-empty groups for static user", userGroups.isEmpty());
+    assertFalse("group lookup done for static user",
+            FakeunPrivilegedGroupMapping.invoked);
+
+    List<String> expected = new ArrayList<String>();
+    expected.add("group1");
+
+    FakeunPrivilegedGroupMapping.invoked = false;
+    userGroups = groups.getGroups("user1");
+    assertTrue("groups not correct", expected.equals(userGroups));
+    assertFalse("group lookup done for unprivileged user",
+            FakeunPrivilegedGroupMapping.invoked);
+
+    expected.add("group2");
+    FakeunPrivilegedGroupMapping.invoked = false;
+    userGroups = groups.getGroups("user2");
+    assertTrue("groups not correct", expected.equals(userGroups));
+    assertFalse("group lookup done for unprivileged user",
+            FakeunPrivilegedGroupMapping.invoked);
+
   }
 
   /*
@@ -503,6 +551,38 @@ public class TestGroupsCaching {
     assertEquals(startingRequestCount + 1, FakeGroupMapping.getRequestCount());
     // Another call to get groups should give 3 groups instead of 2
     assertThat(groups.getGroups("me").size()).isEqualTo(3);
+  }
+
+  @Fuzz
+  public void testThreadBlockedWhenExpiredEntryExistsWithoutBackgroundRefreshFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig)
+          throws Exception {
+    setupFuzz(generatedConfig);
+    conf.setLong(
+            CommonConfigurationKeys.HADOOP_SECURITY_GROUPS_CACHE_SECS, 1);
+    conf.setBoolean(
+            CommonConfigurationKeys.HADOOP_SECURITY_GROUPS_CACHE_BACKGROUND_RELOAD,
+            false);
+    FakeTimer timer = new FakeTimer();
+    final Groups groups = new Groups(conf, timer);
+    groups.cacheGroupsAdd(Arrays.asList(myGroups));
+    groups.refresh();
+    FakeGroupMapping.clearBlackList();
+
+    // We make an initial request to populate the cache
+    groups.getGroups("me");
+    // Further lookups will have a delay
+    FakeGroupMapping.setGetGroupsDelayMs(100);
+    // add another group
+    groups.cacheGroupsAdd(Arrays.asList("grp3"));
+    int startingRequestCount = FakeGroupMapping.getRequestCount();
+
+    // Then expire that entry
+    timer.advance(4 * 1000);
+
+    // Now get the cache entry - it should block and return the new
+    // 3 group value
+    assertThat(groups.getGroups("me").size()).isEqualTo(3);
+    assertEquals(startingRequestCount + 1, FakeGroupMapping.getRequestCount());
   }
 
   @Test

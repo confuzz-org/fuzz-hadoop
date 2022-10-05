@@ -24,7 +24,11 @@ import java.lang.annotation.Annotation;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
 import org.apache.hadoop.ipc.TestRPC.TestProtocol;
 import org.apache.hadoop.security.KerberosInfo;
@@ -33,7 +37,9 @@ import org.apache.hadoop.security.SecurityUtil;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.security.token.TokenInfo;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(JQF.class)
 public class TestServiceAuthorization {
 
   private static final String ACL_CONFIG = "test.protocol.acl";
@@ -335,6 +341,63 @@ public class TestServiceAuthorization {
           TestProtocol.class, conf, InetAddress.getByName("10.222.0.0"));
     } catch (AuthorizationException e) {
       fail();
+    }
+  }
+
+  @Fuzz
+  public void testDefaultBlockedMachineListFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws UnknownHostException {
+    UserGroupInformation drwho =
+            UserGroupInformation.createUserForTesting("drwho@EXAMPLE.COM",
+                    new String[] { "group1", "group2" });
+
+    ServiceAuthorizationManager serviceAuthorizationManager =
+            new ServiceAuthorizationManager();
+    Configuration conf = new Configuration (generatedConfig);
+
+    // test without setting a default blocked MachineList
+    serviceAuthorizationManager.refresh(conf, new TestPolicyProvider());
+    try {
+      serviceAuthorizationManager.authorize(drwho,
+              TestProtocol1.class, conf, InetAddress.getByName("10.222.0.0"));
+    } catch (AuthorizationException e) {
+      fail();
+    }
+    // set a  default blocked MachineList and a blocked MachineList for TestProtocol
+    conf.set(
+            "security.service.authorization.default.hosts.blocked",
+            IP_RANGE);
+    conf.set(BLOCKED_HOST_CONFIG, "1.2.3.4");
+    serviceAuthorizationManager.refresh(conf, new TestPolicyProvider());
+    // TestProtocol can be accessed from "10.222.0.0" because it blocks only "1.2.3.4"
+    try {
+      serviceAuthorizationManager.authorize(drwho,
+              TestProtocol.class, conf, InetAddress.getByName("10.222.0.0"));
+    } catch (AuthorizationException e) {
+      fail();
+    }
+    // TestProtocol cannot be accessed from  "1.2.3.4"
+    try {
+      serviceAuthorizationManager.authorize(drwho,
+              TestProtocol.class, conf, InetAddress.getByName("1.2.3.4"));
+      fail();
+    } catch (AuthorizationException e) {
+      //expects Exception
+    }
+    // TestProtocol1 can be accessed from "1.2.3.4" because it uses default block list
+    try {
+      serviceAuthorizationManager.authorize(drwho,
+              TestProtocol1.class, conf, InetAddress.getByName("1.2.3.4"));
+    } catch (AuthorizationException e) {
+      fail();
+    }
+    // TestProtocol1 cannot be accessed from "10.222.0.0",
+    // because "10.222.0.0" is in default block list
+    try {
+      serviceAuthorizationManager.authorize(drwho,
+              TestProtocol1.class, conf, InetAddress.getByName("10.222.0.0"));
+      fail();
+    } catch (AuthorizationException e) {
+      //expects Exception
     }
   }
 

@@ -18,7 +18,11 @@
 
 package org.apache.hadoop.ipc;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Writable;
@@ -32,6 +36,7 @@ import org.apache.hadoop.util.concurrent.AsyncGetFuture;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +50,7 @@ import java.util.concurrent.TimeoutException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-
+@RunWith(JQF.class)
 public class TestAsyncIPC {
 
   private static Configuration conf;
@@ -59,6 +64,14 @@ public class TestAsyncIPC {
   @Before
   public void setupConf() {
     conf = new Configuration();
+    conf.setInt(CommonConfigurationKeys.IPC_CLIENT_ASYNC_CALLS_MAX_KEY, 10000);
+    Client.setPingInterval(conf, TestIPC.PING_INTERVAL);
+    // set asynchronous mode for main thread
+    Client.setAsynchronousMode(true);
+  }
+
+  public void setupConfFuzz(Configuration generatedConfig) {
+    conf = new Configuration(generatedConfig);
     conf.setInt(CommonConfigurationKeys.IPC_CLIENT_ASYNC_CALLS_MAX_KEY, 10000);
     Client.setPingInterval(conf, TestIPC.PING_INTERVAL);
     // set asynchronous mode for main thread
@@ -225,6 +238,14 @@ public class TestAsyncIPC {
         }
       }
     }
+  }
+
+  @Fuzz
+  public void testAsyncCallFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws IOException, InterruptedException,
+          ExecutionException {
+    setupConfFuzz(generatedConfig);
+    internalTestAsyncCall(3, false, 2, 5, 100);
+    internalTestAsyncCall(3, true, 2, 5, 10);
   }
 
   @Test(timeout = 60000)

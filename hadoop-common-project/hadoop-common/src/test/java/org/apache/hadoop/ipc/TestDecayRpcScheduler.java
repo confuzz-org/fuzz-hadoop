@@ -20,6 +20,10 @@ package org.apache.hadoop.ipc;
 
 import static java.lang.Thread.sleep;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -30,6 +34,7 @@ import org.apache.hadoop.fs.CommonConfigurationKeys;
 import org.apache.hadoop.metrics2.lib.DefaultMetricsSystem;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.conf.Configuration;
+import org.junit.runner.RunWith;
 
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
@@ -38,7 +43,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.lang.management.ManagementFactory;
 import java.util.concurrent.TimeUnit;
-
+@RunWith(JQF.class)
 public class TestDecayRpcScheduler {
   private Schedulable mockCall(String id) {
     Schedulable mockCall = mock(Schedulable.class);
@@ -330,6 +335,23 @@ public class TestDecayRpcScheduler {
     assertEquals(0, scheduler.getPriorityLevel(mockCall("HIGH")));
   }
 
+  @Fuzz
+  public void testUsingWeightedTimeCostProviderWithZeroCostCallsFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) {
+    scheduler = getSchedulerWithWeightedTimeCostProviderFuzz(2, "ipc.16", generatedConfig);
+
+    ProcessingDetails emptyDetails =
+            new ProcessingDetails(TimeUnit.MILLISECONDS);
+
+    for (int i = 0; i < 1000; i++) {
+      scheduler.addResponseTime("ignored", mockCall("MANY"), emptyDetails);
+    }
+    scheduler.addResponseTime("ignored", mockCall("FEW"), emptyDetails);
+
+    // Since the calls are all "free", they should have the same priority
+    assertEquals(0, scheduler.getPriorityLevel(mockCall("MANY")));
+    assertEquals(0, scheduler.getPriorityLevel(mockCall("FEW")));
+  }
+
   @Test
   public void testUsingWeightedTimeCostProviderWithZeroCostCalls() {
     scheduler = getSchedulerWithWeightedTimeCostProvider(2, "ipc.16");
@@ -365,6 +387,20 @@ public class TestDecayRpcScheduler {
         WeightedTimeCostProvider.class, CostProvider.class);
     conf.setLong(ns + "."
         + DecayRpcScheduler.IPC_SCHEDULER_DECAYSCHEDULER_PERIOD_KEY, 999999);
+    return new DecayRpcScheduler(priorityLevels, ns, conf);
+  }
+
+  /**
+   * Get a scheduler that uses {@link WeightedTimeCostProvider} and has
+   * normal decaying disabled.
+   */
+  private static DecayRpcScheduler getSchedulerWithWeightedTimeCostProviderFuzz(
+          int priorityLevels, String ns, Configuration generatedConfig) {
+    Configuration conf = new Configuration(generatedConfig);
+    conf.setClass(ns + "." + CommonConfigurationKeys.IPC_COST_PROVIDER_KEY,
+            WeightedTimeCostProvider.class, CostProvider.class);
+    conf.setLong(ns + "."
+            + DecayRpcScheduler.IPC_SCHEDULER_DECAYSCHEDULER_PERIOD_KEY, 999999);
     return new DecayRpcScheduler(priorityLevels, ns, conf);
   }
 

@@ -56,10 +56,14 @@ import java.util.jar.Manifest;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarArchiveOutputStream;
 import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.test.GenericTestUtils;
 import org.apache.hadoop.test.LambdaTestUtils;
 import org.apache.hadoop.util.StringUtils;
@@ -74,9 +78,10 @@ import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
+@RunWith(JQF.class)
 public class TestFileUtil {
   private static final Logger LOG = LoggerFactory.getLogger(TestFileUtil.class);
 
@@ -1655,6 +1660,26 @@ public class TestFileUtil {
 
     List<String> read =
         FileUtils.readLines(new File(testPath.toUri()), StandardCharsets.UTF_8);
+
+    assertEquals(write, read);
+  }
+
+  /**
+   * Test that a String is written out correctly to the local file system.
+   */
+  @Fuzz
+  public void testWriteStringFileContextFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws IOException {
+    URI uri = tmp.toURI();
+    Configuration conf = new Configuration(generatedConfig);
+    FileContext fc = FileContext.getFileContext(uri, conf);
+    Path testPath = new Path(new Path(uri), "writestring.out");
+
+    String write = "A" + "\u00ea" + "\u00f1" + "\u00fc" + "C";
+
+    FileUtil.write(fc, testPath, write, StandardCharsets.UTF_8);
+
+    String read = FileUtils.readFileToString(new File(testPath.toUri()),
+            StandardCharsets.UTF_8);
 
     assertEquals(write, read);
   }

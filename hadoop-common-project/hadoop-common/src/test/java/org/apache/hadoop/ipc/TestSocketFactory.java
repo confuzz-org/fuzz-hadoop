@@ -33,13 +33,19 @@ import java.util.Map;
 
 import javax.net.SocketFactory;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.fs.CommonConfigurationKeys;
 import org.apache.hadoop.net.NetUtils;
 import org.apache.hadoop.net.SocksSocketFactory;
 import org.apache.hadoop.net.StandardSocketFactory;
 import org.junit.After;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertFalse;
@@ -51,6 +57,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * test StandardSocketFactory and SocksSocketFactory NetUtils
  *
  */
+@RunWith(JQF.class)
 public class TestSocketFactory {
 
   private static final int START_STOP_TIMEOUT_SEC = 30;
@@ -171,6 +178,25 @@ public class TestSocketFactory {
     checkSocket(socket);
     socket.close();
 
+  }
+
+  /**
+   * test proxy methods
+   */
+  @Fuzz
+  public void testProxyFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    SocksSocketFactory templateWithoutProxy = new SocksSocketFactory();
+    Proxy proxy = new Proxy(Type.SOCKS, InetSocketAddress.createUnresolved(
+            "localhost", 0));
+
+    SocksSocketFactory templateWithProxy = new SocksSocketFactory(proxy);
+    assertThat(templateWithoutProxy).isNotEqualTo(templateWithProxy);
+
+    Configuration configuration = new Configuration(generatedConfig);
+    configuration.set("hadoop.socks.server", "localhost:0");
+
+    templateWithoutProxy.setConf(configuration);
+    assertThat(templateWithoutProxy).isEqualTo(templateWithProxy);
   }
 
   /**

@@ -21,6 +21,10 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
@@ -36,10 +40,11 @@ import org.apache.hadoop.fs.FileSystemTestHelper;
 import org.apache.hadoop.fs.LocalFileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.shell.CopyCommands.Cp;
+import org.junit.runner.RunWith;
 
 import static org.apache.hadoop.fs.shell.CopyCommandWithMultiThread.DEFAULT_QUEUE_SIZE;
 import static org.junit.Assert.assertEquals;
-
+@RunWith(JQF.class)
 public class TestCpCommand {
 
   private static final String FROM_DIR_NAME = "fromDir";
@@ -94,6 +99,18 @@ public class TestCpCommand {
     fs.setWorkingDirectory(testDir);
   }
 
+  public static void initFuzz(Configuration generatedConfig) throws Exception {
+    conf = new Configuration(generatedConfig);
+    conf.set("fs.file.impl", LocalFileSystem.class.getName());
+    fs = FileSystem.getLocal(conf);
+    testDir = new FileSystemTestHelper().getTestRootPath(fs);
+    // don't want scheme on the path, just an absolute path
+    testDir = new Path(fs.makeQualified(testDir).toUri().getPath());
+
+    FileSystem.setDefaultUri(conf, fs.getUri());
+    fs.setWorkingDirectory(testDir);
+  }
+
   @AfterClass
   public static void cleanup() throws Exception {
     fs.delete(testDir, true);
@@ -124,6 +141,14 @@ public class TestCpCommand {
     run(new MultiThreadedCp(5, DEFAULT_QUEUE_SIZE, numFiles), "-t", "5",
         new Path(dir, FROM_DIR_NAME).toString(),
         new Path(dir, TO_DIR_NAME).toString());
+  }
+
+  @Fuzz
+  public void testCpWithThreadWrongFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    initFuzz(generatedConfig);
+    run(new MultiThreadedCp(1, DEFAULT_QUEUE_SIZE, 0), "-t", "0",
+            new Path(dir, FROM_DIR_NAME).toString(),
+            new Path(dir, TO_DIR_NAME).toString());
   }
 
   @Test(timeout = 10000)

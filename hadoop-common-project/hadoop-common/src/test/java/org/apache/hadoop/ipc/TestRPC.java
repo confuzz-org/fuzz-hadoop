@@ -117,7 +117,7 @@ public class TestRPC extends TestRpcBase {
 
   @Before
   public void setup() {
-    setupConf();
+    setupConfFuzz();
   }
 
   int datasize = 1024*100;
@@ -539,6 +539,29 @@ public class TestRPC extends TestRpcBase {
       }
     } finally {
       stop(server, proxy);
+    }
+  }
+
+  @Fuzz
+  public void testClientWithoutServerFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    setupConfFuzz(generatedConfig);
+    TestRpcService proxy;
+
+    short invalidPort = 20;
+    InetSocketAddress invalidAddress = new InetSocketAddress(ADDRESS,
+            invalidPort);
+    long invalidClientVersion = 1L;
+    try {
+      proxy = RPC.getProxy(TestRpcService.class,
+              invalidClientVersion, invalidAddress, conf);
+      // Test echo method
+      proxy.echo(null, newEchoRequest("hello"));
+      fail("We should not have reached here");
+    } catch (ServiceException ioe) {
+      //this is what we expected
+      if (!(ioe.getCause() instanceof ConnectException)) {
+        fail("We should not have reached here");
+      }
     }
   }
 
@@ -1206,7 +1229,7 @@ public class TestRPC extends TestRpcBase {
   //@Test (timeout=30000)
   @Fuzz
   public void testClientBackOffByResponseTimeFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
-    setupConf(generatedConfig);
+    setupConfFuzz(generatedConfig);
     final TestRpcService proxy;
     boolean succeeded = false;
     final int numClients = 1;
@@ -1338,7 +1361,7 @@ public class TestRPC extends TestRpcBase {
   //@Test (timeout=30000)
   @Fuzz
   public void testDecayRpcSchedulerMetricsFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
-    setupConf(generatedConfig);
+    setupConfFuzz(generatedConfig);
     final String ns = CommonConfigurationKeys.IPC_NAMESPACE + ".0";
     Server server = setupDecayRpcSchedulerandTestServer(ns + ".");
 
@@ -1761,7 +1784,7 @@ public class TestRPC extends TestRpcBase {
 
   @Fuzz
   public void testRpcMetricsInNanosFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
-    setupConf(generatedConfig);
+    setupConfFuzz(generatedConfig);
     final Server server;
     TestRpcService proxy = null;
 

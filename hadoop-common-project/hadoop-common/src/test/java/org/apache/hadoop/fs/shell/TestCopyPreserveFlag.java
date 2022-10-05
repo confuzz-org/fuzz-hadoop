@@ -19,6 +19,10 @@ package org.apache.hadoop.fs.shell;
 
 import java.io.IOException;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,10 +40,11 @@ import org.apache.hadoop.fs.shell.CopyCommands.CopyFromLocal;
 import org.apache.hadoop.fs.shell.CopyCommands.Cp;
 import org.apache.hadoop.fs.shell.CopyCommands.Get;
 import org.apache.hadoop.fs.shell.CopyCommands.Put;
+import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-
+@RunWith(JQF.class)
 public class TestCopyPreserveFlag {
   private static final int MODIFICATION_TIME = 12345000;
   private static final int ACCESS_TIME = 23456000;
@@ -58,6 +63,32 @@ public class TestCopyPreserveFlag {
   private FileSystem fs;
   private Path testDir;
   private Configuration conf;
+
+  public void initializeFuzz(Configuration generatedConfig) throws Exception {
+    conf = new Configuration(generatedConfig);
+    conf.set("fs.file.impl", LocalFileSystem.class.getName());
+    fs = FileSystem.getLocal(conf);
+    testDir = new FileSystemTestHelper().getTestRootPath(fs);
+    // don't want scheme on the path, just an absolute path
+    testDir = new Path(fs.makeQualified(testDir).toUri().getPath());
+
+    FileSystem.setDefaultUri(conf, fs.getUri());
+    fs.setWorkingDirectory(testDir);
+    fs.mkdirs(DIR_FROM);
+    fs.mkdirs(DIR_TO1);
+    fs.createNewFile(FROM);
+
+    FSDataOutputStream output = fs.create(FROM, true);
+    for(int i = 0; i < 100; ++i) {
+      output.writeInt(i);
+      output.writeChar('\n');
+    }
+    output.close();
+    fs.setPermission(FROM, PERMISSIONS);
+    fs.setTimes(FROM, MODIFICATION_TIME, ACCESS_TIME);
+    fs.setPermission(DIR_FROM, PERMISSIONS);
+    fs.setTimes(DIR_FROM, MODIFICATION_TIME, ACCESS_TIME);
+  }
 
   @Before
   public void initialize() throws Exception {
@@ -144,6 +175,13 @@ public class TestCopyPreserveFlag {
     fs.mkdirs(DIR_FROM_SPL);
     fs.createNewFile(FROM_SPL);
     run(new Put(), FROM_SPL.toString(), TO.toString());
+    assertAttributesChanged(TO);
+  }
+
+  @Fuzz
+  public void testCopyFromLocalFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    initializeFuzz(generatedConfig);
+    run(new CopyFromLocal(), FROM.toString(), TO.toString());
     assertAttributesChanged(TO);
   }
 

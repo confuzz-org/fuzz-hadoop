@@ -17,6 +17,10 @@
  */
 package org.apache.hadoop.fs;
 
+import com.pholser.junit.quickcheck.From;
+import edu.berkeley.cs.jqf.fuzz.Fuzz;
+import edu.berkeley.cs.jqf.fuzz.JQF;
+import org.apache.hadoop.conf.ConfigurationGenerator;
 import org.apache.hadoop.thirdparty.com.google.common.base.Preconditions;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem.Statistics;
@@ -57,6 +61,7 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
+import org.junit.runner.RunWith;
 
 import javax.annotation.Nonnull;
 
@@ -65,6 +70,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * This class tests the local file system via the FileSystem abstraction.
  */
+@RunWith(JQF.class)
 public class TestLocalFileSystem {
   private static final File base =
       GenericTestUtils.getTestDir("work-dir/localfs");
@@ -98,7 +104,14 @@ public class TestLocalFileSystem {
     fileSys = FileSystem.getLocal(conf);
     fileSys.delete(new Path(TEST_ROOT_DIR), true);
   }
-  
+
+  public void setupFuzz(Configuration generatedConfig) throws IOException {
+    conf = new Configuration(generatedConfig);
+    conf.set("fs.file.impl", LocalFileSystem.class.getName());
+    fileSys = FileSystem.getLocal(conf);
+    fileSys.delete(new Path(TEST_ROOT_DIR), true);
+  }
+
   @After
   public void after() throws IOException {
     FileUtil.setWritable(base, true);
@@ -500,6 +513,22 @@ public class TestLocalFileSystem {
     } finally {
       stm.close();
     }
+  }
+
+  /**
+   * Tests a simple rename of a directory.
+   */
+  @Fuzz
+  public void testRenameDirectoryFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws IOException {
+    setupFuzz(generatedConfig);
+    Path src = new Path(TEST_ROOT_DIR, "dir1");
+    Path dst = new Path(TEST_ROOT_DIR, "dir2");
+    fileSys.delete(src, true);
+    fileSys.delete(dst, true);
+    assertTrue(fileSys.mkdirs(src));
+    assertTrue(fileSys.rename(src, dst));
+    assertTrue(fileSys.exists(dst));
+    assertFalse(fileSys.exists(src));
   }
 
   /**
