@@ -1,0 +1,29 @@
+hadoop.security.credential.clear-text-fallback :=: null
+hadoop.security.credential.provider.path :=: null
+hadoop.ssl.client.conf :=: ssl-client.xml
+hadoop.ssl.enabled.protocols :=: [B@248d2cec
+hadoop.ssl.hostname.verifier :=: STRICT_IE6
+hadoop.ssl.keystores.factory.class :=: [B@57167ccb
+hadoop.ssl.require.client.cert :=: false
+hadoop.ssl.server.conf :=: ssl-server.xml
+ssl.client.exclude.cipher.list :=: TLS_ECDHE_RSA_WITH_RC4_128_SHA,SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA,  
+SSL_RSA_WITH_DES_CBC_SHA,SSL_DHE_RSA_WITH_DES_CBC_SHA,  SSL_RSA_EXPORT_WITH_RC4_40_MD5,	 
+SSL_RSA_EXPORT_WITH_DES40_CBC_SHA,SSL_RSA_WITH_RC4_128_MD5,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+ssl.client.keystore.keypassword :=: clientP
+ssl.client.keystore.location :=: /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/TestSSLFactory/clientKS.jks
+ssl.client.keystore.password :=: clientP
+ssl.client.keystore.type :=: [B@e7b3e54
+ssl.client.stores.reload.interval :=: null
+ssl.client.truststore.location :=: /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/TestSSLFactory/trustKS.jks
+ssl.client.truststore.password :=: trustP
+ssl.client.truststore.reload.interval :=: 1000
+ssl.client.truststore.type :=: [B@60861e5d
+ssl.server.exclude.cipher.list :=: TLS_ECDHE_RSA_WITH_RC4_128_SHA,SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA,  
+SSL_RSA_WITH_DES_CBC_SHA,SSL_DHE_RSA_WITH_DES_CBC_SHA,  SSL_RSA_EXPORT_WITH_RC4_40_MD5,	 
+SSL_RSA_EXPORT_WITH_DES40_CBC_SHA,SSL_RSA_WITH_RC4_128_MD5,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA
+ssl.server.keystore.keypassword :=: serverP
+ssl.server.keystore.location :=: /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/TestSSLFactory/serverKS.jks
+ssl.server.keystore.password :=: serverP
+ssl.server.truststore.location :=: /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/TestSSLFactory/trustKS.jks
+ssl.server.truststore.password :=: trustP
+ssl.server.truststore.reload.interval :=: 1000
