@@ -816,7 +816,16 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   
   /** A new configuration. */
   public Configuration() {
-    this(true);
+    Configuration generatedConfig = ConfigurationGenerator.getGeneratedConfig();
+    if (generatedConfig != null) {
+      new Configuration(generatedConfig);
+    } else {
+      new Configuration(true);
+    }
+  }
+
+  public Configuration ConfigurationFuzz() {
+    return new Configuration(true);
   }
 
   /** A new configuration where the behavior of reading from the default 
