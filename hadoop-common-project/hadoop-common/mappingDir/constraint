@@ -25,4 +25,4 @@ fs.getspaceused.classname=rg.apache.hadoop.fs.DU;org.apache.hadoop.fs.WindowsGet
 hadoop.security.auth_to_local.mechanism=hadoop;MIT
 hadoop.security.auth_to_local=RULE:[1:$1] RULE:[2:$1]
 rpc.metrics.timeunit=NANOSECONDS;MICROSECONDS;MILLISECONDS;SECONDS
-hadoop.rpc.socket.factory.class.default=org.apache.hadoop.security.ssl.DelegatingSSLSocketFactory;org.apache.hadoop.security.LdapSslSocketFactory;org.apache.hadoop.net.SocksSocketFactory;org.apache.hadoop.net.StandardSocketFactory
+hadoop.rpc.socket.factory.class.default=org.apache.hadoop.net.StandardSocketFactory
