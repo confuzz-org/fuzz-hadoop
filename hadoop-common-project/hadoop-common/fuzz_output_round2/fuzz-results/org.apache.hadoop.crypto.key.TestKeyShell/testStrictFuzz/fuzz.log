@@ -1,0 +1,34 @@
+Saving new input (at run 1): input #0 of size 122; reason = +count +cov +valid
+Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round2/fuzz-results/org.apache.hadoop.crypto.key.TestKeyShell/testStrictFuzz/corpus/id_000000 random +count +cov +valid
+Saving new input (at run 50): input #1 of size 122; reason = +count +cov +valid
+Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round2/fuzz-results/org.apache.hadoop.crypto.key.TestKeyShell/testStrictFuzz/corpus/id_000001 src:000000,havoc:29 +count +cov +valid
+
+# Cycle 1 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1285 branches
+Input 1 is responsible for 2 branches
+Total 1287 branches covered
+
+
+
+
+
+# Cycle 2 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1285 branches
+Input 1 is responsible for 2 branches
+Total 1287 branches covered
+
+
+
+
+
+# Cycle 3 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1285 branches
+Input 1 is responsible for 2 branches
+Total 1287 branches covered
+
+
+
+

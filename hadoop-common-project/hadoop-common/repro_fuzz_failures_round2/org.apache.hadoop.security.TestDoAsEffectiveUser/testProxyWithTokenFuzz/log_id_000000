@@ -1,0 +1,148 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 500, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Auth successful for realUser1@HADOOP.APACHE.ORG (auth:PROXY) via SomeSuperUser (auth:SIMPLE) from 127.0.0.1:35216
+[[1;34mINFO[m] Stopping server on 39195
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[JQF] After pre round flag = false
+
+Time: 1.463
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 64
+[CONFIG-CHANGE] hadoop.kerberos.keytab.login.autorenewal.enabled = false -> true
+[CONFIG-CHANGE] hadoop.kerberos.min.seconds.before.relogin = 60 -> 542184635
+[CONFIG-CHANGE] hadoop.proxyservers = null -> null
+[CONFIG-CHANGE] hadoop.security.authorization = false -> true
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.enabled = false -> true
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.threshold.ms = 1000 -> 1968836605
+[CONFIG-CHANGE] hadoop.security.group.mapping = org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback -> [B@7253c53
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload = false -> true
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 660482434
+[CONFIG-CHANGE] hadoop.security.groups.cache.secs = 300 -> 1404627158
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 2019050807
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 444704703
+[CONFIG-CHANGE] hadoop.security.impersonation.provider.class = null -> null
+[CONFIG-CHANGE] hadoop.security.saslproperties.resolver.class = null -> null
+[CONFIG-CHANGE] hadoop.security.token.service.use_ip = true -> false
+[CONFIG-CHANGE] hadoop.token.files = null -> null
+[CONFIG-CHANGE] hadoop.tokens = null -> null
+[CONFIG-CHANGE] hadoop.user.group.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@66d6e50b
+[CONFIG-CHANGE] ipc.0.backoff.enable = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.impl = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.overflow.trigger.failover = null -> null
+[CONFIG-CHANGE] ipc.0.faircallqueue.priority-levels = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.impl = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.priority.levels = null -> null
+[CONFIG-CHANGE] ipc.client.async.calls.max = null -> null
+[CONFIG-CHANGE] ipc.client.connect.max.retries = 10 -> 1367237985
+[CONFIG-CHANGE] ipc.client.connect.max.retries.on.sasl = null -> null
+[CONFIG-CHANGE] ipc.client.connect.max.retries.on.timeouts = 45 -> 192927453
+[CONFIG-CHANGE] ipc.client.connect.retry.interval = 1000 -> 353463687
+[CONFIG-CHANGE] ipc.client.connect.timeout = 20000 -> 1051678834
+[CONFIG-CHANGE] ipc.client.connection.idle-scan-interval.ms = null -> null
+[CONFIG-CHANGE] ipc.client.connection.maxidletime = 10000 -> 37096320
+[CONFIG-CHANGE] ipc.client.fallback-to-simple-auth-allowed = false -> true
+[CONFIG-CHANGE] ipc.client.idlethreshold = 4000 -> 1764988504
+[CONFIG-CHANGE] ipc.client.kill.max = 10 -> 1011718891
+[CONFIG-CHANGE] ipc.client.low-latency = false -> true
+[CONFIG-CHANGE] ipc.client.rpc-timeout.ms = 0 -> 1008078972
+[CONFIG-CHANGE] ipc.maximum.data.length = 134217728 -> 101445184
+[CONFIG-CHANGE] ipc.maximum.response.length = 134217728 -> 1751577341
+[CONFIG-CHANGE] ipc.ping.interval = 60000 -> 1858470362
+[CONFIG-CHANGE] ipc.server.handler.queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.listen.queue.size = 256 -> 180818159
+[CONFIG-CHANGE] ipc.server.max.connections = -1 -> 1837897600
+[CONFIG-CHANGE] ipc.server.max.response.size = null -> null
+[CONFIG-CHANGE] ipc.server.purge.interval = 15 -> 2117643329
+[CONFIG-CHANGE] ipc.server.read.connection-queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.read.threadpool.size = null -> null
+[CONFIG-CHANGE] ipc.server.tcpnodelay = null -> null
+[CONFIG-CHANGE] rpc.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] rpc.metrics.timeunit = MILLISECONDS -> MICROSECONDS
+[CONFIG-CHANGE] test.ipc.client.principal = null -> null
+.[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 500, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] Auth successful for realUser1@HADOOP.APACHE.ORG (auth:PROXY) via SomeSuperUser (auth:SIMPLE) from 127.0.0.1:42918
+[[1;34mINFO[m] Connection from 127.0.0.1:42918 for protocol org.apache.hadoop.ipc.TestRpcBase$TestRpcService is unauthorized for user realUser1@HADOOP.APACHE.ORG (auth:TOKEN) via SomeSuperUser (auth:SIMPLE)
+[[1;34mINFO[m] Stopping server on 44805
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+id_000000 ::= FAILURE (java.lang.reflect.UndeclaredThrowableException)
+E
+Time: 0.287
+There was 1 failure:
+1) testProxyWithTokenFuzz(org.apache.hadoop.security.TestDoAsEffectiveUser)
+java.lang.reflect.UndeclaredThrowableException
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1894)
+	at org.apache.hadoop.security.TestDoAsEffectiveUser.testProxyWithTokenFuzz(TestDoAsEffectiveUser.java:572)
+	... 49 trimmed
+Caused by: org.apache.hadoop.thirdparty.protobuf.ServiceException: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.authorize.AuthorizationException): Protocol interface org.apache.hadoop.ipc.TestRpcBase$TestRpcService is not known.
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Invoker.invoke(ProtobufRpcEngine2.java:256)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Invoker.invoke(ProtobufRpcEngine2.java:129)
+	at com.sun.proxy.$Proxy40.getCurrentUser(Unknown Source)
+	at org.apache.hadoop.security.TestDoAsEffectiveUser$10.run(TestDoAsEffectiveUser.java:577)
+	at org.apache.hadoop.security.TestDoAsEffectiveUser$10.run(TestDoAsEffectiveUser.java:572)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.base/javax.security.auth.Subject.doAs(Subject.java:423)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1878)
+	... 51 more
+Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.authorize.AuthorizationException): Protocol interface org.apache.hadoop.ipc.TestRpcBase$TestRpcService is not known.
+	at org.apache.hadoop.ipc.Client.getRpcResponse(Client.java:1612)
+	at org.apache.hadoop.ipc.Client.call(Client.java:1558)
+	at org.apache.hadoop.ipc.Client.call(Client.java:1455)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine2$Invoker.invoke(ProtobufRpcEngine2.java:242)
+	... 58 more
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  3.882 s
+[[1;34mINFO[m] Finished at: 2022-10-16T23:35:52-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

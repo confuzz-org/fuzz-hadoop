@@ -1,0 +1,87 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Adding [grp1, grp2] to groups.
+[[1;34mINFO[m] clearing userToGroupsMap cache
+[[1;34mINFO[m] Cache is being refreshed.
+[[1;34mINFO[m] Clearing the blacklist
+[[1;34mINFO[m] Clearing the blacklist
+[[1;34mINFO[m] Getting groups for me
+[[1;34mINFO[m] Adding [grp3] to groups.
+[[1;34mINFO[m] Getting groups for me
+[JQF] After pre round flag = false
+
+Time: 1.18
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 8
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 1771844774
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 1548537694
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 645265691
+[CONFIG-CHANGE] hadoop.security.groups.shell.command.timeout = 0s -> [B@e2c627e
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@35cbeb54
+.[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+id_000000 ::= FAILURE (java.lang.NumberFormatException)
+E
+Time: 0.268
+There was 1 failure:
+1) testThreadBlockedWhenExpiredEntryExistsWithoutBackgroundRefreshFuzz(org.apache.hadoop.security.TestGroupsCaching)
+java.lang.NumberFormatException: For input string: "[b@76f9e000"
+	at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.base/java.lang.Long.parseLong(Long.java:692)
+	at java.base/java.lang.Long.parseLong(Long.java:817)
+	at org.apache.hadoop.conf.Configuration.getTimeDurationHelper(Configuration.java:1955)
+	at org.apache.hadoop.conf.Configuration.getTimeDuration(Configuration.java:1907)
+	at org.apache.hadoop.conf.Configuration.getTimeDuration(Configuration.java:1880)
+	at org.apache.hadoop.security.ShellBasedUnixGroupsMapping.setConf(ShellBasedUnixGroupsMapping.java:62)
+	at org.apache.hadoop.util.ReflectionUtils.setConf(ReflectionUtils.java:79)
+	at org.apache.hadoop.util.ReflectionUtils.newInstance(ReflectionUtils.java:139)
+	at org.apache.hadoop.security.Groups.<init>(Groups.java:106)
+	at org.apache.hadoop.security.TestGroupsCaching.testThreadBlockedWhenExpiredEntryExistsWithoutBackgroundRefreshFuzz(TestGroupsCaching.java:566)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  3.426 s
+[[1;34mINFO[m] Finished at: 2022-10-15T14:19:33-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

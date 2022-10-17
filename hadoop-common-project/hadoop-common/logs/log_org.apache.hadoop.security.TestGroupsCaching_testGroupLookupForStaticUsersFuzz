@@ -1,0 +1,80 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:fuzz[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[JQF] After pre round flag = false
+[JQF] After preRound mapping size = 8
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] Resetting FakeGroupMapping
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  5.513 s
+[[1;34mINFO[m] Finished at: 2022-10-16T17:43:22-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:fuzz[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mFuzzing resulted in the test failing on 1 input(s). Possible bugs found. Use mvn jqf:repro to reproduce failing test cases from /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round2/fuzz-results/org.apache.hadoop.security.TestGroupsCaching/testGroupLookupForStaticUsersFuzz/failures. Sample exception included with this message.[m: duration must be positive: 0 MILLISECONDS -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

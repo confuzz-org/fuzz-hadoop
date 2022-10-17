@@ -1,0 +1,8 @@
+hadoop.security.group.mapping :=: org.apache.hadoop.security.TestGroupsCaching$FakeGroupMapping
+hadoop.security.groups.cache.background.reload :=: false
+hadoop.security.groups.cache.background.reload.threads :=: 12779520
+hadoop.security.groups.cache.secs :=: 1
+hadoop.security.groups.cache.warn.after.ms :=: 0
+hadoop.security.groups.negative-cache.secs :=: 0
+hadoop.security.groups.shell.command.timeout :=: 1s
+hadoop.user.group.static.mapping.overrides :=: [B@58a8ea6f

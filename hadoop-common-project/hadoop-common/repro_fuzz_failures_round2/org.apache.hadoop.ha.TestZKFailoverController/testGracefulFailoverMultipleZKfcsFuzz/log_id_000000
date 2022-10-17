@@ -1,0 +1,1497 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;34mINFO[m] Using port 29614
+[[1;34mINFO[m] STARTING testGracefulFailoverMultipleZKfcsFuzz
+[[1;34mINFO[m] STARTING server
+[[1;34mINFO[m] Server environment:zookeeper.version=3.5.6-c11b7e26bc554b8523dc929761dd28808913f091, built on 10/08/2019 20:18 GMT
+[[1;34mINFO[m] Server environment:host.name=KingsLand
+[[1;34mINFO[m] Server environment:java.version=11.0.15
+[[1;34mINFO[m] Server environment:java.vendor=Private Build
+[[1;34mINFO[m] Server environment:java.home=/usr/lib/jvm/java-11-openjdk-amd64
+[[1;34mINFO[m] Server environment:java.class.path=/usr/share/maven/boot/plexus-classworlds-2.x.jar
+[[1;34mINFO[m] Server environment:java.library.path=/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+[[1;34mINFO[m] Server environment:java.io.tmpdir=/tmp
+[[1;34mINFO[m] Server environment:java.compiler=<NA>
+[[1;34mINFO[m] Server environment:os.name=Linux
+[[1;34mINFO[m] Server environment:os.arch=amd64
+[[1;34mINFO[m] Server environment:os.version=5.10.0-1050-oem
+[[1;34mINFO[m] Server environment:user.name=shuai
+[[1;34mINFO[m] Server environment:user.home=/home/shuai
+[[1;34mINFO[m] Server environment:user.dir=/home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common
+[[1;34mINFO[m] Server environment:os.memory.free=447MB
+[[1;34mINFO[m] Server environment:os.memory.max=7960MB
+[[1;34mINFO[m] Server environment:os.memory.total=502MB
+[[1;34mINFO[m] zookeeper.snapshot.trust.empty : false
+[[1;34mINFO[m] zookeeper.snapshotSizeFactor = 0.33
+[[1;34mINFO[m] minSessionTimeout set to 6000
+[[1;34mINFO[m] maxSessionTimeout set to 60000
+[[1;34mINFO[m] Created server with tickTime 3000 minSessionTimeout 6000 maxSessionTimeout 60000 datadir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test14006810619022752726.junit.dir/version-2 snapdir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test14006810619022752726.junit.dir/version-2
+[[1;34mINFO[m] Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory
+[[1;34mINFO[m] Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 32 worker threads, and 64 kB direct buffers.
+[[1;34mINFO[m] binding to port 0.0.0.0/0.0.0.0:29614
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test14006810619022752726.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test14006810619022752726.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] connecting to 127.0.0.1 29614
+[[1;34mINFO[m] The list of known four letter word commands is : [{1936881266=srvr, 1937006964=stat, 2003003491=wchc, 1685417328=dump, 1668445044=crst, 1936880500=srst, 1701738089=envi, 1668247142=conf, -720899=telnet close, 2003003507=wchs, 2003003504=wchp, 1684632179=dirs, 1668247155=cons, 1835955314=mntr, 1769173615=isro, 1920298859=ruok, 1735683435=gtmk, 1937010027=stmk}]
+[[1;34mINFO[m] The list of enabled four letter word commands is : [[wchs, stat, wchp, dirs, stmk, conf, ruok, mntr, srvr, wchc, envi, srst, isro, dump, gtmk, telnet close, crst, cons]]
+[[1;34mINFO[m] Processing stat command from /127.0.0.1:44266
+[[1;34mINFO[m] Stat command output
+[[1;34mINFO[m] Client test setup finished
+[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[[1;34mINFO[m] Client environment:zookeeper.version=3.5.6-c11b7e26bc554b8523dc929761dd28808913f091, built on 10/08/2019 20:18 GMT
+[[1;34mINFO[m] Client environment:host.name=KingsLand
+[[1;34mINFO[m] Client environment:java.version=11.0.15
+[[1;34mINFO[m] Client environment:java.vendor=Private Build
+[[1;34mINFO[m] Client environment:java.home=/usr/lib/jvm/java-11-openjdk-amd64
+[[1;34mINFO[m] Client environment:java.class.path=/usr/share/maven/boot/plexus-classworlds-2.x.jar
+[[1;34mINFO[m] Client environment:java.library.path=/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+[[1;34mINFO[m] Client environment:java.io.tmpdir=/tmp
+[[1;34mINFO[m] Client environment:java.compiler=<NA>
+[[1;34mINFO[m] Client environment:os.name=Linux
+[[1;34mINFO[m] Client environment:os.arch=amd64
+[[1;34mINFO[m] Client environment:os.version=5.10.0-1050-oem
+[[1;34mINFO[m] Client environment:user.name=shuai
+[[1;34mINFO[m] Client environment:user.home=/home/shuai
+[[1;34mINFO[m] Client environment:user.dir=/home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common
+[[1;34mINFO[m] Client environment:os.memory.free=229MB
+[[1;34mINFO[m] Client environment:os.memory.max=7960MB
+[[1;34mINFO[m] Client environment:os.memory.total=502MB
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@65f49369
+[[1;34mINFO[m] Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:44312, server: localhost/127.0.0.1:29614
+[[1;34mINFO[m] Creating new log file: log.1
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:29614, sessionid = 0x1020dd342260000, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:44312
+[[1;34mINFO[m] auth success /127.0.0.1:44312
+[[1;34mINFO[m] Successfully created /hadoop-ha/dummy-cluster in ZK.
+[[1;34mINFO[m] Session: 0x1020dd342260000 closed
+[[1;34mINFO[m] Waiting for svc0 to enter active state
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260000
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd342260000
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@6d9420f6
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:44314, server: localhost/127.0.0.1:29614
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:29614, sessionid = 0x1020dd342260001, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:44314
+[[1;34mINFO[m] auth success /127.0.0.1:44314
+[[1;34mINFO[m] ZKFC RpcServer binding to 0.0.0.0/0.0.0.0:0
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Entering state SERVICE_HEALTHY
+[[1;34mINFO[m] Local service DummyHAService #1 entered state: SERVICE_HEALTHY
+[[1;34mINFO[m] Checking for any old active which needs to be fenced...
+[[1;34mINFO[m] No old node to fence
+[[1;34mINFO[m] Writing znode /hadoop-ha/dummy-cluster/ActiveBreadCrumb to indicate that the local node is the most recent active...
+[[1;34mINFO[m] Trying to make DummyHAService #1 active...
+[[1;34mINFO[m] Successfully transitioned DummyHAService #1 to active state
+[[1;34mINFO[m] Adding svc1
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@63bc3ee4
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:44318, server: localhost/127.0.0.1:29614
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:29614, sessionid = 0x1020dd342260002, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:44318
+[[1;34mINFO[m] auth success /127.0.0.1:44318
+[[1;34mINFO[m] ZKFC RpcServer binding to 0.0.0.0/0.0.0.0:0
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Entering state SERVICE_HEALTHY
+[[1;34mINFO[m] Local service DummyHAService #2 entered state: SERVICE_HEALTHY
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #2 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #2 to standby state
+[[1;34mINFO[m] Adding svc2
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@3175faf7
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:44320, server: localhost/127.0.0.1:29614
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:29614, sessionid = 0x1020dd342260003, negotiated timeout = 10000
+[[1;34mINFO[m] got auth packet /127.0.0.1:44320
+[[1;34mINFO[m] auth success /127.0.0.1:44320
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] ZKFC RpcServer binding to 0.0.0.0/0.0.0.0:0
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Entering state SERVICE_HEALTHY
+[[1;34mINFO[m] Local service DummyHAService #3 entered state: SERVICE_HEALTHY
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #3 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #3 to standby state
+[[1;34mINFO[m] Asking DummyHAService #3 to cede its active state for 10000ms
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Session: 0x1020dd342260003 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9897 more ms
+[[1;34mINFO[m] Asking DummyHAService #1 to cede its active state for 10000ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260003
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd342260003
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Deleting bread-crumb of active node...
+[[1;34mINFO[m] Checking for any old active which needs to be fenced...
+[[1;34mINFO[m] No old node to fence
+[[1;34mINFO[m] Writing znode /hadoop-ha/dummy-cluster/ActiveBreadCrumb to indicate that the local node is the most recent active...
+[[1;34mINFO[m] Trying to make DummyHAService #2 active...
+[[1;34mINFO[m] Successfully transitioned DummyHAService #2 to active state
+[[1;34mINFO[m] Session: 0x1020dd342260001 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9881 more ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260001
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@72755583
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260001
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd342260001
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:44324, server: localhost/127.0.0.1:29614
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:29614, sessionid = 0x1020dd342260004, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@7e64d410
+[[1;34mINFO[m] got auth packet /127.0.0.1:44324
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] auth success /127.0.0.1:44324
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:44326, server: localhost/127.0.0.1:29614
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #3 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #3 to standby state
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:29614, sessionid = 0x1020dd342260005, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] Successfully became active. Successfully transitioned DummyHAService #2 to active state
+[[1;34mINFO[m] got auth packet /127.0.0.1:44326
+[[1;34mINFO[m] auth success /127.0.0.1:44326
+[[1;34mINFO[m] Asking DummyHAService #1 to cede its active state for 10000ms
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Session: 0x1020dd342260005 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9897 more ms
+[[1;34mINFO[m] Asking DummyHAService #2 to cede its active state for 10000ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260005
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260005
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd342260005
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Deleting bread-crumb of active node...
+[[1;34mINFO[m] Checking for any old active which needs to be fenced...
+[[1;34mINFO[m] No old node to fence
+[[1;34mINFO[m] Writing znode /hadoop-ha/dummy-cluster/ActiveBreadCrumb to indicate that the local node is the most recent active...
+[[1;34mINFO[m] Trying to make DummyHAService #3 active...
+[[1;34mINFO[m] Successfully transitioned DummyHAService #3 to active state
+[[1;34mINFO[m] Session: 0x1020dd342260002 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9889 more ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260002
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@5577a5ca
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260002
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd342260002
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:44332, server: localhost/127.0.0.1:29614
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:29614, sessionid = 0x1020dd342260006, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@48ae0e39
+[[1;34mINFO[m] got auth packet /127.0.0.1:44332
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] auth success /127.0.0.1:44332
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:44334, server: localhost/127.0.0.1:29614
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #1 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #1 to standby state
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:29614, sessionid = 0x1020dd342260007, negotiated timeout = 10000
+[[1;34mINFO[m] Successfully became active. Successfully transitioned DummyHAService #3 to active state
+[[1;34mINFO[m] got auth packet /127.0.0.1:44334
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] auth success /127.0.0.1:44334
+[[1;34mINFO[m] Asking DummyHAService #2 to cede its active state for 10000ms
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Session: 0x1020dd342260007 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9898 more ms
+[[1;34mINFO[m] Asking DummyHAService #3 to cede its active state for 10000ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260007
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260007
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd342260007
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Deleting bread-crumb of active node...
+[[1;34mINFO[m] Checking for any old active which needs to be fenced...
+[[1;34mINFO[m] No old node to fence
+[[1;34mINFO[m] Writing znode /hadoop-ha/dummy-cluster/ActiveBreadCrumb to indicate that the local node is the most recent active...
+[[1;34mINFO[m] Trying to make DummyHAService #1 active...
+[[1;34mINFO[m] Successfully transitioned DummyHAService #1 to active state
+[[1;34mINFO[m] Session: 0x1020dd342260004 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9894 more ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260004
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@ccf3e6b
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260004
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd342260004
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:44336, server: localhost/127.0.0.1:29614
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:29614, sessionid = 0x1020dd342260008, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@3cc4774e
+[[1;34mINFO[m] got auth packet /127.0.0.1:44336
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] auth success /127.0.0.1:44336
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:44338, server: localhost/127.0.0.1:29614
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #2 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #2 to standby state
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:29614, sessionid = 0x1020dd342260009, negotiated timeout = 10000
+[[1;34mINFO[m] Successfully became active. Successfully transitioned DummyHAService #1 to active state
+[[1;34mINFO[m] got auth packet /127.0.0.1:44338
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] auth success /127.0.0.1:44338
+[[1;31mERROR[m] The failover controller encounters runtime error: 
+[[1;[1;31mjava.lang.InterruptedExc31mERROR[m] The failover controeption[mller encounters runtime 
+error: 
+    [[1ma[1;31mjava.lang.InterruptedException[mt[m[1;31 jav
+a.lang.  mERROR[m] The failover controller encounters runti  O[1mat[mme error:  java.lang.Object.waitbject.w ([1mNative Method[m)
+    
+[1[[1;34mINFO[m] ZK Election indicated that DummyHAService #3 should become standby
+ait[1;31mjava.lang.InterruptedExceptionmat[m
+ (    [m[1mat[m[ 1mNative Method[m)
+     java.lang.Object.wait[1[[1;34mINFO[m] Suc ([1mObject.java:328[m)
+    jcessfully transitioned DummyHAService #3 to standby statema
+[1maava.lang.Object.waitt ([1mNt[ative Method[m)[m
+    m[1mat[m java.l orang.Object.wait jg. ([1mObject.java:3ava.la28[mapa)
+    ng.Objec[1mache.hat[mt.wait org.apache.doop.hadoop.ha.ZKFailoverContro ([1mObjller.mainha.ZKFailoverCLoopect.java:328[m)ont
+     ([1mZKFailoverController.java:389[m)
+    [1mat[m org.apache.hadoop.ha.ZKFaroller.mainLoopiloverController.doRun[1m ([ ([1mZKFailoverController.java:389[m)1mZKFailoverController.java:253[m)
+at[m    
+    [1m org.apache.hadoopat[m[1 org.ap.ha.ZKFache.hadmaoop.haailoverControll.ZKFat[miloverCer.ontroller.doR org.apachunmainLoope.hado ([1mZ ([1mZKFKFailoverop.ha.ZKFailoverCoController.java:389[m)
+    ailoverContro[1ntroller.access$000mat ([1mZKFailoverController.java:63[m)ller.java:
+    [m[1mat253[m org.apache.hado org.apop.ha.ZKFailoverController$1.run[ m)
+    ache.hado([1mZKFailoverController.java:181[m)op.ha.ZKFail[1overC
+ ontroller.domat[mRun    ([1m org.aZKFailoverController.java:[1mat[m253[m)
+    pache.had[1mat[m org.a org.apache.hadoop.ha.ZKFailoverController$1.runpaoop.h ([1mZKFailoverController.java:177[m)
+che.hadoop.    [1mat[m org.apache.hadoop.securia.ZKFailoverController.acty.SecurityUtil.doAsLha.ZKFailoverController.aoginUserOrFatalcess$000ccess$00 ([1mSecurityUtil.java:503[m)
+0  ([1mZKFailoverController.java:63[m)  
+    ([1mZ[1mat[m  org.aKFailovpache.hado op.ha.ZKFailoverControerConller$1.run[1mat[m org.apache.hadoop.ha.ZKFailoverControltroller.ler.run ([1java:63[mmZKFailoverControlle ([1mZKFar.java)
+    :[1mat[miloverController.java:177[m) org.apache.hadoop.ha.ZKFailoverContro181[m)ller$1.run
+   
+      [1mat[m org.apache.hadoop.ha.[1mat[m o([1mZrKg.apache.hadoop.ha.ZKFailoverCoMiniZKFCCluster$DummyZKFCThread.doWorkntroller$ ([1mMiniZKFCClusFailoverContter.java:301[m)
+ 1.run   rolle ([1mat[m[1mZKFailoverCor.java:181[m)
+    n[1mat[m org.apache.hadoop.test.MultithreadedTestUtil$Test org.trollapache.hadoop.ha.ZKFailoverControlingThread.runlerer.java:177[m) ([1mMultithreadedTestUtil.java:189[m)$1.run
+
+    [1mat[m or[[1;34mINFO[m] Stopping server on 39919g.a
+ ([1mpache.hadoop.security.SecurityUtil.doAsLoginUserOrFatalZKFailo ([1mSecurityUtil.[[1;34mINFO[m] Stopping IPC Server listener on 0
+verController.java:177[m)
+    [[1mjava:503[m)
+   at[m[1;34mINFO o rg.apach[m] Stopping IPC Server Respondere.h[1mat[m org.apache.hadoop.hadoop.s
+ecur[[1;34mINFO[m] Yielding from electiona.ZKFailoverController.run
+i ([1mZKty.FailoverController.java:177[m)
+    S[1mat[m org.apache.hadoop.ha.MiniZKFCCluster$DummyZKFCThread.doecurityUtil.doAsLoginUserOrFatalWork ( ([1mMiniZKFCClus[1mSecuritter.java:301[m)yUtil.java:503[m)
+    
+    [1mat[m[1mat[m org.apache.hadoop.ha.ZK org.apache.hadoop.test.MultithreadedTestUtil$TestingThread.runFailoverController.run ([1mMultithreadedTestUtil.java:189[m)
+ ([1mZKFailoverController.j[[1;34mINFO[m] Stopping serveava:17r on 37[m)
+    9097[1mat[m
+ org.apache.hadoop.ha.MiniZKFCCluster$DummyZKFCThread.[[1;34mINFO[m] Stopping IPC Server listedoWorkner on 0
+[[1;34 ([1mMiniZKFCCmINFO[m] lustYielding er.java:301[mfr)
+    o[m election
+1mat[m org.apac[[1;34mINFO[m] Stopping IPC Serhe.hadoop.test.MultithreadedTestUtil$TestingThver Responread.runder
+ ([1mMultithreadedTestUtil.java:189[m)
+[[1;34mINFO[m] Stopping server on 35935
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Session: 0x1020dd342260008 closed
+[[1;34mINFO[m] Stopping HealthMonitor thread
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260008
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd342260008
+[[1;34mINFO[m] Session: 0x1020dd342260009 closed
+[[1;34mINFO[m] Stopping HealthMonitor thread
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260009
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260009
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd342260009
+[[1;34mINFO[m] Session: 0x1020dd342260006 closed
+[[1;34mINFO[m] Stopping HealthMonitor thread
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260006
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd342260006
+[[1;34mINFO[m] tearDown starting
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd342260006
+[[1;34mINFO[m] STOPPING server
+[[1;34mINFO[m] ConnnectionExpirerThread interrupted
+[[1;34mINFO[m] accept thread exitted run method
+[[1;34mINFO[m] selector thread exitted run method
+[[1;34mINFO[m] selector thread exitted run method
+[[1;34mINFO[m] shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] PrepRequestProcessor exited loop!
+[[1;34mINFO[m] SyncRequestProcessor exited!
+[[1;34mINFO[m] shutdown of request processor complete
+[[1;34mINFO[m] connecting to 127.0.0.1 29614
+[[1;34mINFO[m] SUCCEEDED testGracefulFailoverMultipleZKfcsFuzz
+[[1;34mINFO[m] FINISHED testGracefulFailoverMultipleZKfcsFuzz
+[JQF] After pre round flag = false
+
+Time: 3.524
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 62
+[CONFIG-CHANGE] fs.creation.parallel.count = null -> null
+[CONFIG-CHANGE] fs.hdfs.impl = null -> null
+[CONFIG-CHANGE] ha.failover-controller.active-standby-elector.zk.op.retries = 3 -> 851568061
+[CONFIG-CHANGE] ha.failover-controller.graceful-fence.rpc-timeout.ms = 5000 -> 555121957
+[CONFIG-CHANGE] ha.failover-controller.new-active.rpc-timeout.ms = 60000 -> 1173169197
+[CONFIG-CHANGE] ha.health-monitor.rpc-timeout.ms = 45000 -> 900970558
+[CONFIG-CHANGE] ha.health-monitor.rpc.connect.max.retries = 1 -> 134480127
+[CONFIG-CHANGE] ha.zookeeper.parent-znode = /hadoop-ha -> /shuai
+[CONFIG-CHANGE] ha.zookeeper.quorum = 127.0.0.1:29614 -> 127.0.0.1:11193
+[CONFIG-CHANGE] ha.zookeeper.session-timeout.ms = 10000 -> 54622836
+[CONFIG-CHANGE] hadoop.kerberos.min.seconds.before.relogin = 60 -> 830206858
+[CONFIG-CHANGE] hadoop.security.auth_to_local.mechanism = hadoop -> MIT
+[CONFIG-CHANGE] hadoop.security.credential.provider.path = null -> null
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.enabled = false -> true
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.threshold.ms = 1000 -> 836160912
+[CONFIG-CHANGE] hadoop.security.group.mapping = org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback -> [B@368424db
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload = false -> true
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 70692323
+[CONFIG-CHANGE] hadoop.security.groups.cache.secs = 300 -> 1413263579
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 1237711997
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 1054179296
+[CONFIG-CHANGE] hadoop.security.token.service.use_ip = true -> false
+[CONFIG-CHANGE] hadoop.token.files = null -> null
+[CONFIG-CHANGE] hadoop.tokens = null -> null
+[CONFIG-CHANGE] hadoop.user.group.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@44864536
+[CONFIG-CHANGE] ipc.0.backoff.enable = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.impl = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.overflow.trigger.failover = null -> null
+[CONFIG-CHANGE] ipc.0.faircallqueue.priority-levels = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.impl = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.priority.levels = null -> null
+[CONFIG-CHANGE] ipc.client.connection.idle-scan-interval.ms = null -> null
+[CONFIG-CHANGE] ipc.client.connection.maxidletime = 10000 -> 128002517
+[CONFIG-CHANGE] ipc.client.idlethreshold = 4000 -> 1358509055
+[CONFIG-CHANGE] ipc.client.kill.max = 10 -> 560606762
+[CONFIG-CHANGE] ipc.maximum.data.length = 134217728 -> 334567677
+[CONFIG-CHANGE] ipc.server.handler.queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.listen.queue.size = 256 -> 496666571
+[CONFIG-CHANGE] ipc.server.log.slow.rpc = false -> true
+[CONFIG-CHANGE] ipc.server.max.connections = -1 -> 256840818
+[CONFIG-CHANGE] ipc.server.max.response.size = null -> null
+[CONFIG-CHANGE] ipc.server.purge.interval = 15 -> 122365936
+[CONFIG-CHANGE] ipc.server.read.connection-queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.read.threadpool.size = null -> null
+[CONFIG-CHANGE] ipc.server.tcpnodelay = null -> null
+[CONFIG-CHANGE] rpc.engine.org.apache.hadoop.ha.protocolPB.ZKFCProtocolPB = org.apache.hadoop.ipc.ProtobufRpcEngine2 -> [B@455f4483
+[CONFIG-CHANGE] rpc.metrics.percentiles.intervals = null -> null
+.[[1;34mINFO[m] Using port 43282
+[[1;34mINFO[m] STARTING testGracefulFailoverMultipleZKfcsFuzz
+[[1;34mINFO[m] STARTING server
+[[1;34mINFO[m] zookeeper.snapshot.trust.empty : false
+[[1;34mINFO[m] zookeeper.snapshotSizeFactor = 0.33
+[[1;34mINFO[m] minSessionTimeout set to 6000
+[[1;34mINFO[m] maxSessionTimeout set to 60000
+[[1;34mINFO[m] Created server with tickTime 3000 minSessionTimeout 6000 maxSessionTimeout 60000 datadir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test3251889553417096170.junit.dir/version-2 snapdir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test3251889553417096170.junit.dir/version-2
+[[1;34mINFO[m] Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory
+[[1;34mINFO[m] Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 32 worker threads, and 64 kB direct buffers.
+[[1;34mINFO[m] binding to port 0.0.0.0/0.0.0.0:43282
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test3251889553417096170.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test3251889553417096170.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] connecting to 127.0.0.1 43282
+[[1;34mINFO[m] Processing stat command from /127.0.0.1:50226
+[[1;34mINFO[m] Stat command output
+[[1;34mINFO[m] Client test setup finished
+[[1;34mINFO[m] SessionTrackerImpl exited loop!
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:43282 sessionTimeout=54622836 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@3b84200f
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:43282. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:50234, server: localhost/127.0.0.1:43282
+[[1;34mINFO[m] Creating new log file: log.1
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:43282, sessionid = 0x1020dd34fc50000, negotiated timeout = 60000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:50234
+[[1;34mINFO[m] auth success /127.0.0.1:50234
+[[1;34mINFO[m] Successfully created /shuai/dummy-cluster in ZK.
+[[1;34mINFO[m] Session: 0x1020dd34fc50000 closed
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x1020dd34fc50000
+[[1;34mINFO[m] Waiting for svc0 to enter active state
+[[1;34mINFO[m] EventThread shut down for session: 0x1020dd34fc50000
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:43282 sessionTimeout=54622836 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@7c9f1c80
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:43282. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:50238, server: localhost/127.0.0.1:43282
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:43282, sessionid = 0x1020dd34fc50001, negotiated timeout = 60000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:50238
+[[1;34mINFO[m] auth success /127.0.0.1:50238
+[[1;34mINFO[m] ZKFC RpcServer binding to 0.0.0.0/0.0.0.0:0
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Entering state SERVICE_HEALTHY
+[[1;34mINFO[m] Local service DummyHAService #1 entered state: SERVICE_HEALTHY
+[[1;34mINFO[m] Checking for any old active which needs to be fenced...
+[[1;34mINFO[m] No old node to fence
+[[1;34mINFO[m] Writing znode /shuai/dummy-cluster/ActiveBreadCrumb to indicate that the local node is the most recent active...
+[[1;34mINFO[m] Trying to make DummyHAService #1 active...
+[[1;34mINFO[m] Successfully transitioned DummyHAService #1 to active state
+[[1;34mINFO[m] Adding svc1
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:43282 sessionTimeout=54622836 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@635e5b
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:43282. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:50242, server: localhost/127.0.0.1:43282
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:43282, sessionid = 0x1020dd34fc50002, negotiated timeout = 60000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:50242
+[[1;34mINFO[m] auth success /127.0.0.1:50242
+[[1;34mINFO[m] ZKFC RpcServer binding to 0.0.0.0/0.0.0.0:0
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Entering state SERVICE_HEALTHY
+[[1;34mINFO[m] Local service DummyHAService #2 entered state: SERVICE_HEALTHY
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #2 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #2 to standby state
+[[1;34mINFO[m] Adding svc2
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:43282 sessionTimeout=54622836 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@4c266767
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:43282. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:50244, server: localhost/127.0.0.1:43282
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:43282, sessionid = 0x1020dd34fc50003, negotiated timeout = 60000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:50244
+[[1;34mINFO[m] auth success /127.0.0.1:50244
+[[1;34mINFO[m] ZKFC RpcServer binding to 0.0.0.0/0.0.0.0:0
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Entering state SERVICE_HEALTHY
+[[1;34mINFO[m] Local service DummyHAService #3 entered state: SERVICE_HEALTHY
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #3 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #3 to standby state
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@4eeaade
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@20979e73
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@38d58e9
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@7d700c69
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@1856b07
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@73b8d729
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@66740484
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@5cb9623
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@5182d2eb
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;31mERROR[m] Failed to reEstablish connection with ZooKeeper
+[[1;31mERROR[m] Fatal error occurred:Failed to reEstablish connection with ZooKeeper
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@6623e9ce
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Failed to reEstablish connection with ZooKeeper
+[[1;31mERROR[m] Fatal error occurred:Failed to reEstablish connection with ZooKeeper
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@17f9e832
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Failed to reEstablish connection with ZooKeeper
+[[1;31mERROR[m] Fatal error occurred:Failed to reEstablish connection with ZooKeeper
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@3765ded5
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@4f3c1ef7
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@45143666
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@5e36c7ca
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@12385427
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@5a644016
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:29614 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@32c32565
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket error occurred: localhost/127.0.0.1:29614: Connection refused
+[[1;31mERROR[m] Connection timed out: couldn't connect to ZooKeeper in 10000 milliseconds
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:29614. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Session: 0x0 closed
+[[1;33mWARNING[m] org.apache.zookeeper.KeeperException$ConnectionLossException: KeeperErrorCode = ConnectionLoss
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;31mERROR[m] Failed to reEstablish connection with ZooKeeper
+[[1;31mERROR[m] Fatal error occurred:Failed to reEstablish connection with ZooKeeper
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;34mINFO[m] Cur data: no node
+[[1;31mERROR[m] Failed to reEstablish connection with ZooKeeper
+[[1;31mERROR[m] Fatal error occurred:Failed to reEstablish connection with ZooKeeper
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;34mINFO[m] Cur data: no node
+[[1;31mERROR[m] Failed to reEstablish connection with ZooKeeper
+[[1;31mERROR[m] Fatal error occurred:Failed to reEstablish connection with ZooKeeper
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x00000000
+[[1;34mINFO[m] EventThread shut down for session: 0x0
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;34mINFO[m] Cur data: no node
+[[1;31mERROR[m] The failover controller encounters runtime error: 
+[[1;31mERROR[m] The failover controller encounters runtime error: 
+[1;31mjava.lang.InterruptedException[m[
+[1;[1;31mERROR[m31mjava.lang.] The failover controller encounters runtime error:   
+InterruptedException[m
+      [[1mat[m[1;31 j[1;34mINFO[m] FAILED testGracefulFailoverMultipleZKfcsFuzz[1mat[m java.lang.Object.wait
+ava.l ([1mNative Method[m)mja
+ang.Objec[1;31morg.junit.runners.t.wait  va.lan([1mNative    [1mat[mmodel.TestTimedOutException[m java.lang.Object.waitMetho ([1mObject.java:328[m)
+    [1mat[m org.apache.hadoop.ha.ZKFaig.InterruptedException[m
+lov    d[m): 
+    [1[1;31mtest timed out after 180000 milliseconds[m
+erController.mainLoop    mat[m[1mat[m java.lang.Object.wait jav[1mat[m java.lang.Thread.sleep ([1mZKFailoverController.java:389[m) ([1mNative Method[m) ([1mObject.java:328[m)
+    a.lang.Object.wait[1mat[m org.apache.hadoop.ha.ZKFailoverController.mainLoop
+    [1mat[m org.apache.hadoop.ha.ActiveStandbyElectorTestUtil.waitForActiveLockData
+     ([1mActiveStandbyElectorTestUtil.java:68[m)
+    [1mat[m org.apache.hadoop.ha.MiniZKFCCl ([1mZKFailoverController.java:389[m) ([1mNat
+    [1mat[muster.waitForActiveLockHolder[1 ([1mMiniZKFCCluster.java:260[m)
+ org.apache.hadoop.ha.ZKFailoverController.doRuniv    m[1mat[me Method[m) ([1mZKFailoverController.java:253[m)
+    org.apache.hadoop.ha.TestZKFailoverController.testGracefulFailoverMultipleZKfcsFuzzat[m org.apache.hadoop.ha.ZKFailoverController.doRun  ([1mZKFailoverController.java:253[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.access$000
+ ([1mZKFailoverController.java:63[m)[1mat[m ([1mTestZKFailoverController.java:657[m)
+  java.lang.Obj
+    [1mat[m     [1mat[mect.wait    [1mat[morg.apache.hadoop.ha.ZKFailoverCo jdk.internal.reflect.NativeMethodAccessorImpl.invoke0org.apache.hadoop.ha.ZKFailoverController.access$000 ([1mObject.java:3 ([1mNative Method[m)ntroller$1.run
+   ([1mZKFailoverController.java:181[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run2 ([1mZKFailoverController.java:177[m)
+ ([1mZKFailoverController.java:63[m)
+        8[1mat[m org.apache.hadoop.security.SecurityUtil.doAsLoginUserOrFatal  [1mat[m jdk.internal.reflect.Na[tiveMethodAccessorImpl.invoke ( ([1mNativeMethodAccessorImpl.java:62[m)[m
+    [1mat[m[1mSecurityUtil.java:503[m)
+  1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run  ([1mZKFailoverController.java: jdk.internal.reflect.DelegatingMethod)
+    [1mat[m orAccessorImpl.invoke181[m) 
+[1mat[ ([1mDelegatingMethodAccessorImpl.java:43[m)g.apache.had
+    [1mat[m java.lang.reflm org.apache.hadoop.ha.ZKFailoverController.run    e[ 1mat[m org.apache.hadoop.ha.ZKFailoverController$1.runoop.ha.ZKFai( ([1mZKFailoverController.java:177[m)
+    [1mct.Method.invokeat[m org.apache.hadoop.security.SecurityUtil.doAsLoginUserOr[1mZKFailoverController.java:177[m)
+    loverController.mainLo[1mat[m org.apache.hadoop.ha.MiniZKFCCluster$DummyZKFCThread.doWorkFat ([1mMiniZKFCCluster.java: ([1mMethod.java:566[m)301[m)
+alop ([ ([1mZK    
+    [1mat[m[1mat[m org.apache.hadoop.test.MultithreadedTestUtil$TestingThread.runFailoverController.java:389[m)
+    1mSecurityUtil.java:503[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverContro ([1mMultithreadedTestUtil.java: org.junit.runners.m189[m)
+ller.doRun[1 ([1mZKFai[[1;34mINFO[m] Stopping serveodel.FrameworkMethod$1.runReflectiveCallr o ([1mFrameworkMethod.java:59[loverController.java:253[mat[mm)m)n 3322
+    
+    [1mat[m org. org.apache.hadoop.ha.ZKFailoverController.runapac[1mat[m org.junit.internal.runners.model.ReflectiveCallable.run5
+ ([1mReflectiveCallabl ([1mZKFailoverController.java:177[m)
+he.hadoo    e[1mat[m org.apache.hadoop.h.java:12[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod.invokeExplosivelyp ([1mFrameworkMethod.java:56[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.TrialRunner$1.evaluate[[1;34mINFO[m] Stopping IPC Server la.MiniZKFCCluster$DummyZKFCThread.doWistener on 0 ([1mTrialRunner.java:59[m)
+    [.ha.ZKFailoverController.access$01mat[m org.junit.intern
+o[[1;34mINFO[m] Yielding from election
+a[[1;34mINFO[m] Stopping IPC Server Responder00
+l.runners.statements.RunBefores.evaluaterk ([1mRunBefores.java:26[m)
+ ([1mZ     ([1mMini[1mat[m org.junit.internal.runners.statements.RunAfters.evaluateK ([1mRunAfters.java:27[m)ZKFCCluster.jav
+    [1matFailoverControll[m org.junit.internal.runna:301[m)
+    [1mat[m org.aers.statements.FailOnTimeout$CallableStaer.java:63[m)tement.callpache.hadoop.test.MultithreadedTestUtil$Testi
+    ngThread. ([1mFailOnTimeout.java:288[m)run[1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run
+      ([1mMultithreadedTestUtil.java:189[m)
+([1mZKFailoverControlle[1mat[m r.java:181[m)
+    [[1;34mINorg.junit.internal.runners.statements.FailOnTimeout$CallableStatement.callFO[m] Stop[1mat[m org.apache.hadoop.ha.ZKFailoverController$1.runping server on 38891
+ ([1mFailOnTimeout.java:282[m)
+     ([1mZKFailover[1mat[mContr[[1;34mINFO[m java.util.concurrent.FutureTask.run] Stopping IPC oller.java:177[m)
+    Serv ([1mFutureTask.java:264[m)er listener on 0
+[1[[1;34mINFO[
+    [1mat[m java.lang.Thread.runm ([1mThread.java:829[m)mat[m
+] Stopping IPC org.apache.hadoop.secur Server Responder
+ity.SecurityUtil.doAsLoginUserOrFatal[[1;34mINFO[m] Yielding from ele ([1mSecurityUtil.java:503[m)ction
+
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.run[ ([1mZKFailoverController.java:177[m)
+[1;34mINFO[m] FINISHED testGracefulFailoverMultipleZKfcsFuz    z
+[1mat[m org.apache.hadoop.ha.MiniZKFCCluster$DummyZKFCThread.doWork ([1mMiniZKFCCluster.java:301[m)
+    [1mat[m org.apache.hadoop.test.MultithreadedTestUtil$TestingThread.run ([1mMultithreadedTestUtil.java:189[m)
+[[1;34mINFO[m] Stopping server on 40277
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Stopping IPC Server Responder
+id_000000 ::= FAILURE (org.junit.runners.model.TestTimedOutException)
+E
+Time: 180.228
+There was 1 failure:
+1) testGracefulFailoverMultipleZKfcsFuzz(org.apache.hadoop.ha.TestZKFailoverController)
+org.junit.runners.model.TestTimedOutException: test timed out after 180000 milliseconds
+	at java.base@11.0.15/java.lang.Thread.sleep(Native Method)
+	at org.apache.hadoop.ha.ActiveStandbyElectorTestUtil.waitForActiveLockData(ActiveStandbyElectorTestUtil.java:68)
+	at org.apache.hadoop.ha.MiniZKFCCluster.waitForActiveLockHolder(MiniZKFCCluster.java:260)
+	at org.apache.hadoop.ha.TestZKFailoverController.testGracefulFailoverMultipleZKfcsFuzz(TestZKFailoverController.java:657)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  03:05 min
+[[1;34mINFO[m] Finished at: 2022-10-16T23:34:59-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

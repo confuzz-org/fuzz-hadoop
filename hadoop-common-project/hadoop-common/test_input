@@ -1,7 +1,3 @@
-org.apache.hadoop.ipc.TestProtoBufRpcServerHandoff#test
-org.apache.hadoop.ipc.TestReuseRpcConnections#testDefaultRetryPolicyReuseConnections
-org.apache.hadoop.ipc.TestRPCServerShutdown#testRPCServerShutdown
-org.apache.hadoop.ipc.TestRPC#testRpcMetricsInNanos
 org.apache.hadoop.ipc.TestMultipleProtocolServer#testPBService
 org.apache.hadoop.security.TestDoAsEffectiveUser#testProxyWithToken
 org.apache.hadoop.security.TestDoAsEffectiveUser#testRealUserAuthorizationSuccess

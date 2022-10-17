@@ -1,0 +1,96 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[[1;34mINFO[m] Authorization successful for drwho@EXAMPLE.COM (auth:SIMPLE) for protocol=interface org.apache.hadoop.security.authorize.TestServiceAuthorization$TestProtocol1
+[[1;34mINFO[m] Authorization successful for drwho@EXAMPLE.COM (auth:SIMPLE) for protocol=interface org.apache.hadoop.ipc.TestRPC$TestProtocol
+[[1;33mWARNING[m] Authorization failed for  for protocol=interface org.apache.hadoop.ipc.TestRPC$TestProtocol from host = 1.2.3.4
+[[1;34mINFO[m] Authorization successful for drwho@EXAMPLE.COM (auth:SIMPLE) for protocol=interface org.apache.hadoop.security.authorize.TestServiceAuthorization$TestProtocol1
+[[1;33mWARNING[m] Authorization failed for  for protocol=interface org.apache.hadoop.security.authorize.TestServiceAuthorization$TestProtocol1 from host = 10.222.0.0
+[JQF] After pre round flag = false
+
+Time: 1.131
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 28
+[CONFIG-CHANGE] hadoop.kerberos.min.seconds.before.relogin = 60 -> 1688741370
+[CONFIG-CHANGE] hadoop.security.authentication = simple -> kerberos
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.threshold.ms = 1000 -> 68059317
+[CONFIG-CHANGE] hadoop.security.group.mapping = org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback -> [B@26d8908e
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 1732116408
+[CONFIG-CHANGE] hadoop.security.groups.cache.secs = 300 -> 1106145944
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 1220289793
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 944454798
+[CONFIG-CHANGE] hadoop.security.token.service.use_ip = true -> false
+[CONFIG-CHANGE] hadoop.user.group.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@30e2016a
+[CONFIG-CHANGE] security.service.authorization.default.acl = * -> [B@75f32817
+[CONFIG-CHANGE] security.service.authorization.default.acl.blocked =  -> null
+[CONFIG-CHANGE] security.service.authorization.default.hosts = * -> [B@23a78c77
+[CONFIG-CHANGE] security.service.authorization.default.hosts.blocked = 10.222.0.0/16,10.113.221.221 -> [B@4119346d
+[CONFIG-CHANGE] test.protocol.acl = * -> [B@61d09475
+[CONFIG-CHANGE] test.protocol.acl.blocked =  -> null
+[CONFIG-CHANGE] test.protocol.hosts = * -> [B@d0fabc8
+[CONFIG-CHANGE] test.protocol.hosts.blocked = 1.2.3.4 -> [B@12d44a2a
+[CONFIG-CHANGE] test.protocol1.acl = * -> [B@1a66be41
+[CONFIG-CHANGE] test.protocol1.acl.blocked =  -> null
+[CONFIG-CHANGE] test.protocol1.hosts = * -> [B@7f70e244
+[CONFIG-CHANGE] test.protocol1.hosts.blocked = 10.222.0.0/16,10.113.221.221 -> [B@fd14789
+.[[1;33mWARNING[m] java.net.UnknownHostException: [B@1450ffa3: invalid IPv6 address
+[[1;33mWARNING[m] java.net.UnknownHostException: [B@4e756867: invalid IPv6 address
+[[1;33mWARNING[m] java.net.UnknownHostException: [B@6adcf059: invalid IPv6 address
+[[1;33mWARNING[m] java.net.UnknownHostException: [B@7962a746: invalid IPv6 address
+[[1;33mWARNING[m] Authorization failed for drwho@EXAMPLE.COM (auth:SIMPLE) for protocol=interface org.apache.hadoop.security.authorize.TestServiceAuthorization$TestProtocol1: denied by configured ACL
+id_000000 ::= FAILURE (java.lang.AssertionError)
+E
+Time: 0.143
+There was 1 failure:
+1) testDefaultBlockedMachineListFuzz(org.apache.hadoop.security.authorize.TestServiceAuthorization)
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.fail(Assert.java:96)
+	at org.apache.hadoop.security.authorize.TestServiceAuthorization.testDefaultBlockedMachineListFuzz(TestServiceAuthorization.java:363)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  3.140 s
+[[1;34mINFO[m] Finished at: 2022-10-15T14:19:11-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

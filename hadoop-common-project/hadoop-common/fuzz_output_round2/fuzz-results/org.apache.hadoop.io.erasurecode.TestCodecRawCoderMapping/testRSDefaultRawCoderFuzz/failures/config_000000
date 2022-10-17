@@ -1,0 +1,2 @@
+io.erasurecode.codec.rs-legacy.rawcoders :=: rs-legacy_java
+io.erasurecode.codec.rs.rawcoders :=: rs_native

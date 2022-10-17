@@ -1,8 +1,0 @@
-Saving new input (at run 1): input #0 of size 129; reason = +count +cov +valid
-Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output/fuzz-results/org.apache.hadoop.ipc.TestAsyncIPC/testAsyncCallFuzz/corpus/id_000000 random +count +cov +valid
-Saving new input (at run 2): input #1 of size 129; reason = +count
-Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output/fuzz-results/org.apache.hadoop.ipc.TestAsyncIPC/testAsyncCallFuzz/corpus/id_000001 src:000000,havoc:24 +count
-Saving new input (at run 3): input #2 of size 129; reason = +count +cov +valid
-Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output/fuzz-results/org.apache.hadoop.ipc.TestAsyncIPC/testAsyncCallFuzz/corpus/id_000002 src:000000,havoc:17 +count +cov +valid
-Found crash: class java.util.concurrent.ExecutionException - java.io.IOException: DestHost:destPort KingsLand:43279 , LocalHost:localPort KingsLand/127.0.1.1:0. Failed on local exception: java.io.IOException: Broken pipe
-Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output/fuzz-results/org.apache.hadoop.ipc.TestAsyncIPC/testAsyncCallFuzz/failures/id_000000 src:000000,havoc:19 +crash

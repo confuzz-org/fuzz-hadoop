@@ -1,0 +1,576 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;34mINFO[m] Using port 14704
+[[1;34mINFO[m] STARTING testGracefulFailoverMultipleZKfcsFuzz
+[[1;34mINFO[m] STARTING server
+[[1;34mINFO[m] Server environment:zookeeper.version=3.5.6-c11b7e26bc554b8523dc929761dd28808913f091, built on 10/08/2019 20:18 GMT
+[[1;34mINFO[m] Server environment:host.name=KingsLand
+[[1;34mINFO[m] Server environment:java.version=11.0.15
+[[1;34mINFO[m] Server environment:java.vendor=Private Build
+[[1;34mINFO[m] Server environment:java.home=/usr/lib/jvm/java-11-openjdk-amd64
+[[1;34mINFO[m] Server environment:java.class.path=/usr/share/maven/boot/plexus-classworlds-2.x.jar
+[[1;34mINFO[m] Server environment:java.library.path=/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+[[1;34mINFO[m] Server environment:java.io.tmpdir=/tmp
+[[1;34mINFO[m] Server environment:java.compiler=<NA>
+[[1;34mINFO[m] Server environment:os.name=Linux
+[[1;34mINFO[m] Server environment:os.arch=amd64
+[[1;34mINFO[m] Server environment:os.version=5.10.0-1050-oem
+[[1;34mINFO[m] Server environment:user.name=shuai
+[[1;34mINFO[m] Server environment:user.home=/home/shuai
+[[1;34mINFO[m] Server environment:user.dir=/home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common
+[[1;34mINFO[m] Server environment:os.memory.free=400MB
+[[1;34mINFO[m] Server environment:os.memory.max=7960MB
+[[1;34mINFO[m] Server environment:os.memory.total=502MB
+[[1;34mINFO[m] zookeeper.snapshot.trust.empty : false
+[[1;34mINFO[m] zookeeper.snapshotSizeFactor = 0.33
+[[1;34mINFO[m] minSessionTimeout set to 6000
+[[1;34mINFO[m] maxSessionTimeout set to 60000
+[[1;34mINFO[m] Created server with tickTime 3000 minSessionTimeout 6000 maxSessionTimeout 60000 datadir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test17622206715872085818.junit.dir/version-2 snapdir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test17622206715872085818.junit.dir/version-2
+[[1;34mINFO[m] Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory
+[[1;34mINFO[m] Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 32 worker threads, and 64 kB direct buffers.
+[[1;34mINFO[m] binding to port 0.0.0.0/0.0.0.0:14704
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test17622206715872085818.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test17622206715872085818.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] connecting to 127.0.0.1 14704
+[[1;34mINFO[m] The list of known four letter word commands is : [{1936881266=srvr, 1937006964=stat, 2003003491=wchc, 1685417328=dump, 1668445044=crst, 1936880500=srst, 1701738089=envi, 1668247142=conf, -720899=telnet close, 2003003507=wchs, 2003003504=wchp, 1684632179=dirs, 1668247155=cons, 1835955314=mntr, 1769173615=isro, 1920298859=ruok, 1735683435=gtmk, 1937010027=stmk}]
+[[1;34mINFO[m] The list of enabled four letter word commands is : [[wchs, stat, wchp, dirs, stmk, conf, ruok, mntr, srvr, wchc, envi, srst, isro, dump, gtmk, telnet close, crst, cons]]
+[[1;34mINFO[m] Processing stat command from /127.0.0.1:59802
+[[1;34mINFO[m] Stat command output
+[[1;34mINFO[m] Client test setup finished
+[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[[1;34mINFO[m] Client environment:zookeeper.version=3.5.6-c11b7e26bc554b8523dc929761dd28808913f091, built on 10/08/2019 20:18 GMT
+[[1;34mINFO[m] Client environment:host.name=KingsLand
+[[1;34mINFO[m] Client environment:java.version=11.0.15
+[[1;34mINFO[m] Client environment:java.vendor=Private Build
+[[1;34mINFO[m] Client environment:java.home=/usr/lib/jvm/java-11-openjdk-amd64
+[[1;34mINFO[m] Client environment:java.class.path=/usr/share/maven/boot/plexus-classworlds-2.x.jar
+[[1;34mINFO[m] Client environment:java.library.path=/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+[[1;34mINFO[m] Client environment:java.io.tmpdir=/tmp
+[[1;34mINFO[m] Client environment:java.compiler=<NA>
+[[1;34mINFO[m] Client environment:os.name=Linux
+[[1;34mINFO[m] Client environment:os.arch=amd64
+[[1;34mINFO[m] Client environment:os.version=5.10.0-1050-oem
+[[1;34mINFO[m] Client environment:user.name=shuai
+[[1;34mINFO[m] Client environment:user.home=/home/shuai
+[[1;34mINFO[m] Client environment:user.dir=/home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common
+[[1;34mINFO[m] Client environment:os.memory.free=233MB
+[[1;34mINFO[m] Client environment:os.memory.max=7960MB
+[[1;34mINFO[m] Client environment:os.memory.total=502MB
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:14704 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@fb58373
+[[1;34mINFO[m] Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:14704. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59832, server: localhost/127.0.0.1:14704
+[[1;34mINFO[m] Creating new log file: log.1
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:14704, sessionid = 0x10206b20cf00000, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:59832
+[[1;34mINFO[m] auth success /127.0.0.1:59832
+[[1;34mINFO[m] Successfully created /hadoop-ha/dummy-cluster in ZK.
+[[1;34mINFO[m] Session: 0x10206b20cf00000 closed
+[[1;34mINFO[m] Waiting for svc0 to enter active state
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00000
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b20cf00000
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:14704 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@5ca62141
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:14704. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59834, server: localhost/127.0.0.1:14704
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:14704, sessionid = 0x10206b20cf00001, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:59834
+[[1;34mINFO[m] auth success /127.0.0.1:59834
+[[1;34mINFO[m] ZKFC RpcServer binding to 0.0.0.0/0.0.0.0:0
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Entering state SERVICE_HEALTHY
+[[1;34mINFO[m] Local service DummyHAService #1 entered state: SERVICE_HEALTHY
+[[1;34mINFO[m] Checking for any old active which needs to be fenced...
+[[1;34mINFO[m] No old node to fence
+[[1;34mINFO[m] Writing znode /hadoop-ha/dummy-cluster/ActiveBreadCrumb to indicate that the local node is the most recent active...
+[[1;34mINFO[m] Trying to make DummyHAService #1 active...
+[[1;34mINFO[m] Successfully transitioned DummyHAService #1 to active state
+[[1;34mINFO[m] Adding svc1
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:14704 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@20649250
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:14704. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59858, server: localhost/127.0.0.1:14704
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:14704, sessionid = 0x10206b20cf00002, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:59858
+[[1;34mINFO[m] auth success /127.0.0.1:59858
+[[1;34mINFO[m] ZKFC RpcServer binding to 0.0.0.0/0.0.0.0:0
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Entering state SERVICE_HEALTHY
+[[1;34mINFO[m] Local service DummyHAService #2 entered state: SERVICE_HEALTHY
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #2 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #2 to standby state
+[[1;34mINFO[m] Adding svc2
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:14704 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@b349f00
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:14704. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59860, server: localhost/127.0.0.1:14704
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:14704, sessionid = 0x10206b20cf00003, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:59860
+[[1;34mINFO[m] auth success /127.0.0.1:59860
+[[1;34mINFO[m] ZKFC RpcServer binding to 0.0.0.0/0.0.0.0:0
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Entering state SERVICE_HEALTHY
+[[1;34mINFO[m] Local service DummyHAService #3 entered state: SERVICE_HEALTHY
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #3 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #3 to standby state
+[[1;34mINFO[m] Asking DummyHAService #3 to cede its active state for 10000ms
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Session: 0x10206b20cf00003 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9897 more ms
+[[1;34mINFO[m] Asking DummyHAService #1 to cede its active state for 10000ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00003
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b20cf00003
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Deleting bread-crumb of active node...
+[[1;34mINFO[m] Checking for any old active which needs to be fenced...
+[[1;34mINFO[m] No old node to fence
+[[1;34mINFO[m] Writing znode /hadoop-ha/dummy-cluster/ActiveBreadCrumb to indicate that the local node is the most recent active...
+[[1;34mINFO[m] Trying to make DummyHAService #2 active...
+[[1;34mINFO[m] Successfully transitioned DummyHAService #2 to active state
+[[1;34mINFO[m] Session: 0x10206b20cf00001 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9878 more ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00001
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:14704 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@1b2e058e
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00001
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b20cf00001
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:14704. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59866, server: localhost/127.0.0.1:14704
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:14704, sessionid = 0x10206b20cf00004, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:14704 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@4a216103
+[[1;34mINFO[m] got auth packet /127.0.0.1:59866
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] auth success /127.0.0.1:59866
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:14704. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59868, server: localhost/127.0.0.1:14704
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #3 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #3 to standby state
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:14704, sessionid = 0x10206b20cf00005, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] Successfully became active. Successfully transitioned DummyHAService #2 to active state
+[[1;34mINFO[m] got auth packet /127.0.0.1:59868
+[[1;34mINFO[m] auth success /127.0.0.1:59868
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #1 should become standby
+[[1;34mINFO[m] Asking DummyHAService #1 to cede its active state for 10000ms
+[[1;34mINFO[m] Successfully transitioned DummyHAService #1 to standby state
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Session: 0x10206b20cf00005 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9898 more ms
+[[1;34mINFO[m] Asking DummyHAService #2 to cede its active state for 10000ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00005
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00005
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b20cf00005
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Deleting bread-crumb of active node...
+[[1;34mINFO[m] Checking for any old active which needs to be fenced...
+[[1;34mINFO[m] No old node to fence
+[[1;34mINFO[m] Writing znode /hadoop-ha/dummy-cluster/ActiveBreadCrumb to indicate that the local node is the most recent active...
+[[1;34mINFO[m] Trying to make DummyHAService #3 active...
+[[1;34mINFO[m] Successfully transitioned DummyHAService #3 to active state
+[[1;34mINFO[m] Session: 0x10206b20cf00002 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9892 more ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00002
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:14704 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@9eb39da
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00002
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b20cf00002
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:14704. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59872, server: localhost/127.0.0.1:14704
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:14704, sessionid = 0x10206b20cf00006, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:14704 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@32e9e583
+[[1;34mINFO[m] got auth packet /127.0.0.1:59872
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] auth success /127.0.0.1:59872
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:14704. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59874, server: localhost/127.0.0.1:14704
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #1 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #1 to standby state
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:14704, sessionid = 0x10206b20cf00007, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] Successfully became active. Successfully transitioned DummyHAService #3 to active state
+[[1;34mINFO[m] got auth packet /127.0.0.1:59874
+[[1;34mINFO[m] auth success /127.0.0.1:59874
+[[1;34mINFO[m] Asking DummyHAService #2 to cede its active state for 10000ms
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Session: 0x10206b20cf00007 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9898 more ms
+[[1;34mINFO[m] Asking DummyHAService #3 to cede its active state for 10000ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00007
+[[1;34mINFO[m] Requested by shuai (auth:SIMPLE) at null to cede active role.
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00007
+[[1;34mINFO[m] Successfully ensured local node is in standby mode
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b20cf00007
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Deleting bread-crumb of active node...
+[[1;34mINFO[m] Checking for any old active which needs to be fenced...
+[[1;34mINFO[m] No old node to fence
+[[1;34mINFO[m] Writing znode /hadoop-ha/dummy-cluster/ActiveBreadCrumb to indicate that the local node is the most recent active...
+[[1;34mINFO[m] Trying to make DummyHAService #1 active...
+[[1;34mINFO[m] Successfully transitioned DummyHAService #1 to active state
+[[1;34mINFO[m] Session: 0x10206b20cf00004 closed
+[[1;34mINFO[m] Would have joined master election, but this node is prohibited from doing so for 9893 more ms
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00004
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:14704 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@5ea83a1e
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00004
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b20cf00004
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:14704. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59878, server: localhost/127.0.0.1:14704
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:14704, sessionid = 0x10206b20cf00008, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:14704 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@7a84a89e
+[[1;34mINFO[m] got auth packet /127.0.0.1:59878
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] auth success /127.0.0.1:59878
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:14704. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59880, server: localhost/127.0.0.1:14704
+[[1;34mINFO[m] ZK Election indicated that DummyHAService #2 should become standby
+[[1;34mINFO[m] Successfully transitioned DummyHAService #2 to standby state
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:14704, sessionid = 0x10206b20cf00009, negotiated timeout = 10000
+[[1;34mINFO[m] Successfully became active. Successfully transitioned DummyHAService #1 to active state
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:59880
+[[1;34mINFO[m] auth success /127.0.0.1:59880
+[[1;31mERROR[m] The failover controller encounters runtime error: 
+[[1;31mERROR[m[1;31mjava.lang.InterruptedException[m] Th
+e failover controller encounters runtime error: 
+    [1;31mjava.lan[1mat[m[g.InterruptedExce java.[1;31mERROR[m] lang.Object.waitption[mThe failover controller  ([1mNative Method[
+m)e
+   nc  [1mat[m java.lang.Object.waitoun ([1mNative Method[m)
+       te[1mat[m[ java.lang.Object.waitrs1mat[m runt java.lang.O ([1mObject.java:328[m)
+    ime [1mat[m org.apache.hadoop.ha.ZKFailoverController.mainLoopbject .waiterror: 
+( [[1;34mINFO[m] ZK Election indicated that DummyHAService #3 sh[1;31mjava.lang.Interrupted([[1mZKFailoverController.java:389[m)
+    1mObject.java:E328[m)
+ould become standby
+    xcep[1mat[mtion[m
+[1mat     org.apache.hadoop.ha.Z[mKFailoverController.doRun[1m ([1mZKFailoverController.java:253[m)
+ org.apache.hadoop.ha.ZKFailoverController.mainLoop    a ([1mZKFailoverController.java:389[m)[1mat[mt org.apache.hadoop.ha.ZKFailoverController.access$000
+    [[1;34mINFO[m] Successfully transitioned DummyHAService #3 to standby state[1mat[m org.apache.hadoop.ha.ZKFailoverControlle ([1mZKFailoverController.java:63[m)
+    [m java.lang.Object.wait [1mat[mr.doRun ([1mZKFailoverController.java:253[m)
+
+  org.apache.hadoo([1mNative Method[m)
+    p.ha.ZKFailoverController   $1.run[1mat[m[1mat[m org.apache.hadoop.ha.ZKFailoverController.access$000  ([1mZKFailoverController.java:63[m) (
+    java.lang.Object.wait[1mZKFailo ([1mObject.java:328[m)
+[1mat[m    v[1mat[m org.apache.hadoop.ha.ZKFailoverCerCont org.apache.hadoop.hroller.java:181[m)ontroller.mainLoop
+     [1mat[m org.apache.ha.ZKFailoverController$1.runado o([1mZKFailoverController.java:389[m)
+    p.ha.ZKFa([1mZKFailoverController.java:181[m)iloverController$1.run[1mat[m
+     org.apache.hadoop.ha.ZKFailoverController.doRun ([1m ([1mZKFailoverController.java:253[m)
+[1m    ZKFailoverController.java:177[m)[1mat[mat[m o rorg.apache.hadoop.ha.ZKFailoverController.access$000
+     (g.apache.hadoop.ha.Z[1mat[m org.apache.h[1mZKFailoverController.java:63[m)
+adoop.seKFailocurity.S    e[verCon1mat[m org.apache.hadoop.ha.ZcurityKFailoverController$1.runtro ([1mZKFailoverController.java:181[m)
+    Util.doAsLogin[1mat[m org.ller$1.runapache.ha ([1mZKFailoverController.java:177[m)UserOrFata
+    d[1mat[m org.apache.hadoop.security.SecurityUtil.doAsLoginUserOrFatalloop ([1mSecurityUtil.java:503[m)
+.ha.ZKF     ([1mSecuri[1mat[mailoverController$1.run org.apactyhe.hadoop. (ha.ZKFailoverControllUtil.java:503[mer.run[1mZ)
+KFailoverController.java:177[m) ([1mZKFailoverController.java:177[m)
+
+     [1mat[m     [1mat[m org.apache.hadoop.ha.MiniZKFCCluster$DummyZKFCThread.doWork    ([1mat[morg.apache.hadoop.security.SecurityUtil.doAsLoginUserOrFatal org.a[1mMiniZKFCCluster.java:301[m)
+pache.hadoop.ha.ZKFailoverController. ([1mSecurityru  n  U[1m ([1mZKFailovertil.jaCva:503[m)
+at[m org.apache.hadoop.test.Multithrea    o[1mat[m org.apache.hadoop.ha.dedTestUtil$TestingThread.runZKFailoverController.runntroller ([1mMu ltithreadedTestUtil.java:189[m)
+.j([1mZKFailoaverController.java:177[m)
+    [1mat[mv[ org.apache.hadoop.ha.MiniZKFCCluster$DummyZKFCThread.doWork[1 ([1mMiniZKFCCluster.java:301[m)a:177[m)
+
+    ;[1mat[m     [1mat[m 34mINFO[m] Stopping sorg.apache.hadoop.ha.Miorg.apache.hadoop.test.MultithreadednTestUtil$TestingThread.runerv ([1mMultithreadedTestUtil.java:189[m)
+iZKFCCluster$DummyZKFCTher on 38read.d647
+oWork ([[1;34mINFO[m] Stopping server on 42521
+[1mMiniZKFCC[[1;34mIluster.javNFO[m] Yielding from electiona:301
+[[[1;34mINFO[m] Stopping IPC Serm)
+ver Responder
+    [[1mat[1;34mIN[mF oO[m] Yielding from electionrg.apach
+e.h[[1;34mINFO[m] Stoppiadoop.test.Multitng IPC Server listenehreadedTestUtil$Ter on 0stingThre
+a[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stoppd.runing IPC Server Respond er
+([1mMultithreadedTestUtil.java:189[m)
+[[1;34mINFO[m] Stopping server on 40403
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Yielding from election
+[[1;34mINFO[m] Stopping IPC Server Responder
+[[1;34mINFO[m] Session: 0x10206b20cf00006 closed
+[[1;34mINFO[m] Stopping HealthMonitor thread
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00006
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00006
+[[1;34mINFO[m] tearDown starting
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b20cf00006
+[[1;34mINFO[m] STOPPING server
+[[1;34mINFO[m] ConnnectionExpirerThread interrupted
+[[1;34mINFO[m] accept thread exitted run method
+[[1;34mINFO[m] selector thread exitted run method
+[[1;34mINFO[m] selector thread exitted run method
+[[1;34mINFO[m] shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] PrepRequestProcessor exited loop!
+[[1;34mINFO[m] SyncRequestProcessor exited!
+[[1;34mINFO[m] shutdown of request processor complete
+[[1;34mINFO[m] connecting to 127.0.0.1 14704
+[[1;34mINFO[m] SUCCEEDED testGracefulFailoverMultipleZKfcsFuzz
+[[1;34mINFO[m] FINISHED testGracefulFailoverMultipleZKfcsFuzz
+[JQF] After pre round flag = false
+
+Time: 3.479
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 62
+[CONFIG-CHANGE] fs.creation.parallel.count = null -> null
+[CONFIG-CHANGE] fs.hdfs.impl = null -> null
+[CONFIG-CHANGE] ha.failover-controller.active-standby-elector.zk.op.retries = 3 -> 338482794
+[CONFIG-CHANGE] ha.failover-controller.graceful-fence.rpc-timeout.ms = 5000 -> 1383136358
+[CONFIG-CHANGE] ha.failover-controller.new-active.rpc-timeout.ms = 60000 -> 251241562
+[CONFIG-CHANGE] ha.health-monitor.rpc-timeout.ms = 45000 -> 1799978698
+[CONFIG-CHANGE] ha.health-monitor.rpc.connect.max.retries = 1 -> 1196749511
+[CONFIG-CHANGE] ha.zookeeper.parent-znode = /hadoop-ha -> [B@69ba3f4e
+[CONFIG-CHANGE] ha.zookeeper.quorum = 127.0.0.1:14704 -> 127.0.0.1:12240
+[CONFIG-CHANGE] ha.zookeeper.session-timeout.ms = 10000 -> 530266521
+[CONFIG-CHANGE] hadoop.kerberos.keytab.login.autorenewal.enabled = false -> true
+[CONFIG-CHANGE] hadoop.kerberos.min.seconds.before.relogin = 60 -> 741196246
+[CONFIG-CHANGE] hadoop.security.auth_to_local.mechanism = hadoop -> MIT
+[CONFIG-CHANGE] hadoop.security.authentication = simple -> kerberos
+[CONFIG-CHANGE] hadoop.security.credential.provider.path = null -> null
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.enabled = false -> true
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.threshold.ms = 1000 -> 605240609
+[CONFIG-CHANGE] hadoop.security.group.mapping = org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback -> [B@5c33008f
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 1180726995
+[CONFIG-CHANGE] hadoop.security.groups.cache.secs = 300 -> 837231819
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 1369289644
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 768139461
+[CONFIG-CHANGE] hadoop.security.token.service.use_ip = true -> false
+[CONFIG-CHANGE] hadoop.token.files = null -> null
+[CONFIG-CHANGE] hadoop.tokens = null -> null
+[CONFIG-CHANGE] hadoop.user.group.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@45d7495e
+[CONFIG-CHANGE] ipc.0.backoff.enable = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.impl = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.overflow.trigger.failover = null -> null
+[CONFIG-CHANGE] ipc.0.faircallqueue.priority-levels = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.impl = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.priority.levels = null -> null
+[CONFIG-CHANGE] ipc.client.connection.idle-scan-interval.ms = null -> null
+[CONFIG-CHANGE] ipc.client.connection.maxidletime = 10000 -> 230728811
+[CONFIG-CHANGE] ipc.client.idlethreshold = 4000 -> 270934771
+[CONFIG-CHANGE] ipc.client.kill.max = 10 -> 6354044
+[CONFIG-CHANGE] ipc.maximum.data.length = 134217728 -> 1570175264
+[CONFIG-CHANGE] ipc.server.handler.queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.listen.queue.size = 256 -> 1568345429
+[CONFIG-CHANGE] ipc.server.max.connections = -1 -> 1632136158
+[CONFIG-CHANGE] ipc.server.max.response.size = null -> null
+[CONFIG-CHANGE] ipc.server.purge.interval = 15 -> 319555277
+[CONFIG-CHANGE] ipc.server.read.connection-queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.read.threadpool.size = null -> null
+[CONFIG-CHANGE] ipc.server.tcpnodelay = null -> null
+[CONFIG-CHANGE] rpc.engine.org.apache.hadoop.ha.protocolPB.ZKFCProtocolPB = org.apache.hadoop.ipc.ProtobufRpcEngine2 -> [B@30517a57
+[CONFIG-CHANGE] rpc.engine.org.apache.hadoop.ipc.ProtocolMetaInfoPB = org.apache.hadoop.ipc.ProtobufRpcEngine2 -> [B@3dde5f38
+[CONFIG-CHANGE] rpc.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] rpc.metrics.timeunit = MILLISECONDS -> MICROSECONDS
+.[[1;34mINFO[m] Session: 0x10206b20cf00008 closed
+[[1;34mINFO[m] Stopping HealthMonitor thread
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00008
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00008
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b20cf00008
+[[1;34mINFO[m] Using port 21404
+[[1;34mINFO[m] STARTING testGracefulFailoverMultipleZKfcsFuzz
+[[1;34mINFO[m] STARTING server
+[[1;34mINFO[m] zookeeper.snapshot.trust.empty : false
+[[1;34mINFO[m] zookeeper.snapshotSizeFactor = 0.33
+[[1;34mINFO[m] minSessionTimeout set to 6000
+[[1;34mINFO[m] maxSessionTimeout set to 60000
+[[1;34mINFO[m] Created server with tickTime 3000 minSessionTimeout 6000 maxSessionTimeout 60000 datadir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test12683584697242421186.junit.dir/version-2 snapdir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test12683584697242421186.junit.dir/version-2
+[[1;34mINFO[m] Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory
+[[1;34mINFO[m] Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 32 worker threads, and 64 kB direct buffers.
+[[1;34mINFO[m] binding to port 0.0.0.0/0.0.0.0:21404
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test12683584697242421186.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test12683584697242421186.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] connecting to 127.0.0.1 21404
+[[1;34mINFO[m] Processing stat command from /127.0.0.1:52536
+[[1;34mINFO[m] Stat command output
+[[1;34mINFO[m] Client test setup finished
+[[1;34mINFO[m] Session: 0x10206b20cf00009 closed
+[[1;34mINFO[m] Stopping HealthMonitor thread
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00009
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b20cf00009
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b20cf00009
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:21404 sessionTimeout=530266521 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@19863e1b
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:21404. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:52542, server: localhost/127.0.0.1:21404
+[[1;34mINFO[m] Creating new log file: log.1
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:21404, sessionid = 0x10206b21a210000, negotiated timeout = 60000
+[[1;34mINFO[m] Session connected.
+[[1;31mERROR[m] The failover controller encounters runtime error
+[1;31mjava.lang.IllegalArgumentException[m: [1;31mPath must start with / character[m
+    [1mat[m org.apache.zookeeper.common.PathUtils.validatePath[[1;34mINFO[m] got auth packet /127.0.0.1:52542 ([1mPathUtils.java:51[m)
+   
+ [1mat[m org.apache.zookeeper.ZooKeeper.exists ([1mZooKeeper.java:2000[m)
+    [1mat[m org.apache.zookeeper.[[1;34mINFO[m] auth success /127.0.0.1:52542ZooKeeper.ex
+ists ([1mZooKeeper.java:2049[m)
+    [1mat[m org.apache.hadoop.ha.ActiveStandbyElector.parentZNodeExists ([1mActiveStandbyElector.java:320[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.formatZK ([1mZKFailoverController.java:279[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.doRun ([1mZKFailoverController.java:222[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.access$000 ([1mZKFailoverController.java:63[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run ([1mZKFailoverController.java:181[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run ([1mZKFailoverController.java:177[m)
+    [1mat[m org.apache.hadoop.security.SecurityUtil.doAsLoginUserOrFatal ([1mSecurityUtil.java:503[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.run ([1mZKFailoverController.java:177[m)
+    [1mat[m org.apache.hadoop.ha.MiniZKFCCluster.start ([1mMiniZKFCCluster.java:116[m)
+    [1mat[m org.apache.hadoop.ha.TestZKFailoverController.testGracefulFailoverMultipleZKfcsFuzz ([1mTestZKFailoverController.java:655[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 ([1mNative Method[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke ([1mNativeMethodAccessorImpl.java:62[m)
+    [1mat[m jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke ([1mDelegatingMethodAccessorImpl.java:43[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:566[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod$1.runReflectiveCall ([1mFrameworkMethod.java:59[m)
+    [1mat[m org.junit.internal.runners.model.ReflectiveCallable.run ([1mReflectiveCallable.java:12[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod.invokeExplosively ([1mFrameworkMethod.java:56[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.TrialRunner$1.evaluate ([1mTrialRunner.java:59[m)
+    [1mat[m org.junit.internal.runners.statements.RunBefores.evaluate ([1mRunBefores.java:26[m)
+    [1mat[m org.junit.internal.runners.statements.RunAfters.evaluate ([1mRunAfters.java:27[m)
+    [1mat[m org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call ([1mFailOnTimeout.java:288[m)
+    [1mat[m org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call ([1mFailOnTimeout.java:282[m)
+    [1mat[m java.util.concurrent.FutureTask.run ([1mFutureTask.java:264[m)
+    [1mat[m java.lang.Thread.run ([1mThread.java:829[m)
+[[1;34mINFO[m] Session: 0x10206b21a210000 closed
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b21a210000
+[[1;34mINFO[m] tearDown starting
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b21a210000
+[[1;34mINFO[m] STOPPING server
+[[1;34mINFO[m] ConnnectionExpirerThread interrupted
+[[1;34mINFO[m] accept thread exitted run method
+[[1;34mINFO[m] selector thread exitted run method
+[[1;34mINFO[m] selector thread exitted run method
+[[1;34mINFO[m] shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] PrepRequestProcessor exited loop!
+[[1;34mINFO[m] SyncRequestProcessor exited!
+[[1;34mINFO[m] shutdown of request processor complete
+[[1;34mINFO[m] connecting to 127.0.0.1 21404
+[[1;34mINFO[m] FAILED testGracefulFailoverMultipleZKfcsFuzz
+[1;31mjava.lang.IllegalArgumentException[m: [1;31mPath must start with / character[m
+    [1mat[m org.apache.zookeeper.common.PathUtils.validatePath ([1mPathUtils.java:51[m)
+    [1mat[m org.apache.zookeeper.ZooKeeper.exists ([1mZooKeeper.java:2000[m)
+    [1mat[m org.apache.zookeeper.ZooKeeper.exists ([1mZooKeeper.java:2049[m)
+    [1mat[m org.apache.hadoop.ha.ActiveStandbyElector.parentZNodeExists ([1mActiveStandbyElector.java:320[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.formatZK ([1mZKFailoverController.java:279[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.doRun ([1mZKFailoverController.java:222[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.access$000 ([1mZKFailoverController.java:63[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run ([1mZKFailoverController.java:181[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run ([1mZKFailoverController.java:177[m)
+    [1mat[m org.apache.hadoop.security.SecurityUtil.doAsLoginUserOrFatal ([1mSecurityUtil.java:503[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.run ([1mZKFailoverController.java:177[m)
+    [1mat[m org.apache.hadoop.ha.MiniZKFCCluster.start ([1mMiniZKFCCluster.java:116[m)
+    [1mat[m org.apache.hadoop.ha.TestZKFailoverController.testGracefulFailoverMultipleZKfcsFuzz ([1mTestZKFailoverController.java:655[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 ([1mNative Method[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke ([1mNativeMethodAccessorImpl.java:62[m)
+    [1mat[m jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke ([1mDelegatingMethodAccessorImpl.java:43[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:566[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod$1.runReflectiveCall ([1mFrameworkMethod.java:59[m)
+    [1mat[m org.junit.internal.runners.model.ReflectiveCallable.run ([1mReflectiveCallable.java:12[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod.invokeExplosively ([1mFrameworkMethod.java:56[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.TrialRunner$1.evaluate ([1mTrialRunner.java:59[m)
+    [1mat[m org.junit.internal.runners.statements.RunBefores.evaluate ([1mRunBefores.java:26[m)
+    [1mat[m org.junit.internal.runners.statements.RunAfters.evaluate ([1mRunAfters.java:27[m)
+    [1mat[m org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call ([1mFailOnTimeout.java:288[m)
+    [1mat[m org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call ([1mFailOnTimeout.java:282[m)
+    [1mat[m java.util.concurrent.FutureTask.run ([1mFutureTask.java:264[m)
+    [1mat[m java.lang.Thread.run ([1mThread.java:829[m)
+[[1;34mINFO[m] FINISHED testGracefulFailoverMultipleZKfcsFuzz
+id_000000 ::= FAILURE (java.lang.IllegalArgumentException)
+E
+Time: 0.393
+There was 1 failure:
+1) testGracefulFailoverMultipleZKfcsFuzz(org.apache.hadoop.ha.TestZKFailoverController)
+java.lang.IllegalArgumentException: Path must start with / character
+	at org.apache.zookeeper.common.PathUtils.validatePath(PathUtils.java:51)
+	at org.apache.zookeeper.ZooKeeper.exists(ZooKeeper.java:2000)
+	at org.apache.zookeeper.ZooKeeper.exists(ZooKeeper.java:2049)
+	at org.apache.hadoop.ha.ActiveStandbyElector.parentZNodeExists(ActiveStandbyElector.java:320)
+	at org.apache.hadoop.ha.ZKFailoverController.formatZK(ZKFailoverController.java:279)
+	at org.apache.hadoop.ha.ZKFailoverController.doRun(ZKFailoverController.java:222)
+	at org.apache.hadoop.ha.ZKFailoverController.access$000(ZKFailoverController.java:63)
+	at org.apache.hadoop.ha.ZKFailoverController$1.run(ZKFailoverController.java:181)
+	at org.apache.hadoop.ha.ZKFailoverController$1.run(ZKFailoverController.java:177)
+	at org.apache.hadoop.security.SecurityUtil.doAsLoginUserOrFatal(SecurityUtil.java:503)
+	at org.apache.hadoop.ha.ZKFailoverController.run(ZKFailoverController.java:177)
+	at org.apache.hadoop.ha.MiniZKFCCluster.start(MiniZKFCCluster.java:116)
+	at org.apache.hadoop.ha.TestZKFailoverController.testGracefulFailoverMultipleZKfcsFuzz(TestZKFailoverController.java:655)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  6.044 s
+[[1;34mINFO[m] Finished at: 2022-10-15T14:18:22-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

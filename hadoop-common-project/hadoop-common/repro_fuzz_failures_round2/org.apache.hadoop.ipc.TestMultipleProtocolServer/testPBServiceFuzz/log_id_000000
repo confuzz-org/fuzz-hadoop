@@ -1,0 +1,142 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 200, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] IPC Server handler 0 on default port 37477, call Call#2 Retry#0 org.apache.hadoop.ipc.TestRpcBase$TestRpcService.error from 127.0.0.1:53542
+[1;31morg.apache.hadoop.ipc.RpcServerException[m: [1;31merror[m
+    [1mat[m org.apache.hadoop.ipc.TestRpcBase$PBServerImpl.error ([1mTestRpcBase.java:322[m)
+    [1mat[m org.apache.hadoop.ipc.protobuf.TestRpcServiceProtos$TestProtobufRpcProto$2.callBlockingMethod ([1mTestRpcServiceProtos.java:350[m)
+    [1mat[m org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call ([1mProtobufRpcEngine2.java:604[m)
+    [1mat[m org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call ([1mProtobufRpcEngine2.java:572[m)
+    [1mat[m org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call ([1mProtobufRpcEngine2.java:556[m)
+    [1mat[m org.apache.hadoop.ipc.RPC$Server.call ([1mRPC.java:1093[m)
+    [1mat[m org.apache.hadoop.ipc.Server$RpcCall.run ([1mServer.java:1043[m)
+    [1mat[m org.apache.hadoop.ipc.Server$RpcCall.run ([1mServer.java:971[m)
+    [1mat[m java.security.AccessController.doPrivileged ([1mNative Method[m)
+    [1mat[m javax.security.auth.Subject.doAs ([1mSubject.java:423[m)
+    [1mat[m org.apache.hadoop.security.UserGroupInformation.doAs ([1mUserGroupInformation.java:1878[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Handler.run ([1mServer.java:2976[m)
+[[1;34mINFO[m] Stopping server on 37477
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[JQF] After pre round flag = false
+
+Time: 1.684
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 60
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.threshold.ms = 1000 -> 2010553168
+[CONFIG-CHANGE] hadoop.security.group.mapping = org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback -> [B@78ab63b5
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload = false -> true
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 206380074
+[CONFIG-CHANGE] hadoop.security.groups.cache.secs = 300 -> 1147934365
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 155804067
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 977998388
+[CONFIG-CHANGE] hadoop.security.token.service.use_ip = true -> false
+[CONFIG-CHANGE] hadoop.token.files = null -> null
+[CONFIG-CHANGE] hadoop.tokens = null -> null
+[CONFIG-CHANGE] hadoop.user.group.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@2b9370cc
+[CONFIG-CHANGE] ipc.0.backoff.enable = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.impl = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.overflow.trigger.failover = null -> null
+[CONFIG-CHANGE] ipc.0.faircallqueue.priority-levels = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.impl = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.priority.levels = null -> null
+[CONFIG-CHANGE] ipc.client.async.calls.max = null -> null
+[CONFIG-CHANGE] ipc.client.connect.max.retries = 10 -> 0
+[CONFIG-CHANGE] ipc.client.connect.max.retries.on.sasl = null -> null
+[CONFIG-CHANGE] ipc.client.connect.max.retries.on.timeouts = 45 -> 0
+[CONFIG-CHANGE] ipc.client.connect.retry.interval = 1000 -> 922157056
+[CONFIG-CHANGE] ipc.client.connect.timeout = 20000 -> 2037871391
+[CONFIG-CHANGE] ipc.client.connection.idle-scan-interval.ms = null -> null
+[CONFIG-CHANGE] ipc.client.connection.maxidletime = 10000 -> 1032337588
+[CONFIG-CHANGE] ipc.client.rpc-timeout.ms = 0 -> 14613852
+[CONFIG-CHANGE] ipc.client.tcpnodelay = true -> false
+[CONFIG-CHANGE] ipc.maximum.response.length = 134217728 -> 197
+[CONFIG-CHANGE] ipc.ping.interval = 60000 -> 1610612736
+[CONFIG-CHANGE] ipc.server.handler.queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.max.response.size = null -> null
+[CONFIG-CHANGE] ipc.server.read.connection-queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.read.threadpool.size = null -> null
+[CONFIG-CHANGE] ipc.server.tcpnodelay = null -> null
+[CONFIG-CHANGE] rpc.engine.org.apache.hadoop.ipc.TestRpcBase$TestRpcService = org.apache.hadoop.ipc.ProtobufRpcEngine2 -> org.apache.hadoop.ipc.ProtobufRpcEngine
+[CONFIG-CHANGE] rpc.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] test.ipc.client.principal = null -> null
+.[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 200, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] IPC Server handler 0 on default port 43167, call Call#5 Retry#0 org.apache.hadoop.ipc.TestRpcBase$TestRpcService.error from 127.0.0.1:42806
+[1;31morg.apache.hadoop.ipc.RpcServerException[m: [1;31merror[m
+    [1mat[m org.apache.hadoop.ipc.TestRpcBase$PBServerImpl.error ([1mTestRpcBase.java:322[m)
+    [1mat[m org.apache.hadoop.ipc.protobuf.TestRpcServiceProtos$TestProtobufRpcProto$2.callBlockingMethod ([1mTestRpcServiceProtos.java:350[m)
+    [1mat[m org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call ([1mProtobufRpcEngine2.java:604[m)
+    [1mat[m org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call ([1mProtobufRpcEngine2.java:572[m)
+    [1mat[m org.apache.hadoop.ipc.ProtobufRpcEngine2$Server$ProtoBufRpcInvoker.call ([1mProtobufRpcEngine2.java:556[m)
+    [1mat[m org.apache.hadoop.ipc.RPC$Server.call ([1mRPC.java:1093[m)
+    [1mat[m org.apache.hadoop.ipc.Server$RpcCall.run ([1mServer.java:1043[m)
+    [1mat[m org.apache.hadoop.ipc.Server$RpcCall.run ([1mServer.java:971[m)
+    [1mat[m java.security.AccessController.doPrivileged ([1mNative Method[m)
+    [1mat[m javax.security.auth.Subject.doAs ([1mSubject.java:423[m)
+    [1mat[m org.apache.hadoop.security.UserGroupInformation.doAs ([1mUserGroupInformation.java:1878[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Handler.run ([1mServer.java:2976[m)
+[[1;34mINFO[m] Stopping server on 43167
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+id_000000 ::= FAILURE (java.lang.ClassCastException)
+E
+Time: 0.38
+There was 1 failure:
+1) testPBServiceFuzz(org.apache.hadoop.ipc.TestMultipleProtocolServer)
+java.lang.ClassCastException: class org.apache.hadoop.ipc.RpcException cannot be cast to class org.apache.hadoop.ipc.RemoteException (org.apache.hadoop.ipc.RpcException and org.apache.hadoop.ipc.RemoteException are in unnamed module of loader edu.berkeley.cs.jqf.instrument.InstrumentingClassLoader @798dad3d)
+	at org.apache.hadoop.ipc.TestProtoBufRpc.testProtoBufRpc(TestProtoBufRpc.java:256)
+	at org.apache.hadoop.ipc.TestMultipleProtocolServer.testPBServiceFuzz(TestMultipleProtocolServer.java:55)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  3.881 s
+[[1;34mINFO[m] Finished at: 2022-10-16T23:35:43-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

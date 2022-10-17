@@ -1,0 +1,93 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[JQF] After pre round flag = false
+
+Time: 1.294
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 23
+[CONFIG-CHANGE] fs.AbstractFileSystem.file.impl = org.apache.hadoop.fs.local.LocalFs -> [B@2a0c244e
+[CONFIG-CHANGE] fs.client.resolve.remote.symlinks = true -> false
+[CONFIG-CHANGE] fs.creation.parallel.count = null -> null
+[CONFIG-CHANGE] fs.local.block.size = null -> null
+[CONFIG-CHANGE] fs.permissions.umask-mode = 022 -> 1558796241
+[CONFIG-CHANGE] hadoop.kerberos.min.seconds.before.relogin = 60 -> 1514964
+[CONFIG-CHANGE] hadoop.security.authentication = simple -> kerberos
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.threshold.ms = 1000 -> 1654761553
+[CONFIG-CHANGE] hadoop.security.group.mapping = org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback -> [B@5a537a16
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 1949805179
+[CONFIG-CHANGE] hadoop.security.groups.cache.secs = 300 -> 491759384
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 1905478073
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 338236434
+[CONFIG-CHANGE] hadoop.token.files = null -> null
+[CONFIG-CHANGE] hadoop.tokens = null -> null
+[CONFIG-CHANGE] hadoop.user.group.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@72288480
+.id_000000 ::= FAILURE (java.lang.RuntimeException)
+E
+Time: 0.247
+There was 1 failure:
+1) testWriteStringFileContextFuzz(org.apache.hadoop.fs.TestFileUtil)
+java.lang.RuntimeException: java.lang.ClassNotFoundException: Class [B@1ab85862 not found
+	at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2728)
+	at org.apache.hadoop.fs.AbstractFileSystem.createFileSystem(AbstractFileSystem.java:175)
+	at org.apache.hadoop.fs.AbstractFileSystem.get(AbstractFileSystem.java:266)
+	at org.apache.hadoop.fs.FileContext$2.run(FileContext.java:342)
+	at org.apache.hadoop.fs.FileContext$2.run(FileContext.java:339)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.base/javax.security.auth.Subject.doAs(Subject.java:423)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1878)
+	at org.apache.hadoop.fs.FileContext.getAbstractFileSystem(FileContext.java:339)
+	at org.apache.hadoop.fs.FileContext.getFileContext(FileContext.java:465)
+	at org.apache.hadoop.fs.TestFileUtil.testWriteStringFileContextFuzz(TestFileUtil.java:1674)
+	... 51 trimmed
+Caused by: java.lang.ClassNotFoundException: Class [B@1ab85862 not found
+	at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:2632)
+	at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2726)
+	... 62 more
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  3.590 s
+[[1;34mINFO[m] Finished at: 2022-10-15T14:18:01-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

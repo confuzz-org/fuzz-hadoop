@@ -1,0 +1,204 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Stopping server on 41661
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Stopping server on 38135
+[[1;34mINFO[m] Stopping IPC Server Responder
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[JQF] After pre round flag = false
+
+Time: 27.264
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 57
+[CONFIG-CHANGE] hadoop.kerberos.keytab.login.autorenewal.enabled = false -> true
+[CONFIG-CHANGE] hadoop.kerberos.min.seconds.before.relogin = 60 -> 1236726874
+[CONFIG-CHANGE] hadoop.security.auth_to_local.mechanism = hadoop -> MIT
+[CONFIG-CHANGE] hadoop.security.authorization = false -> true
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.enabled = false -> true
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.threshold.ms = 1000 -> 895961998
+[CONFIG-CHANGE] hadoop.security.group.mapping = org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback -> [B@7f41d979
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload = false -> true
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 659782573
+[CONFIG-CHANGE] hadoop.security.groups.cache.secs = 300 -> 757640652
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 812828463
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 985125579
+[CONFIG-CHANGE] hadoop.token.files = null -> null
+[CONFIG-CHANGE] hadoop.tokens = null -> null
+[CONFIG-CHANGE] hadoop.user.group.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@71d0b8a4
+[CONFIG-CHANGE] ipc.0.backoff.enable = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.impl = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.overflow.trigger.failover = null -> null
+[CONFIG-CHANGE] ipc.0.faircallqueue.priority-levels = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.impl = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.priority.levels = null -> null
+[CONFIG-CHANGE] ipc.client.bind.wildcard.addr = false -> true
+[CONFIG-CHANGE] ipc.client.connect.max.retries = 10 -> 1004078646
+[CONFIG-CHANGE] ipc.client.connect.max.retries.on.sasl = null -> null
+[CONFIG-CHANGE] ipc.client.connect.max.retries.on.timeouts = 45 -> 1777375835
+[CONFIG-CHANGE] ipc.client.connect.retry.interval = 1000 -> 645474808
+[CONFIG-CHANGE] ipc.client.connect.timeout = 20000 -> 1520224127
+[CONFIG-CHANGE] ipc.client.connection.idle-scan-interval.ms = null -> null
+[CONFIG-CHANGE] ipc.client.connection.maxidletime = 10000 -> 1464165864
+[CONFIG-CHANGE] ipc.client.idlethreshold = 4000 -> 669901712
+[CONFIG-CHANGE] ipc.client.kill.max = 10 -> 751782071
+[CONFIG-CHANGE] ipc.client.ping = true -> false
+[CONFIG-CHANGE] ipc.maximum.data.length = 134217728 -> 22341627
+[CONFIG-CHANGE] ipc.maximum.response.length = 134217728 -> 113764204
+[CONFIG-CHANGE] ipc.server.handler.queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.listen.queue.size = 256 -> 1679407941
+[CONFIG-CHANGE] ipc.server.log.slow.rpc = false -> true
+[CONFIG-CHANGE] ipc.server.max.connections = -1 -> 1987278532
+[CONFIG-CHANGE] ipc.server.max.response.size = null -> null
+[CONFIG-CHANGE] ipc.server.purge.interval = 15 -> 605069101
+[CONFIG-CHANGE] ipc.server.read.connection-queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.read.threadpool.size = null -> null
+[CONFIG-CHANGE] ipc.server.tcpnodelay = null -> null
+[CONFIG-CHANGE] rpc.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] rpc.metrics.timeunit = MILLISECONDS -> SECONDS
+.[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Connection from 127.0.0.1:55678 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55680 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55682 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55684 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55686 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55688 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55690 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55692 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55694 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55696 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55698 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55700 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55702 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55704 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55706 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55708 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55710 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55712 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55714 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55716 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55718 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55720 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55722 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55724 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55726 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55728 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55730 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55732 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55734 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55736 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55738 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55740 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55742 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55744 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55746 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:55748 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+id_000000 ::= FAILURE (java.util.concurrent.ExecutionException)
+[[1;34mINFO[m] Connection from 127.0.0.1:55750 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+E
+Time: 0.432
+There was 1 failure:
+1) testAsyncCallFuzz(org.apache.hadoop.ipc.TestAsyncIPC)
+[[1;34mINFO[m] Connection from 127.0.0.1:55752 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+java.util.concurrent.ExecutionException: java.io.IOException: DestHost:destPort KingsLand:46009 , LocalHost:localPort KingsLand/127.0.1.1:0. Failed on local exception: java.io.IOException: Broken pipe
+	at org.apache.hadoop.thirdparty.com.google.common.util.concurrent.AbstractFuture.getDoneValue(AbstractFuture.java:566)
+	at org.apache.hadoop.thirdparty.com.google.common.util.concurrent.AbstractFuture.get(AbstractFuture.java:527)
+	at org.apache.hadoop.util.concurrent.AsyncGetFuture.get(AsyncGetFuture.java:59)
+	at org.apache.hadoop.ipc.TestAsyncIPC$AsyncCaller.assertReturnValues(TestAsyncIPC.java:117)
+	at org.apache.hadoop.ipc.TestAsyncIPC.internalTestAsyncCall(TestAsyncIPC.java:283)
+	at org.apache.hadoop.ipc.TestAsyncIPC.testAsyncCallFuzz(TestAsyncIPC.java:247)
+	... 49 trimmed
+Caused by: java.io.IOException: DestHost:destPort KingsLand:46009 , LocalHost:localPort KingsLand/127.0.1.1:0. Failed on local exception: java.io.IOException: Broken pipe
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.apache.hadoop.net.NetUtils.wrapWithMessage(NetUtils.java:913)
+	at org.apache.hadoop.net.NetUtils.wrapException(NetUtils.java:888)
+	at org.apache.hadoop.ipc.Client.getRpcResponse(Client.java:1616)
+	at org.apache.hadoop.ipc.Client.access$3500(Client.java:88)
+	at org.apache.hadoop.ipc.Client$2.get(Client.java:1533)
+	at org.apache.hadoop.ipc.Client$2.get(Client.java:1527)
+	at org.apache.hadoop.util.concurrent.AsyncGetFuture.callAsyncGet(AsyncGetFuture.java:45)
+	at org.apache.hadoop.util.concurrent.AsyncGetFuture.get(AsyncGetFuture.java:58)
+	... 53 more
+Caused by: java.io.IOException: Broken pipe
+	at java.base/sun.nio.ch.FileDispatcherImpl.write0(Native Method)
+	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:47)
+	at java.base/sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:113)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:79)
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:50)
+	at java.base/sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:462)
+	at org.apache.hadoop.net.SocketOutputStream$Writer.performIO(SocketOutputStream.java:62)
+	at org.apache.hadoop.net.SocketIOWithTimeout.doIO(SocketIOWithTimeout.java:141)
+	at org.apache.hadoop.net.SocketOutputStream.write(SocketOutputStream.java:158)
+	at org.apache.hadoop.net.SocketOutputStream.write(SocketOutputStream.java:116)
+	at java.base/java.io.BufferedOutputStream.flushBuffer(BufferedOutputStream.java:81)
+	at java.base/java.io.BufferedOutputStream.flush(BufferedOutputStream.java:142)
+	at java.base/java.io.DataOutputStream.flush(DataOutputStream.java:123)
+	at org.apache.hadoop.ipc.Client$IpcStreams.flush(Client.java:1949)
+	at org.apache.hadoop.ipc.Client$Connection$3.run(Client.java:1197)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  29.559 s
+[[1;34mINFO[m] Finished at: 2022-10-16T23:35:34-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

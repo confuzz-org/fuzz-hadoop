@@ -1,0 +1,12 @@
+fuzz_output_round2/fuzz-results/org.apache.hadoop.crypto.random.TestOsSecureRandom/testRandomDoubleFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.fs.TestFileUtil/testWriteStringFileContextFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.ha.TestZKFailoverController/testFencingMustBeConfiguredFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.ha.TestZKFailoverController/testGracefulFailoverMultipleZKfcsFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.io.erasurecode.TestCodecRawCoderMapping/testRSDefaultRawCoderFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.ipc.TestAsyncIPC/testAsyncCallFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.ipc.TestIPC/testIOEOnServerReadParamFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.ipc.TestMultipleProtocolServer/testPBServiceFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.security.authorize.TestServiceAuthorization/testDefaultBlockedMachineListFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.security.TestDoAsEffectiveUser/testProxyWithTokenFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.security.TestDoAsEffectiveUser/testRealUserAuthorizationSuccessFuzz/failures/id_000000
+fuzz_output_round2/fuzz-results/org.apache.hadoop.security.TestGroupsCaching/testGroupLookupForStaticUsersFuzz/failures/id_000000

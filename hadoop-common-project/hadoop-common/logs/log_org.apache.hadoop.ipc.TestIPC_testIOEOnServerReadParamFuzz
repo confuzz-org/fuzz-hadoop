@@ -1,0 +1,286 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:fuzz[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 100, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;33mWARNING[m] Unable to read call parameters for client 127.0.0.1on connection protocol null for rpcKind RPC_BUILTIN
+[1;31mjava.io.IOException[m: [1;31mInjected fault[m
+    [1mat[m org.apache.hadoop.ipc.TestIPC.maybeThrowIOE ([1mTestIPC.java:435[m)
+    [1mat[m org.apache.hadoop.ipc.TestIPC$IOEOnReadWritable.readFields ([1mTestIPC.java:462[m)
+    [1mat[m org.apache.hadoop.ipc.RpcWritable$WritableWrapper.readFrom ([1mRpcWritable.java:87[m)
+    [1mat[m org.apache.hadoop.ipc.RpcWritable$Buffer.getValue ([1mRpcWritable.java:232[m)
+    [1mat[m org.apache.hadoop.ipc.RpcWritable$Buffer.newInstance ([1mRpcWritable.java:228[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.processRpcRequest ([1mServer.java:2669[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.processOneRpc ([1mServer.java:2590[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2333[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Got expected exception
+[1;31morg.apache.hadoop.ipc.RemoteException[m: [1;31mIPC server unable to read call parameters: Injected fault[m
+    [1mat[m org.apache.hadoop.ipc.Client.getRpcResponse ([1mClient.java:1612[m)
+    [1mat[m org.apache.hadoop.ipc.Client.call ([1mClient.java:1558[m)
+    [1mat[m org.apache.hadoop.ipc.Client.call ([1mClient.java:1477[m)
+    [1mat[m org.apache.hadoop.ipc.TestIPC.call ([1mTestIPC.java:177[m)
+    [1mat[m org.apache.hadoop.ipc.TestIPC.doErrorTest ([1mTestIPC.java:528[m)
+    [1mat[m org.apache.hadoop.ipc.TestIPC.testIOEOnServerReadParamFuzz ([1mTestIPC.java:565[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 ([1mNative Method[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke ([1mNativeMethodAccessorImpl.java:62[m)
+    [1mat[m jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke ([1mDelegatingMethodAccessorImpl.java:43[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:566[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod$1.runReflectiveCall ([1mFrameworkMethod.java:59[m)
+    [1mat[m org.junit.internal.runners.model.ReflectiveCallable.run ([1mReflectiveCallable.java:12[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod.invokeExplosively ([1mFrameworkMethod.java:56[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.TrialRunner$1.evaluate ([1mTrialRunner.java:59[m)
+    [1mat[m org.junit.internal.runners.statements.RunBefores.evaluate ([1mRunBefores.java:26[m)
+    [1mat[m org.junit.runners.ParentRunner$3.evaluate ([1mParentRunner.java:306[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.TrialRunner.run ([1mTrialRunner.java:65[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.guidance.Guidance.run ([1mGuidance.java:224[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.quickcheck.FuzzStatement.evaluate ([1mFuzzStatement.java:146[m)
+    [1mat[m org.junit.runners.BlockJUnit4ClassRunner$1.evaluate ([1mBlockJUnit4ClassRunner.java:100[m)
+    [1mat[m org.junit.runners.ParentRunner.runLeaf ([1mParentRunner.java:366[m)
+    [1mat[m org.junit.runners.BlockJUnit4ClassRunner.runChild ([1mBlockJUnit4ClassRunner.java:103[m)
+    [1mat[m org.junit.runners.BlockJUnit4ClassRunner.runChild ([1mBlockJUnit4ClassRunner.java:63[m)
+    [1mat[m org.junit.runners.ParentRunner$4.run ([1mParentRunner.java:331[m)
+    [1mat[m org.junit.runners.ParentRunner$1.schedule ([1mParentRunner.java:79[m)
+    [1mat[m org.junit.runners.ParentRunner.runChildren ([1mParentRunner.java:329[m)
+    [1mat[m org.junit.runners.ParentRunner.access$100 ([1mParentRunner.java:66[m)
+    [1mat[m org.junit.runners.ParentRunner$2.evaluate ([1mParentRunner.java:293[m)
+    [1mat[m org.junit.runners.ParentRunner$3.evaluate ([1mParentRunner.java:306[m)
+    [1mat[m org.junit.runners.ParentRunner.run ([1mParentRunner.java:413[m)
+    [1mat[m org.junit.runner.JUnitCore.run ([1mJUnitCore.java:137[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.GuidedFuzzing.run ([1mGuidedFuzzing.java:213[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.GuidedFuzzing.run ([1mGuidedFuzzing.java:159[m)
+    [1mat[m edu.berkeley.cs.jqf.plugin.FuzzGoal.execute ([1mFuzzGoal.java:445[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo ([1mDefaultBuildPluginManager.java:137[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:210[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:156[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:148[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:117[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:81[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:56[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:128[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:305[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:192[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:105[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:957[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:289[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:193[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 ([1mNative Method[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke ([1mNativeMethodAccessorImpl.java:62[m)
+    [1mat[m jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke ([1mDelegatingMethodAccessorImpl.java:43[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:566[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:282[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:225[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:406[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:347[m)
+[[1;34mINFO[m] Stopping server on 41599
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[JQF] After pre round flag = false
+[JQF] After preRound mapping size = 56
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 100, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;33mWARNING[m] Exception encountered while connecting to the server 
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mClient cannot authenticate via:[KERBEROS][m
+    [1mat[m org.apache.hadoop.security.SaslRpcClient.selectSaslClient ([1mSaslRpcClient.java:179[m)
+    [1mat[m org.apache.hadoop.security.SaslRpcClient.saslConnect ([1mSaslRpcClient.java:392[m)
+    [1mat[m org.apache.hadoop.ipc.Client$Connection.setupSaslConnection ([1mClient.java:623[m)
+    [1mat[m org.apache.hadoop.ipc.Client$Connection.access$2300 ([1mClient.java:414[m)
+    [1mat[m org.apache.hadoop.ipc.Client$Connection$2.run ([1mClient.java:843[m)
+    [1mat[m org.apache.hadoop.ipc.Client$Connection$2.run ([1mClient.java:839[m)
+    [1mat[m java.security.AccessController.doPrivileged ([1mNative Method[m)
+    [1mat[m javax.security.auth.Subject.doAs ([1mSubject.java:423[m)
+    [1mat[m org.apache.hadoop.security.UserGroupInformation.doAs ([1mUserGroupInformation.java:1878[m)
+    [1mat[m org.apache.hadoop.ipc.Client$Connection.setupIOstreams ([1mClient.java:839[m)
+    [1mat[m org.apache.hadoop.ipc.Client$Connection.access$3800 ([1mClient.java:414[m)
+    [1mat[m org.apache.hadoop.ipc.Client.getConnection ([1mClient.java:1677[m)
+    [1mat[m org.apache.hadoop.ipc.Client.call ([1mClient.java:1502[m)
+    [1mat[m org.apache.hadoop.ipc.Client.call ([1mClient.java:1477[m)
+    [1mat[m org.apache.hadoop.ipc.TestIPC.call ([1mTestIPC.java:177[m)
+    [1mat[m org.apache.hadoop.ipc.TestIPC.doErrorTest ([1mTestIPC.java:528[m)
+    [1mat[m org.apache.hadoop.ipc.TestIPC.testIOEOnServerReadParamFuzz ([1mTestIPC.java:565[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 ([1mNative Method[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke ([1mNativeMethodAccessorImpl.java:62[m)
+    [1mat[m jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke ([1mDelegatingMethodAccessorImpl.java:43[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:566[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod$1.runReflectiveCall ([1mFrameworkMethod.java:59[m)
+    [1mat[m org.junit.internal.runners.model.ReflectiveCallable.run ([1mReflectiveCallable.java:12[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod.invokeExplosively ([1mFrameworkMethod.java:56[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.TrialRunner$1.evaluate ([1mTrialRunner.java:59[m)
+    [1mat[m org.junit.internal.runners.statements.RunBefores.evaluate ([1mRunBefores.java:26[m)
+    [1mat[m org.junit.runners.ParentRunner$3.evaluate ([1mParentRunner.java:306[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.TrialRunner.run ([1mTrialRunner.java:65[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.guidance.Guidance.run ([1mGuidance.java:224[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.quickcheck.FuzzStatement.evaluate ([1mFuzzStatement.java:146[m)
+    [1mat[m org.junit.runners.BlockJUnit4ClassRunner$1.evaluate ([1mBlockJUnit4ClassRunner.java:100[m)
+    [1mat[m org.junit.runners.ParentRunner.runLeaf ([1mParentRunner.java:366[m)
+    [1mat[m org.junit.runners.BlockJUnit4ClassRunner.runChild ([1mBlockJUnit4ClassRunner.java:103[m)
+    [1mat[m org.junit.runners.BlockJUnit4ClassRunner.runChild ([1mBlockJUnit4ClassRunner.java:63[m)
+    [1mat[m org.junit.runners.ParentRunner$4.run ([1mParentRunner.java:331[m)
+    [1mat[m org.junit.runners.ParentRunner$1.schedule ([1mParentRunner.java:79[m)
+    [1mat[m org.junit.runners.ParentRunner.runChildren ([1mParentRunner.java:329[m)
+    [1mat[m org.junit.runners.ParentRunner.access$100 ([1mParentRunner.java:66[m)
+    [1mat[m org.junit.runners.ParentRunner$2.evaluate ([1mParentRunner.java:293[m)
+    [1mat[m org.junit.runners.ParentRunner$3.evaluate ([1mParentRunner.java:306[m)
+    [1mat[m org.junit.runners.ParentRunner.run ([1mParentRunner.java:413[m)
+    [1mat[m org.junit.runner.JUnitCore.run ([1mJUnitCore.java:137[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.GuidedFuzzing.run ([1mGuidedFuzzing.java:213[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.GuidedFuzzing.run ([1mGuidedFuzzing.java:159[m)
+    [1mat[m edu.berkeley.cs.jqf.plugin.FuzzGoal.execute ([1mFuzzGoal.java:484[m)
+    [1mat[m org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo ([1mDefaultBuildPluginManager.java:137[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:210[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:156[m)
+    [1mat[m org.apache.maven.lifecycle.internal.MojoExecutor.execute ([1mMojoExecutor.java:148[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:117[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject ([1mLifecycleModuleBuilder.java:81[m)
+    [1mat[m org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build ([1mSingleThreadedBuilder.java:56[m)
+    [1mat[m org.apache.maven.lifecycle.internal.LifecycleStarter.execute ([1mLifecycleStarter.java:128[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:305[m)
+    [1mat[m org.apache.maven.DefaultMaven.doExecute ([1mDefaultMaven.java:192[m)
+    [1mat[m org.apache.maven.DefaultMaven.execute ([1mDefaultMaven.java:105[m)
+    [1mat[m org.apache.maven.cli.MavenCli.execute ([1mMavenCli.java:957[m)
+    [1mat[m org.apache.maven.cli.MavenCli.doMain ([1mMavenCli.java:289[m)
+    [1mat[m org.apache.maven.cli.MavenCli.main ([1mMavenCli.java:193[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 ([1mNative Method[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke ([1mNativeMethodAccessorImpl.java:62[m)
+    [1mat[m jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke ([1mDelegatingMethodAccessorImpl.java:43[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:566[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced ([1mLauncher.java:282[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.launch ([1mLauncher.java:225[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode ([1mLauncher.java:406[m)
+    [1mat[m org.codehaus.plexus.classworlds.launcher.Launcher.main ([1mLauncher.java:347[m)
+[[1;34mINFO[m] Stopping server on 49081
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  3.554 s
+[[1;34mINFO[m] Finished at: 2022-10-16T17:43:35-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:fuzz[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mFuzzing resulted in the test failing on 1 input(s). Possible bugs found. Use mvn jqf:repro to reproduce failing test cases from /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round2/fuzz-results/org.apache.hadoop.ipc.TestIPC/testIOEOnServerReadParamFuzz/failures. Sample exception included with this message.[m: Exception should contain substring 'Injected fault':
+[[1;31mERROR[m] java.io.IOException: DestHost:destPort KingsLand:49081 , LocalHost:localPort KingsLand/127.0.1.1:0. Failed on local exception: java.io.IOException: org.apache.hadoop.security.AccessControlException: Client cannot authenticate via:[KERBEROS]
+[[1;31mERROR[m] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+[[1;31mERROR[m] 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+[[1;31mERROR[m] 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+[[1;31mERROR[m] 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+[[1;31mERROR[m] 	at org.apache.hadoop.net.NetUtils.wrapWithMessage(NetUtils.java:913)
+[[1;31mERROR[m] 	at org.apache.hadoop.net.NetUtils.wrapException(NetUtils.java:888)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client.getRpcResponse(Client.java:1616)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client.call(Client.java:1558)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client.call(Client.java:1477)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.TestIPC.call(TestIPC.java:177)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.TestIPC.doErrorTest(TestIPC.java:528)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.TestIPC.testIOEOnServerReadParamFuzz(TestIPC.java:565)
+[[1;31mERROR[m] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[[1;31mERROR[m] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[[1;31mERROR[m] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[[1;31mERROR[m] 	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+[[1;31mERROR[m] 	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+[[1;31mERROR[m] 	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+[[1;31mERROR[m] 	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+[[1;31mERROR[m] 	at edu.berkeley.cs.jqf.fuzz.junit.TrialRunner$1.evaluate(TrialRunner.java:59)
+[[1;31mERROR[m] 	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+[[1;31mERROR[m] 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+[[1;31mERROR[m] 	at edu.berkeley.cs.jqf.fuzz.junit.TrialRunner.run(TrialRunner.java:65)
+[[1;31mERROR[m] 	at edu.berkeley.cs.jqf.fuzz.guidance.Guidance.run(Guidance.java:224)
+[[1;31mERROR[m] 	at edu.berkeley.cs.jqf.fuzz.junit.quickcheck.FuzzStatement.evaluate(FuzzStatement.java:146)
+[[1;31mERROR[m] 	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+[[1;31mERROR[m] 	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+[[1;31mERROR[m] 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+[[1;31mERROR[m] 	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+[[1;31mERROR[m] 	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+[[1;31mERROR[m] 	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+[[1;31mERROR[m] 	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+[[1;31mERROR[m] 	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+[[1;31mERROR[m] 	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+[[1;31mERROR[m] 	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+[[1;31mERROR[m] 	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+[[1;31mERROR[m] 	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)
+[[1;31mERROR[m] 	at edu.berkeley.cs.jqf.fuzz.junit.GuidedFuzzing.run(GuidedFuzzing.java:213)
+[[1;31mERROR[m] 	at edu.berkeley.cs.jqf.fuzz.junit.GuidedFuzzing.run(GuidedFuzzing.java:159)
+[[1;31mERROR[m] 	at edu.berkeley.cs.jqf.plugin.FuzzGoal.execute(FuzzGoal.java:484)
+[[1;31mERROR[m] 	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:137)
+[[1;31mERROR[m] 	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:210)
+[[1;31mERROR[m] 	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:156)
+[[1;31mERROR[m] 	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:148)
+[[1;31mERROR[m] 	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:117)
+[[1;31mERROR[m] 	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:81)
+[[1;31mERROR[m] 	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:56)
+[[1;31mERROR[m] 	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:128)
+[[1;31mERROR[m] 	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:305)
+[[1;31mERROR[m] 	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:192)
+[[1;31mERROR[m] 	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:105)
+[[1;31mERROR[m] 	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:957)
+[[1;31mERROR[m] 	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:289)
+[[1;31mERROR[m] 	at org.apache.maven.cli.MavenCli.main(MavenCli.java:193)
+[[1;31mERROR[m] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+[[1;31mERROR[m] 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+[[1;31mERROR[m] 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+[[1;31mERROR[m] 	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+[[1;31mERROR[m] 	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:282)
+[[1;31mERROR[m] 	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:225)
+[[1;31mERROR[m] 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:406)
+[[1;31mERROR[m] 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:347)
+[[1;31mERROR[m] Caused by: java.io.IOException: org.apache.hadoop.security.AccessControlException: Client cannot authenticate via:[KERBEROS]
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client$Connection$1.run(Client.java:798)
+[[1;31mERROR[m] 	at java.base/java.security.AccessController.doPrivileged(Native Method)
+[[1;31mERROR[m] 	at java.base/javax.security.auth.Subject.doAs(Subject.java:423)
+[[1;31mERROR[m] 	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1878)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client$Connection.handleSaslConnectionFailure(Client.java:752)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client$Connection.setupIOstreams(Client.java:856)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client$Connection.access$3800(Client.java:414)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client.getConnection(Client.java:1677)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client.call(Client.java:1502)
+[[1;31mERROR[m] 	... 54 more
+[[1;31mERROR[m] Caused by: org.apache.hadoop.security.AccessControlException: Client cannot authenticate via:[KERBEROS]
+[[1;31mERROR[m] 	at org.apache.hadoop.security.SaslRpcClient.selectSaslClient(SaslRpcClient.java:179)
+[[1;31mERROR[m] 	at org.apache.hadoop.security.SaslRpcClient.saslConnect(SaslRpcClient.java:392)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client$Connection.setupSaslConnection(Client.java:623)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client$Connection.access$2300(Client.java:414)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client$Connection$2.run(Client.java:843)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client$Connection$2.run(Client.java:839)
+[[1;31mERROR[m] 	at java.base/java.security.AccessController.doPrivileged(Native Method)
+[[1;31mERROR[m] 	at java.base/javax.security.auth.Subject.doAs(Subject.java:423)
+[[1;31mERROR[m] 	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1878)
+[[1;31mERROR[m] 	at org.apache.hadoop.ipc.Client$Connection.setupIOstreams(Client.java:839)
+[[1;31mERROR[m] 	... 57 more
+[[1;31mERROR[m] -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

@@ -1,0 +1,105 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[JQF] After pre round flag = false
+
+Time: 1.417
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 31
+[CONFIG-CHANGE] file.bytes-per-checksum = null -> null
+[CONFIG-CHANGE] file.stream-buffer-size = null -> null
+[CONFIG-CHANGE] fs.automatic.close = null -> null
+[CONFIG-CHANGE] fs.client.resolve.remote.symlinks = null -> null
+[CONFIG-CHANGE] fs.creation.parallel.count = null -> null
+[CONFIG-CHANGE] fs.defaultFS = file:/// -> [B@29ee8174
+[CONFIG-CHANGE] fs.file.impl.disable.cache = null -> null
+[CONFIG-CHANGE] fs.local.block.size = null -> null
+[CONFIG-CHANGE] fs.permissions.umask-mode = null -> null
+[CONFIG-CHANGE] hadoop.kerberos.keytab.login.autorenewal.enabled = false -> true
+[CONFIG-CHANGE] hadoop.kerberos.min.seconds.before.relogin = 60 -> 569845038
+[CONFIG-CHANGE] hadoop.security.auth_to_local.mechanism = hadoop -> MIT
+[CONFIG-CHANGE] hadoop.security.authentication = simple -> kerberos
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.enabled = false -> true
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.threshold.ms = 1000 -> 1099580241
+[CONFIG-CHANGE] hadoop.security.group.mapping = org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback -> [B@3f2ef402
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 1325574630
+[CONFIG-CHANGE] hadoop.security.groups.cache.secs = 300 -> 1582005077
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 601737492
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 502306265
+[CONFIG-CHANGE] hadoop.security.token.service.use_ip = true -> false
+[CONFIG-CHANGE] hadoop.service.shutdown.timeout = null -> null
+[CONFIG-CHANGE] hadoop.token.files = null -> null
+[CONFIG-CHANGE] hadoop.tokens = null -> null
+[CONFIG-CHANGE] hadoop.user.group.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@14bf9fd0
+[CONFIG-CHANGE] io.file.buffer.size = null -> null
+.[[1;33mWARNING[m] "[B@400e741" is a deprecated filesystem name. Use "hdfs://[B@400e741/" instead.
+id_000000 ::= FAILURE (java.lang.IllegalArgumentException)
+E
+Time: 0.246
+There was 1 failure:
+1) testCopyFromLocalFuzz(org.apache.hadoop.fs.shell.TestCopyPreserveFlag)
+java.lang.IllegalArgumentException: Illegal character in user info at index 7: hdfs://[B@400e741
+	at java.base/java.net.URI.create(URI.java:883)
+	at org.apache.hadoop.fs.FileSystem.getDefaultUri(FileSystem.java:297)
+	at org.apache.hadoop.fs.FileSystem.get(FileSystem.java:528)
+	at org.apache.hadoop.fs.FileSystem.getLocal(FileSystem.java:496)
+	at org.apache.hadoop.fs.shell.TestCopyPreserveFlag.initializeFuzz(TestCopyPreserveFlag.java:70)
+	at org.apache.hadoop.fs.shell.TestCopyPreserveFlag.testCopyFromLocalFuzz(TestCopyPreserveFlag.java:183)
+	... 50 trimmed
+Caused by: java.net.URISyntaxException: Illegal character in user info at index 7: hdfs://[B@400e741
+	at java.base/java.net.URI$Parser.fail(URI.java:2913)
+	at java.base/java.net.URI$Parser.checkChars(URI.java:3084)
+	at java.base/java.net.URI$Parser.parseServer(URI.java:3266)
+	at java.base/java.net.URI$Parser.parseAuthority(URI.java:3216)
+	at java.base/java.net.URI$Parser.parseHierarchical(URI.java:3158)
+	at java.base/java.net.URI$Parser.parse(URI.java:3114)
+	at java.base/java.net.URI.<init>(URI.java:600)
+	at java.base/java.net.URI.create(URI.java:881)
+	... 56 more
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  3.567 s
+[[1;34mINFO[m] Finished at: 2022-10-15T14:17:51-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

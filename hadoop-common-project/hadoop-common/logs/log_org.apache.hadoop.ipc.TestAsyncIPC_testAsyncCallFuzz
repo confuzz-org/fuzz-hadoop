@@ -1,0 +1,128 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:fuzz[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Stopping server on 36743
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Stopping server on 44789
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[JQF] After pre round flag = false
+[JQF] After preRound mapping size = 56
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Stopping server on 35873
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Stopping server on 45233
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Connection from 127.0.0.1:60538 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60540 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60544 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60546 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60548 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60550 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60552 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60554 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60556 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60558 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60560 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60562 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60564 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60566 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60568 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60570 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60572 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60574 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60576 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60578 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60580 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60582 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60584 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60586 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60588 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60590 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60592 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60594 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60596 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60598 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60600 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60602 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60604 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60606 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60610 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60612 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60614 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60616 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60618 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60620 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60622 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60624 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60626 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60628 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60630 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60632 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60634 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60636 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60638 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60640 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] Connection from 127.0.0.1:60642 for protocol  is unauthorized for user shuai (auth:SIMPLE)
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  54.513 s
+[[1;34mINFO[m] Finished at: 2022-10-16T16:32:54-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:fuzz[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mFuzzing resulted in the test failing on 1 input(s). Possible bugs found. Use mvn jqf:repro to reproduce failing test cases from /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round2/fuzz-results/org.apache.hadoop.ipc.TestAsyncIPC/testAsyncCallFuzz/failures. Sample exception included with this message.[m: java.io.IOException: DestHost:destPort KingsLand:37507 , LocalHost:localPort KingsLand/127.0.1.1:0. Failed on local exception: java.io.IOException: Broken pipe -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

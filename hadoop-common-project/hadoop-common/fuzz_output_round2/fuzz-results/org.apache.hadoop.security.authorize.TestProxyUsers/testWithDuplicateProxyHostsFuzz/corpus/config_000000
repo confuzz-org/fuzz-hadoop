@@ -1,0 +1,11 @@
+hadoop.proxyservers :=: null
+hadoop.proxyuser.proxier.groups :=: foo_group
+hadoop.proxyuser.proxier.hosts :=: 1.2.3.4,1.2.3.4
+hadoop.security.group.mapping :=: [B@4f20b022
+hadoop.security.groups.cache.background.reload :=: false
+hadoop.security.groups.cache.background.reload.threads :=: 516917276
+hadoop.security.groups.cache.secs :=: 249753130
+hadoop.security.groups.cache.warn.after.ms :=: 898808240
+hadoop.security.groups.negative-cache.secs :=: 1820397663
+hadoop.security.impersonation.provider.class :=: null
+hadoop.user.group.static.mapping.overrides :=: [B@72a34537

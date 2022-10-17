@@ -1,0 +1,256 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Stopping server on 38403
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Stopping server on 42331
+[[1;34mINFO[m] Stopping IPC Server listener on 0
+[[1;34mINFO[m] Stopping IPC Server Responder
+[JQF] After pre round flag = false
+
+Time: 27.065
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 58
+[CONFIG-CHANGE] hadoop.kerberos.keytab.login.autorenewal.enabled = false -> true
+[CONFIG-CHANGE] hadoop.kerberos.min.seconds.before.relogin = 60 -> 1041770929
+[CONFIG-CHANGE] hadoop.security.authentication = simple -> kerberos
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.enabled = false -> true
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.threshold.ms = 1000 -> 350194164
+[CONFIG-CHANGE] hadoop.security.group.mapping = org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback -> [B@62dc1203
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 952419582
+[CONFIG-CHANGE] hadoop.security.groups.cache.secs = 300 -> 1328426639
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 1592340259
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 1463097675
+[CONFIG-CHANGE] hadoop.token.files = null -> null
+[CONFIG-CHANGE] hadoop.tokens = null -> null
+[CONFIG-CHANGE] hadoop.user.group.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@35d0749
+[CONFIG-CHANGE] ipc.0.backoff.enable = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.impl = null -> null
+[CONFIG-CHANGE] ipc.0.callqueue.overflow.trigger.failover = null -> null
+[CONFIG-CHANGE] ipc.0.faircallqueue.priority-levels = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.impl = null -> null
+[CONFIG-CHANGE] ipc.0.scheduler.priority.levels = null -> null
+[CONFIG-CHANGE] ipc.client.connect.max.retries = 10 -> 1352067235
+[CONFIG-CHANGE] ipc.client.connect.max.retries.on.sasl = null -> null
+[CONFIG-CHANGE] ipc.client.connect.max.retries.on.timeouts = 45 -> 916317061
+[CONFIG-CHANGE] ipc.client.connect.retry.interval = 1000 -> 363095762
+[CONFIG-CHANGE] ipc.client.connect.timeout = 20000 -> 18571206
+[CONFIG-CHANGE] ipc.client.connection.idle-scan-interval.ms = null -> null
+[CONFIG-CHANGE] ipc.client.connection.maxidletime = 10000 -> 809224154
+[CONFIG-CHANGE] ipc.client.fallback-to-simple-auth-allowed = false -> true
+[CONFIG-CHANGE] ipc.client.idlethreshold = 4000 -> 1682042943
+[CONFIG-CHANGE] ipc.client.kill.max = 10 -> 904626687
+[CONFIG-CHANGE] ipc.client.low-latency = false -> true
+[CONFIG-CHANGE] ipc.maximum.data.length = 134217728 -> 476413172
+[CONFIG-CHANGE] ipc.maximum.response.length = 134217728 -> 574538884
+[CONFIG-CHANGE] ipc.server.handler.queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.listen.queue.size = 256 -> 1472670086
+[CONFIG-CHANGE] ipc.server.log.slow.rpc = false -> true
+[CONFIG-CHANGE] ipc.server.max.connections = -1 -> 30838412
+[CONFIG-CHANGE] ipc.server.max.response.size = null -> null
+[CONFIG-CHANGE] ipc.server.purge.interval = 15 -> 124215399
+[CONFIG-CHANGE] ipc.server.read.connection-queue.size = null -> null
+[CONFIG-CHANGE] ipc.server.read.threadpool.size = null -> null
+[CONFIG-CHANGE] ipc.server.tcpnodelay = null -> null
+[CONFIG-CHANGE] rpc.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] rpc.metrics.timeunit = MILLISECONDS -> SECONDS
+.[[1;34mINFO[m] Using callQueue: class java.util.concurrent.LinkedBlockingQueue, queueCapacity: 300, scheduler: class org.apache.hadoop.ipc.DefaultRpcScheduler, ipcBackoff: false.
+[[1;34mINFO[m] Starting Socket Reader #1 for port 0
+[[1;34mINFO[m] IPC Server Responder: starting
+[[1;34mINFO[m] IPC Server listener on 0: starting
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54612 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54614 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54618 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54620 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54622 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54626 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54624 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54630 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54628 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54634 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54632 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54638 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54636 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+id_000000 ::= FAILURE (java.util.concurrent.ExecutionException)
+E
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54640 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+T[ime: 0.267
+1;31morgThere was 1 failure:
+.apache.ha1) testAsyncCallFuzz(org.apache.hadoop.ipc.TestAsyncIPC)
+doop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54642 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[1;31morg.apache.hadoop.security.AccessControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)
+java.util.concurrent.ExecutionException: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.AccessControlException): SIMPLE authentication is not enabled.  Available:[KERBEROS]
+	at org.apache.hadoop.thirdparty.com.google.common.util.concurrent.AbstractFuture.getDoneValue(AbstractFuture.java:566)
+	at org.apache.hadoop.thirdparty.com.google.common.util.concurrent.AbstractFuture.get(AbstractFuture.java:527)
+[[1;3	at or4mINFO[m] Socket Reader #1 for port 0: reg.apache.hadoop.util.concurrent.AsyncGetFuture.get(AsyncGetFuture.java:59)
+	at org.apache.hadoop.ipc.TestAsyncIPC$AsyncCaller.assertReturnValues(TestAsyncIPC.java:117)
+	at org.apache.hadoop.ipc.TestAsyncIPC.internalTestAsyncCall(TestAsyncIPC.java:283)
+	at org.apache.hadoop.ipc.TestAsyncIPC.testAsyncCallFuzz(TestAsyncIPC.java:247)
+	... 49 trimmed
+Caused by: org.apache.hadoop.ipc.RemotadAndProcesseException(org.apache.hadoop from client 127.0.0.1:54644 threw.security.AccessControlException): SIMPL excepE authentication is not enabled.  Available:[KERBEROS]
+	at org.apache.hadoop.ipc.Client.getRpcResponse(Client.java:1612)
+	at org.apache.hadoop.ipc.Client.access$3tion [500(Client.java:88)
+	at org.apache.hadoop.ipc.Client$2.get(Client.java:1533)
+	at org.apache.hadoop.ipc.Client$2.get(Client.javaorg.apache.hadoop.security.Acces:1527)
+	at org.apache.hadoop.util.concurrent.AsyncGetFuture.callAsyncGet(AsyncGetFuture.java:45)sControlEx
+	at org.apache.hadoop.util.concurrent.AsyncGetFuture.get(AsyncGetFuture.java:58)
+	... 53 more
+ception: SIMPLE authentication
+ is not enabled.  Available:[KERBEROS]]
+FAILURES!!!
+[1;31mTests run: 1,  Failures: 1org.apache.hadoop.security.Acc
+
+essControlException[m: [1;31mSIMPLE authentication is not enabled.  Available:[KERBEROS][m
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext ([1mServer.java:2360[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcess ([1mServer.java:2309[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener.doRead ([1mServer.java:[1449[m)
+    [1[1mat[m;3 org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop4mINFO[m] ([1mServer.java:1304[m) [1m--------------------------------------
+    -----[1mat[m org.apache.hadoop.ipc.Server$Listener$Re-----------------------------[mader.run
+ ([1mServer.java:1275[m)
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  29.301 s
+[[1;34mINFO[m] Finished at: 2022-10-15T14:18:56-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;34mINFO[m] Socket Reader #1 for port 0: readAndProcess from client 127.0.0.1:54646 threw exception [org.apache.hadoop.security.AccessControlException: SIMPLE authentication is not enabled.  Available:[KERBEROS]]
+[[1;31mER[1;31morROR[m] 
+g.apache.hadoop.security.AccessControlException[m[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.: 
+[1;31mSIMPLE authentication is not enabled.  Availab[le:[KERBEROS][m
+[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.    
+[1mat[m org.apache.hadoop.ipc.Server$Connection.initializeAuthContext[[1;31mERROR[m]  ([1mServer.java:2360[m)
+
+  [[1;31mERROR[m] For more information about the errors and po  ss[1mat[m org.apache.hadoop.ipc.Server$Connection.readAndProcessible  ([1mServer.javsolua:2309[m)tions, please read the following articles:
+   
+ [1mat[m org.apache.ha[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+doop.ipc.Server$Listener.doRead ([1mServer.java:1449[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.doRunLoop ([1mServer.java:1304[m)
+    [1mat[m org.apache.hadoop.ipc.Server$Listener$Reader.run ([1mServer.java:1275[m)

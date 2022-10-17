@@ -1,0 +1,322 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[[1;34mINFO[m] Port is already in use; trying again
+[[1;34mINFO[m] Using port 54128
+[[1;34mINFO[m] STARTING testFencingMustBeConfiguredFuzz
+[[1;34mINFO[m] STARTING server
+[[1;34mINFO[m] Server environment:zookeeper.version=3.5.6-c11b7e26bc554b8523dc929761dd28808913f091, built on 10/08/2019 20:18 GMT
+[[1;34mINFO[m] Server environment:host.name=KingsLand
+[[1;34mINFO[m] Server environment:java.version=11.0.15
+[[1;34mINFO[m] Server environment:java.vendor=Private Build
+[[1;34mINFO[m] Server environment:java.home=/usr/lib/jvm/java-11-openjdk-amd64
+[[1;34mINFO[m] Server environment:java.class.path=/usr/share/maven/boot/plexus-classworlds-2.x.jar
+[[1;34mINFO[m] Server environment:java.library.path=/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+[[1;34mINFO[m] Server environment:java.io.tmpdir=/tmp
+[[1;34mINFO[m] Server environment:java.compiler=<NA>
+[[1;34mINFO[m] Server environment:os.name=Linux
+[[1;34mINFO[m] Server environment:os.arch=amd64
+[[1;34mINFO[m] Server environment:os.version=5.10.0-1050-oem
+[[1;34mINFO[m] Server environment:user.name=shuai
+[[1;34mINFO[m] Server environment:user.home=/home/shuai
+[[1;34mINFO[m] Server environment:user.dir=/home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common
+[[1;34mINFO[m] Server environment:os.memory.free=328MB
+[[1;34mINFO[m] Server environment:os.memory.max=7960MB
+[[1;34mINFO[m] Server environment:os.memory.total=502MB
+[[1;34mINFO[m] zookeeper.snapshot.trust.empty : false
+[[1;34mINFO[m] zookeeper.snapshotSizeFactor = 0.33
+[[1;34mINFO[m] minSessionTimeout set to 6000
+[[1;34mINFO[m] maxSessionTimeout set to 60000
+[[1;34mINFO[m] Created server with tickTime 3000 minSessionTimeout 6000 maxSessionTimeout 60000 datadir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test6910570444097060641.junit.dir/version-2 snapdir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test6910570444097060641.junit.dir/version-2
+[[1;34mINFO[m] Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory
+[[1;34mINFO[m] Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 32 worker threads, and 64 kB direct buffers.
+[[1;34mINFO[m] binding to port 0.0.0.0/0.0.0.0:54128
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test6910570444097060641.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test6910570444097060641.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] connecting to 127.0.0.1 54128
+[[1;34mINFO[m] The list of known four letter word commands is : [{1936881266=srvr, 1937006964=stat, 2003003491=wchc, 1685417328=dump, 1668445044=crst, 1936880500=srst, 1701738089=envi, 1668247142=conf, -720899=telnet close, 2003003507=wchs, 2003003504=wchp, 1684632179=dirs, 1668247155=cons, 1835955314=mntr, 1769173615=isro, 1920298859=ruok, 1735683435=gtmk, 1937010027=stmk}]
+[[1;34mINFO[m] The list of enabled four letter word commands is : [[wchs, stat, wchp, dirs, stmk, conf, ruok, mntr, srvr, wchc, envi, srst, isro, dump, gtmk, telnet close, crst, cons]]
+[[1;34mINFO[m] Processing stat command from /127.0.0.1:59410
+[[1;34mINFO[m] Stat command output
+[[1;34mINFO[m] Client test setup finished
+[[1;33mWARNING[m] Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[[1;34mINFO[m] Client environment:zookeeper.version=3.5.6-c11b7e26bc554b8523dc929761dd28808913f091, built on 10/08/2019 20:18 GMT
+[[1;34mINFO[m] Client environment:host.name=KingsLand
+[[1;34mINFO[m] Client environment:java.version=11.0.15
+[[1;34mINFO[m] Client environment:java.vendor=Private Build
+[[1;34mINFO[m] Client environment:java.home=/usr/lib/jvm/java-11-openjdk-amd64
+[[1;34mINFO[m] Client environment:java.class.path=/usr/share/maven/boot/plexus-classworlds-2.x.jar
+[[1;34mINFO[m] Client environment:java.library.path=/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+[[1;34mINFO[m] Client environment:java.io.tmpdir=/tmp
+[[1;34mINFO[m] Client environment:java.compiler=<NA>
+[[1;34mINFO[m] Client environment:os.name=Linux
+[[1;34mINFO[m] Client environment:os.arch=amd64
+[[1;34mINFO[m] Client environment:os.version=5.10.0-1050-oem
+[[1;34mINFO[m] Client environment:user.name=shuai
+[[1;34mINFO[m] Client environment:user.home=/home/shuai
+[[1;34mINFO[m] Client environment:user.dir=/home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common
+[[1;34mINFO[m] Client environment:os.memory.free=221MB
+[[1;34mINFO[m] Client environment:os.memory.max=7960MB
+[[1;34mINFO[m] Client environment:os.memory.total=502MB
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:54128 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@aa9c30a
+[[1;34mINFO[m] Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:54128. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59424, server: localhost/127.0.0.1:54128
+[[1;34mINFO[m] Creating new log file: log.1
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:54128, sessionid = 0x10206b1f4780000, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:59424
+[[1;34mINFO[m] auth success /127.0.0.1:59424
+[[1;34mINFO[m] Successfully created /hadoop-ha/dummy-cluster in ZK.
+[[1;34mINFO[m] Session: 0x10206b1f4780000 closed
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b1f4780000
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b1f4780000
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:54128 sessionTimeout=10000 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@515447a1
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:54128. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59426, server: localhost/127.0.0.1:54128
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:54128, sessionid = 0x10206b1f4780001, negotiated timeout = 10000
+[[1;34mINFO[m] Session connected.
+[[1;34mINFO[m] got auth packet /127.0.0.1:59426
+[[1;34mINFO[m] auth success /127.0.0.1:59426
+[[1;31mERROR[m] Fencing is not configured for DummyHAService #1.
+You must configure a fencing method before using automatic failover.
+[1;31morg.apache.hadoop.ha.BadFencingConfigurationException[m: [1;31mno fencing[m
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.doRun ([1mZKFailoverController.java:241[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.access$000 ([1mZKFailoverController.java:63[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run ([1mZKFailoverController.java:181[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run ([1mZKFailoverController.java:177[m)
+    [1mat[m org.apache.hadoop.security.SecurityUtil.doAsLoginUserOrFatal ([1mSecurityUtil.java:503[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.run ([1mZKFailoverController.java:177[m)
+    [1mat[m org.apache.hadoop.ha.TestZKFailoverController.runFC ([1mTestZKFailoverController.java:717[m)
+    [1mat[m org.apache.hadoop.ha.TestZKFailoverController.testFencingMustBeConfiguredFuzz ([1mTestZKFailoverController.java:231[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 ([1mNative Method[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke ([1mNativeMethodAccessorImpl.java:62[m)
+    [1mat[m jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke ([1mDelegatingMethodAccessorImpl.java:43[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:566[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod$1.runReflectiveCall ([1mFrameworkMethod.java:59[m)
+    [1mat[m org.junit.internal.runners.model.ReflectiveCallable.run ([1mReflectiveCallable.java:12[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod.invokeExplosively ([1mFrameworkMethod.java:56[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.TrialRunner$1.evaluate ([1mTrialRunner.java:59[m)
+    [1mat[m org.junit.internal.runners.statements.RunBefores.evaluate ([1mRunBefores.java:26[m)
+    [1mat[m org.junit.internal.runners.statements.RunAfters.evaluate ([1mRunAfters.java:27[m)
+    [1mat[m org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call ([1mFailOnTimeout.java:288[m)
+    [1mat[m org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call ([1mFailOnTimeout.java:282[m)
+    [1mat[m java.util.concurrent.FutureTask.run ([1mFutureTask.java:264[m)
+    [1mat[m java.lang.Thread.run ([1mThread.java:829[m)
+[[1;34mINFO[m] Session: 0x10206b1f4780001 closed
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b1f4780001
+[[1;34mINFO[m] tearDown starting
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b1f4780001
+[[1;34mINFO[m] STOPPING server
+[[1;34mINFO[m] ConnnectionExpirerThread interrupted
+[[1;34mINFO[m] selector thread exitted run method
+[[1;34mINFO[m] accept thread exitted run method
+[[1;34mINFO[m] selector thread exitted run method
+[[1;34mINFO[m] shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] PrepRequestProcessor exited loop!
+[[1;34mINFO[m] SyncRequestProcessor exited!
+[[1;34mINFO[m] shutdown of request processor complete
+[[1;34mINFO[m] connecting to 127.0.0.1 54128
+[[1;34mINFO[m] SUCCEEDED testFencingMustBeConfiguredFuzz
+[[1;34mINFO[m] FINISHED testFencingMustBeConfiguredFuzz
+[JQF] After pre round flag = false
+
+Time: 2.665
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 32
+[CONFIG-CHANGE] fs.creation.parallel.count = null -> null
+[CONFIG-CHANGE] fs.hdfs.impl = null -> null
+[CONFIG-CHANGE] ha.failover-controller.active-standby-elector.zk.op.retries = 3 -> 1863661320
+[CONFIG-CHANGE] ha.zookeeper.parent-znode = /hadoop-ha -> [B@69ba3f4e
+[CONFIG-CHANGE] ha.zookeeper.quorum = 127.0.0.1:54128 -> 127.0.0.1:51305
+[CONFIG-CHANGE] ha.zookeeper.session-timeout.ms = 10000 -> 467568068
+[CONFIG-CHANGE] hadoop.kerberos.keytab.login.autorenewal.enabled = false -> true
+[CONFIG-CHANGE] hadoop.kerberos.min.seconds.before.relogin = 60 -> 1333982210
+[CONFIG-CHANGE] hadoop.security.auth_to_local.mechanism = hadoop -> MIT
+[CONFIG-CHANGE] hadoop.security.authentication = simple -> kerberos
+[CONFIG-CHANGE] hadoop.security.credential.clear-text-fallback = true -> false
+[CONFIG-CHANGE] hadoop.security.credential.provider.path = null -> null
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.enabled = false -> true
+[CONFIG-CHANGE] hadoop.security.dns.log-slow-lookups.threshold.ms = 1000 -> 513364207
+[CONFIG-CHANGE] hadoop.security.group.mapping = org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback -> [B@5c33008f
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload = false -> true
+[CONFIG-CHANGE] hadoop.security.groups.cache.background.reload.threads = 3 -> 1773268112
+[CONFIG-CHANGE] hadoop.security.groups.cache.secs = 300 -> 219566733
+[CONFIG-CHANGE] hadoop.security.groups.cache.warn.after.ms = 5000 -> 103481445
+[CONFIG-CHANGE] hadoop.security.groups.negative-cache.secs = 30 -> 455803704
+[CONFIG-CHANGE] hadoop.token.files = null -> null
+[CONFIG-CHANGE] hadoop.tokens = null -> null
+[CONFIG-CHANGE] hadoop.user.group.metrics.percentiles.intervals = null -> null
+[CONFIG-CHANGE] hadoop.user.group.static.mapping.overrides = dr.who=; -> [B@45d7495e
+.[[1;34mINFO[m] Using port 3838
+[[1;34mINFO[m] STARTING testFencingMustBeConfiguredFuzz
+[[1;34mINFO[m] STARTING server
+[[1;34mINFO[m] zookeeper.snapshot.trust.empty : false
+[[1;34mINFO[m] zookeeper.snapshotSizeFactor = 0.33
+[[1;34mINFO[m] minSessionTimeout set to 6000
+[[1;34mINFO[m] maxSessionTimeout set to 60000
+[[1;34mINFO[m] Created server with tickTime 3000 minSessionTimeout 6000 maxSessionTimeout 60000 datadir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test8142374648542558570.junit.dir/version-2 snapdir /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test8142374648542558570.junit.dir/version-2
+[[1;34mINFO[m] Using org.apache.zookeeper.server.NIOServerCnxnFactory as server connection factory
+[[1;34mINFO[m] Configuring NIO connection handler with 10s sessionless connection timeout, 2 selector thread(s), 32 worker threads, and 64 kB direct buffers.
+[[1;34mINFO[m] binding to port 0.0.0.0/0.0.0.0:3838
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test8142374648542558570.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] Snapshotting: 0x0 to /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/target/test/data/test8142374648542558570.junit.dir/version-2/snapshot.0
+[[1;34mINFO[m] connecting to 127.0.0.1 3838
+[[1;34mINFO[m] Processing stat command from /127.0.0.1:59006
+[[1;34mINFO[m] Stat command output
+[[1;34mINFO[m] Client test setup finished
+[[1;34mINFO[m] Initiating client connection, connectString=127.0.0.1:3838 sessionTimeout=467568068 watcher=org.apache.hadoop.ha.ActiveStandbyElector$WatcherWithClientRef@3063f246
+[[1;34mINFO[m] jute.maxbuffer value is 4194304 Bytes
+[[1;34mINFO[m] zookeeper.request.timeout value is 0. feature enabled=
+[[1;34mINFO[m] Opening socket connection to server localhost/127.0.0.1:3838. Will not attempt to authenticate using SASL (unknown error)
+[[1;34mINFO[m] Socket connection established, initiating session, client: /127.0.0.1:59012, server: localhost/127.0.0.1:3838
+[[1;34mINFO[m] Creating new log file: log.1
+[[1;34mINFO[m] Session establishment complete on server localhost/127.0.0.1:3838, sessionid = 0x10206b1fe8f0000, negotiated timeout = 60000
+[[1;31mERROR[m] The failover controller encounters runtime error
+[[1;34mIN[1;FO[31mjm] avSesa.lang.Illsiegaon lAcorgunnectedmen.
+tException[m: [1;31mPath must start with / character[m
+    [1mat[m org.apache.zookeeper.common.PathUtils.validatePath ([1mPathUtils.java:51[m)
+    [1mat[m org.apache.zookeeper.ZooKeeper.exists ([1mZooKeeper.java:2000[m)
+    [1mat[m org.apache.zookeeper.ZooKeeper.exists ([1mZooKeeper.java:2049[m)
+    [1mat[m org.apache.hadoop.ha.ActiveStandbyElector.parentZNodeExists ([1mActiveStandbyElector.java:320[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.formatZK ([1mZKFailoverController.java:279[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.doRun ([1mZKFailoverController.java:222[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.access$000 ([1mZKFailoverController.java:63[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run ([1mZKFailoverController.java:181[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run ([1mZKFailoverController.java:177[m)
+    [1mat[m org.apache.hadoop.security.SecurityUtil.doAsLoginUserOrFatal ([1mSecurityUtil.java:503[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.run ([1mZKFailoverController.java:177[m)
+    [1mat[m org.apache.hadoop.ha.TestZKFailoverController.runFC ([1mTestZKFailoverController.java:717[m)
+    [1mat[m org.apache.hadoop.ha.TestZKFailoverController.testFencingMustBeConfiguredFuzz ([1mTestZKFailoverController.java:228[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 ([1mNative Method[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke ([1mNativeMethodAccessorImpl.java:62[m)
+    [1mat[m jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke ([1mDelegatingMethodAccessorImpl.java:43[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:566[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod$1.runReflectiveCall ([1mFrameworkMethod.java:59[m)
+    [1mat[m org.junit.internal.runners.model.ReflectiveCallable.run ([1mReflectiveCallable.java:12[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod.invokeExplosively ([1mFrameworkMethod.java:56[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.TrialRunner$1.evaluate ([1mTrialRunner.java:59[m)
+    [1mat[m org.junit.internal.runners.statements.RunBefores.evaluate ([1mRunBefores.java:26[m)
+    [1mat[m org.junit.internal.runners.statements.RunAfters.evaluate ([1mRunAfters.java:27[m)
+    [1mat[m org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call ([1mFailOnTimeout.java:288[m)
+    [1mat[m org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call ([1mFailOnTimeout.java:282[m)
+    [1mat[m java.util.concurrent.FutureTask.run ([1mFutureTask.java:264[m)
+    [1mat[m java.lang.Thread.run ([1mThread.java:829[m)
+[[1;34mINFO[m] Session: 0x10206b1fe8f0000 closed
+[[1;33mWARNING[m] Ignoring stale result from old client with sessionId 0x10206b1fe8f0000
+[[1;34mINFO[m] tearDown starting
+[[1;34mINFO[m] EventThread shut down for session: 0x10206b1fe8f0000
+[[1;34mINFO[m] STOPPING server
+[[1;34mINFO[m] ConnnectionExpirerThread interrupted
+[[1;34mINFO[m] selector thread exitted run method
+[[1;34mINFO[m] selector thread exitted run method
+[[1;34mINFO[m] accept thread exitted run method
+[[1;34mINFO[m] shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] Shutting down
+[[1;34mINFO[m] PrepRequestProcessor exited loop!
+[[1;34mINFO[m] SyncRequestProcessor exited!
+[[1;34mINFO[m] shutdown of request processor complete
+[[1;34mINFO[m] connecting to 127.0.0.1 3838
+[[1;34mINFO[m] FAILED testFencingMustBeConfiguredFuzz
+[1;31mjava.lang.IllegalArgumentException[m: [1;31mPath must start with / character[m
+    [1mat[m org.apache.zookeeper.common.PathUtils.validatePath ([1mPathUtils.java:51[m)
+    [1mat[m org.apache.zookeeper.ZooKeeper.exists ([1mZooKeeper.java:2000[m)
+    [1mat[m org.apache.zookeeper.ZooKeeper.exists ([1mZooKeeper.java:2049[m)
+    [1mat[m org.apache.hadoop.ha.ActiveStandbyElector.parentZNodeExists ([1mActiveStandbyElector.java:320[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.formatZK ([1mZKFailoverController.java:279[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.doRun ([1mZKFailoverController.java:222[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.access$000 ([1mZKFailoverController.java:63[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run ([1mZKFailoverController.java:181[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController$1.run ([1mZKFailoverController.java:177[m)
+    [1mat[m org.apache.hadoop.security.SecurityUtil.doAsLoginUserOrFatal ([1mSecurityUtil.java:503[m)
+    [1mat[m org.apache.hadoop.ha.ZKFailoverController.run ([1mZKFailoverController.java:177[m)
+    [1mat[m org.apache.hadoop.ha.TestZKFailoverController.runFC ([1mTestZKFailoverController.java:717[m)
+    [1mat[m org.apache.hadoop.ha.TestZKFailoverController.testFencingMustBeConfiguredFuzz ([1mTestZKFailoverController.java:228[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke0 ([1mNative Method[m)
+    [1mat[m jdk.internal.reflect.NativeMethodAccessorImpl.invoke ([1mNativeMethodAccessorImpl.java:62[m)
+    [1mat[m jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke ([1mDelegatingMethodAccessorImpl.java:43[m)
+    [1mat[m java.lang.reflect.Method.invoke ([1mMethod.java:566[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod$1.runReflectiveCall ([1mFrameworkMethod.java:59[m)
+    [1mat[m org.junit.internal.runners.model.ReflectiveCallable.run ([1mReflectiveCallable.java:12[m)
+    [1mat[m org.junit.runners.model.FrameworkMethod.invokeExplosively ([1mFrameworkMethod.java:56[m)
+    [1mat[m edu.berkeley.cs.jqf.fuzz.junit.TrialRunner$1.evaluate ([1mTrialRunner.java:59[m)
+    [1mat[m org.junit.internal.runners.statements.RunBefores.evaluate ([1mRunBefores.java:26[m)
+    [1mat[m org.junit.internal.runners.statements.RunAfters.evaluate ([1mRunAfters.java:27[m)
+    [1mat[m org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call ([1mFailOnTimeout.java:288[m)
+    [1mat[m org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call ([1mFailOnTimeout.java:282[m)
+    [1mat[m java.util.concurrent.FutureTask.run ([1mFutureTask.java:264[m)
+    [1mat[m java.lang.Thread.run ([1mThread.java:829[m)
+[[1;34mINFO[m] FINISHED testFencingMustBeConfiguredFuzz
+id_000000 ::= FAILURE (java.lang.IllegalArgumentException)
+E
+Time: 0.429
+There was 1 failure:
+1) testFencingMustBeConfiguredFuzz(org.apache.hadoop.ha.TestZKFailoverController)
+java.lang.IllegalArgumentException: Path must start with / character
+	at org.apache.zookeeper.common.PathUtils.validatePath(PathUtils.java:51)
+	at org.apache.zookeeper.ZooKeeper.exists(ZooKeeper.java:2000)
+	at org.apache.zookeeper.ZooKeeper.exists(ZooKeeper.java:2049)
+	at org.apache.hadoop.ha.ActiveStandbyElector.parentZNodeExists(ActiveStandbyElector.java:320)
+	at org.apache.hadoop.ha.ZKFailoverController.formatZK(ZKFailoverController.java:279)
+	at org.apache.hadoop.ha.ZKFailoverController.doRun(ZKFailoverController.java:222)
+	at org.apache.hadoop.ha.ZKFailoverController.access$000(ZKFailoverController.java:63)
+	at org.apache.hadoop.ha.ZKFailoverController$1.run(ZKFailoverController.java:181)
+	at org.apache.hadoop.ha.ZKFailoverController$1.run(ZKFailoverController.java:177)
+	at org.apache.hadoop.security.SecurityUtil.doAsLoginUserOrFatal(SecurityUtil.java:503)
+	at org.apache.hadoop.ha.ZKFailoverController.run(ZKFailoverController.java:177)
+	at org.apache.hadoop.ha.TestZKFailoverController.runFC(TestZKFailoverController.java:717)
+	at org.apache.hadoop.ha.TestZKFailoverController.testFencingMustBeConfiguredFuzz(TestZKFailoverController.java:228)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  5.214 s
+[[1;34mINFO[m] Finished at: 2022-10-15T14:18:15-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

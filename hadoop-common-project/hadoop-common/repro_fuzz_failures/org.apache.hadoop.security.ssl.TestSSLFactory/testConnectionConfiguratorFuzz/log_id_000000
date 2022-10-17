@@ -1,0 +1,86 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] Some problems were encountered while building the effective model for org.apache.hadoop:hadoop-common:jar:3.3.3
+[[1;33mWARNING[m] 'dependencyManagement.dependencies.dependency.(groupId:artifactId:type:classifier)' must be unique: org.apache.hbase:hbase-server:jar -> duplicate declaration of version ${hbase.version} @ org.apache.hadoop:hadoop-project:3.3.3, /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-project/pom.xml, line 1691, column 19
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] It is highly recommended to fix these problems because they threaten the stability of your build.
+[[1;33mWARNING[m] 
+[[1;33mWARNING[m] For this reason, future Maven versions might no longer support building such malformed projects.
+[[1;33mWARNING[m] 
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] Detecting the operating system and CPU architecture
+[[1;34mINFO[m] ------------------------------------------------------------------------
+[[1;34mINFO[m] os.detected.name: linux
+[[1;34mINFO[m] os.detected.arch: x86_64
+[[1;34mINFO[m] os.detected.version: 5.10
+[[1;34mINFO[m] os.detected.version.major: 5
+[[1;34mINFO[m] os.detected.version.minor: 10
+[[1;34mINFO[m] os.detected.release: ubuntu
+[[1;34mINFO[m] os.detected.release.version: 20.04
+[[1;34mINFO[m] os.detected.release.like.ubuntu: true
+[[1;34mINFO[m] os.detected.release.like.debian: true
+[[1;34mINFO[m] os.detected.classifier: linux-x86_64
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.apache.hadoop:hadoop-common[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding Apache Hadoop Common 3.3.3[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mjqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m @ [36mhadoop-common[0;1m ---[m
+Set Maven-Surefire-Plugin Configuration
+.[JQF] After pre round flag = false
+
+Time: 1.311
+
+OK (1 test)
+
+[JQF] After preRound mapping size = 25
+[CONFIG-CHANGE] hadoop.security.credential.clear-text-fallback = null -> null
+[CONFIG-CHANGE] hadoop.security.credential.provider.path = null -> null
+[CONFIG-CHANGE] hadoop.ssl.enabled.protocols = TLSv1.2 -> [B@248d2cec
+[CONFIG-CHANGE] hadoop.ssl.keystores.factory.class = org.apache.hadoop.security.ssl.FileBasedKeyStoresFactory -> [B@57167ccb
+[CONFIG-CHANGE] ssl.client.exclude.cipher.list = TLS_ECDHE_RSA_WITH_RC4_128_SHA,SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA,  
+SSL_RSA_WITH_DES_CBC_SHA,SSL_DHE_RSA_WITH_DES_CBC_SHA,  SSL_RSA_EXPORT_WITH_RC4_40_MD5,	 
+SSL_RSA_EXPORT_WITH_DES40_CBC_SHA,SSL_RSA_WITH_RC4_128_MD5,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA -> TLS_ECDHE_RSA_WITH_RC4_128_SHA,SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA,  
+[CONFIG-CHANGE] SSL_RSA_WITH_DES_CBC_SHA,SSL_DHE_RSA_WITH_DES_CBC_SHA,  SSL_RSA_EXPORT_WITH_RC4_40_MD5,	  = no-default -> null
+[CONFIG-CHANGE] SSL_RSA_EXPORT_WITH_DES40_CBC_SHA,SSL_RSA_WITH_RC4_128_MD5,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA = no-default -> null
+[CONFIG-CHANGE] ssl.client.keystore.type = jks -> [B@e7b3e54
+[CONFIG-CHANGE] ssl.client.stores.reload.interval = null -> null
+[CONFIG-CHANGE] ssl.client.truststore.type = jks -> [B@60861e5d
+[CONFIG-CHANGE] ssl.server.exclude.cipher.list = null -> TLS_ECDHE_RSA_WITH_RC4_128_SHA,SSL_DHE_RSA_EXPORT_WITH_DES40_CBC_SHA,  
+[CONFIG-CHANGE] SSL_RSA_WITH_DES_CBC_SHA,SSL_DHE_RSA_WITH_DES_CBC_SHA,  SSL_RSA_EXPORT_WITH_RC4_40_MD5,	  = no-default -> null
+[CONFIG-CHANGE] SSL_RSA_EXPORT_WITH_DES40_CBC_SHA,SSL_RSA_WITH_RC4_128_MD5,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA = no-default -> null
+.id_000000 ::= FAILURE (java.lang.RuntimeException)
+E
+Time: 0.265
+There was 1 failure:
+1) testConnectionConfiguratorFuzz(org.apache.hadoop.security.ssl.TestSSLFactory)
+java.lang.RuntimeException: java.lang.RuntimeException: java.lang.ClassNotFoundException: Class [B@6a07e6ca not found
+	at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2760)
+	at org.apache.hadoop.security.ssl.SSLFactory.<init>(SSLFactory.java:140)
+	at org.apache.hadoop.security.ssl.TestSSLFactory.testConnectionConfiguratorFuzz(TestSSLFactory.java:327)
+	... 51 trimmed
+Caused by: java.lang.RuntimeException: java.lang.ClassNotFoundException: Class [B@6a07e6ca not found
+	at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2728)
+	at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2752)
+	... 54 more
+Caused by: java.lang.ClassNotFoundException: Class [B@6a07e6ca not found
+	at org.apache.hadoop.conf.Configuration.getClassByName(Configuration.java:2632)
+	at org.apache.hadoop.conf.Configuration.getClass(Configuration.java:2726)
+	... 55 more
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;31mBUILD FAILURE[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  3.467 s
+[[1;34mINFO[m] Finished at: 2022-10-15T14:19:15-05:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;31mERROR[m] Failed to execute goal [32medu.berkeley.cs.jqf:jqf-maven-plugin:2.0-SNAPSHOT:repro[m [1m(default-cli)[m on project [36mhadoop-common[m: [1;31mTest case produces a failure.[m -> [1m[Help 1][m
+[[1;31mERROR[m] 
+[[1;31mERROR[m] To see the full stack trace of the errors, re-run Maven with the [1m-e[m switch.
+[[1;31mERROR[m] Re-run Maven using the [1m-X[m switch to enable full debug logging.
+[[1;31mERROR[m] 
+[[1;31mERROR[m] For more information about the errors and possible solutions, please read the following articles:
+[[1;31mERROR[m] [1m[Help 1][m http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
