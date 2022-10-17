@@ -11,7 +11,8 @@ def parse_one_failure(line):
     failure_id = splited[5]
     return test_class, test_method, failure_id        
 
-
+# Reproduce all failures from failure_file
+# Store all the output in output_dir
 def reproduce(failure_file, output_dir):
     if os.path.exists(output_dir):
         shutil.rmtree(output_dir)
@@ -28,8 +29,8 @@ def reproduce(failure_file, output_dir):
             cmd = shlex.split(repro_cmd)
             with open(str(log_file).strip(), 'w') as f:
                 subprocess.call(repro_cmd, shell=True, stdout=f)
-                exit(-1)
 
+                
 if __name__ == '__main__':
     failure_file = sys.argv[1]
     output_dir = sys.argv[2]
