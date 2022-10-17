@@ -817,15 +817,36 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   /** A new configuration. */
   public Configuration() {
     Configuration generatedConfig = ConfigurationGenerator.getGeneratedConfig();
-    if (generatedConfig != null) {
-      new Configuration(generatedConfig);
-    } else {
-      new Configuration(true);
-    }
-  }
+    synchronized(generatedConfig) {
+      // Make sure we clone a finalized state
+      // Resources like input streams can be processed only once
+      generatedConfig.getProps();
+      this.resources = (ArrayList<Resource>) generatedConfig.resources.clone();
+      if (generatedConfig.properties != null) {
+        this.properties = (Properties)generatedConfig.properties.clone();
+      }
 
-  public Configuration ConfigurationFuzz() {
-    return new Configuration(true);
+      if (generatedConfig.overlay!=null) {
+        this.overlay = (Properties)generatedConfig.overlay.clone();
+      }
+
+      this.restrictSystemProps = generatedConfig.restrictSystemProps;
+      if (generatedConfig.updatingResource != null) {
+        this.updatingResource = new ConcurrentHashMap<String, String[]>(
+                generatedConfig.updatingResource);
+      }
+      this.finalParameters = Collections.newSetFromMap(
+              new ConcurrentHashMap<String, Boolean>());
+      this.finalParameters.addAll(generatedConfig.finalParameters);
+      this.propertyTagsMap.putAll(generatedConfig.propertyTagsMap);
+    }
+
+    synchronized(Configuration.class) {
+      REGISTRY.put(this, null);
+    }
+    this.classLoader = generatedConfig.classLoader;
+    this.loadDefaults = generatedConfig.loadDefaults;
+    setQuietMode(generatedConfig.getQuietMode());
   }
 
   /** A new configuration where the behavior of reading from the default 
