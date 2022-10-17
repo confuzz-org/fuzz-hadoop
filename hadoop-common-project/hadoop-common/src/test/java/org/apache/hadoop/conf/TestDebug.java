@@ -1,24 +1,21 @@
 package org.apache.hadoop.conf;
 
 import com.pholser.junit.quickcheck.From;
-import edu.berkeley.cs.jqf.fuzz.Fuzz;
-import edu.berkeley.cs.jqf.fuzz.JQF;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import java.util.Map;
 
-@RunWith(JQF.class)
 public class TestDebug {
 
-    @Fuzz
+    @Test
     public void test(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+        Configuration conf = new Configuration();
         int count = 0;
-        String str = generatedConfig.get("fs.s3a.select.output.csv.quote.fields");
+        String str = conf.get("fs.s3a.select.output.csv.quote.fields");
         if (str.equals("always")) {
+            System.out.println("always");
             count ++;
         } else if (str.equals("asneeded")) {
-            generatedConfig.set("fake-config1","15");
+            conf.set("fake-config1","15");
             count --;
             throw new Exception("Fake Bug");
         }
