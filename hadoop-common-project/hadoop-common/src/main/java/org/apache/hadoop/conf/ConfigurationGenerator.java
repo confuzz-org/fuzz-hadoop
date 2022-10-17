@@ -23,6 +23,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     private static boolean debugEnabled = Boolean.getBoolean("generator.debug");
 
     private static boolean isReprod = Boolean.getBoolean("repro.info");
+
+    private static Configuration generatedConf = null;
     /**
      * Constructor for Configuration Generator
      */
@@ -49,7 +51,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         }
         ConfigGenerator.debugPrint("Map size before freshMap = " + ConfigTracker.getMapSize());
         curTestMapping = ConfigTracker.getConfigMap();
-        Configuration conf = new Configuration();
+        Configuration conf = new Configuration().ConfigurationFuzz();
 
         // Directly return the default configuration if it's pre-round
         // Otherwise the curTestMapping size should larger than 0 (if not then there is
@@ -87,7 +89,12 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             }
         }
         //ConfigTracker.freshMap();  // --> Comment out if we want to incrementally collect exercised config set.
+        generatedConf = conf;
 	    return conf;
+    }
+
+    public static Configuration getGeneratedConfig() {
+        return generatedConf;
     }
 
     // Internal test
