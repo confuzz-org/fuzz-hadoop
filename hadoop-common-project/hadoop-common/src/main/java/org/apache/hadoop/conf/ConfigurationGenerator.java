@@ -51,15 +51,18 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         }
         ConfigGenerator.debugPrint("Map size before freshMap = " + ConfigTracker.getMapSize());
         curTestMapping = ConfigTracker.getConfigMap();
-        Configuration conf = new Configuration().ConfigurationFuzz();
 
+        if (Boolean.getBoolean("preround")) {
+            ConfigGenerator.debugPrint("Return default configuration conf");
+            generatedConf = new Configuration(true);
+            return generatedConf;
+        }
+
+        Configuration conf = new Configuration(true);
         // Directly return the default configuration if it's pre-round
         // Otherwise the curTestMapping size should larger than 0 (if not then there is
         // no configuration parameter need to be fuzzed)
-        if (Boolean.getBoolean("preround")) {
-            ConfigGenerator.debugPrint("Return default configuration conf");
-            return conf;
-        } else if (curTestMapping.size() == 0) {
+        if (curTestMapping.size() == 0) {
             throw new IllegalArgumentException("No configuration parameter tracked from test " + clzName + "#" +
                     methodName +". Make sure (1) Set -DconfigFuzz flag correctly; (2) the test exercises at least " +
                     "one configuration parameter");
@@ -90,7 +93,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         }
         //ConfigTracker.freshMap();  // --> Comment out if we want to incrementally collect exercised config set.
         generatedConf = conf;
-	    return conf;
+	    return generatedConf;
     }
 
     public static Configuration getGeneratedConfig() {
