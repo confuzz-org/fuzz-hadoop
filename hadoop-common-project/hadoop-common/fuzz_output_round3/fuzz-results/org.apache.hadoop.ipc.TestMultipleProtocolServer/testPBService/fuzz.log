@@ -1,0 +1,304 @@
+Found crash: class org.apache.hadoop.thirdparty.protobuf.ServiceException - java.io.IOException: DestHost:destPort KingsLand:55431 , LocalHost:localPort KingsLand/127.0.1.1:0. Failed on local exception: java.io.IOException: org.apache.hadoop.security.AccessControlException: Client cannot authenticate via:[KERBEROS]
+Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round3/fuzz-results/org.apache.hadoop.ipc.TestMultipleProtocolServer/testPBService/failures/id_000000 random +crash
+Saving new input (at run 2): input #0 of size 140; reason = +count +cov +valid
+Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round3/fuzz-results/org.apache.hadoop.ipc.TestMultipleProtocolServer/testPBService/corpus/id_000000 random +count +cov +valid
+Found crash: class org.apache.hadoop.thirdparty.protobuf.ServiceException - org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.authorize.AuthorizationException): Protocol interface org.apache.hadoop.ipc.TestRpcBase$TestRpcService is not known.
+Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round3/fuzz-results/org.apache.hadoop.ipc.TestMultipleProtocolServer/testPBService/failures/id_000001 src:000000,havoc:17 +crash
+Found crash: class org.apache.hadoop.thirdparty.protobuf.ServiceException - java.io.IOException: DestHost:destPort KingsLand:52017 , LocalHost:localPort KingsLand/127.0.1.1:0. Failed on local exception: java.io.IOException: org.apache.hadoop.security.AccessControlException: Client cannot authenticate via:[KERBEROS]
+Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round3/fuzz-results/org.apache.hadoop.ipc.TestMultipleProtocolServer/testPBService/failures/id_000002 src:000000,havoc:8 +crash
+Found crash: class org.apache.hadoop.thirdparty.protobuf.ServiceException - java.io.EOFException: End of File Exception between local host is: "KingsLand/127.0.1.1"; destination host is: "KingsLand":58339; : java.io.EOFException; For more details see:  http://wiki.apache.org/hadoop/EOFException
+Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round3/fuzz-results/org.apache.hadoop.ipc.TestMultipleProtocolServer/testPBService/failures/id_000003 src:000000,havoc:9 +crash
+Found crash: class org.apache.hadoop.thirdparty.protobuf.ServiceException - org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.authorize.AuthorizationException): Protocol interface org.apache.hadoop.ipc.TestRpcBase$TestRpcService is not known.
+Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round3/fuzz-results/org.apache.hadoop.ipc.TestMultipleProtocolServer/testPBService/failures/id_000004 src:000000,havoc:5 +crash
+Found crash: class java.lang.ClassCastException - class org.apache.hadoop.ipc.RpcException cannot be cast to class org.apache.hadoop.ipc.RemoteException (org.apache.hadoop.ipc.RpcException and org.apache.hadoop.ipc.RemoteException are in unnamed module of loader edu.berkeley.cs.jqf.instrument.InstrumentingClassLoader @493da830)
+Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round3/fuzz-results/org.apache.hadoop.ipc.TestMultipleProtocolServer/testPBService/failures/id_000005 src:000000,havoc:11 +crash
+
+# Cycle 1 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 2 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 3 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 4 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 5 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 6 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 7 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 8 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 9 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 10 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 11 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 12 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 13 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+Found crash: class java.lang.ClassCastException - 
+Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output_round3/fuzz-results/org.apache.hadoop.ipc.TestMultipleProtocolServer/testPBService/failures/id_000006 src:000000,havoc:4 +crash
+
+# Cycle 14 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 15 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 16 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 17 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 18 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 19 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 20 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 21 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 22 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 23 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 24 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 25 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 26 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 27 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 28 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 29 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 30 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 31 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
+
+# Cycle 32 completed.
+Here is a list of favored inputs:
+Input 0 is responsible for 1 branches
+Total 1 branches covered
+
+
+
+
