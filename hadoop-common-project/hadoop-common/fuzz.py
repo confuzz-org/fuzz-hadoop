@@ -6,7 +6,7 @@ timeout_per_round = 600 # second
 # Return two string of test_class and test_name 
 def get_test_class_method(line):
     res = line.split('#')
-    return res[0].strip(), res[1].strip()+"Fuzz"
+    return res[0].strip(), res[1].strip()
 
 def run(input_file, target_dir):
     with open(input_file, 'r') as f:
