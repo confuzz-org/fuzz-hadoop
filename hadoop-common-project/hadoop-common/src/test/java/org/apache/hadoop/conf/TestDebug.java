@@ -7,7 +7,7 @@ import org.junit.Test;
 public class TestDebug {
 
     @Test
-    public void test(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {
+    public void test(/*@From(ConfigurationGenerator.class) Configuration generatedConfig*/) throws Exception {
         Configuration conf = new Configuration();
         int count = 0;
         String str = conf.get("fs.s3a.select.output.csv.quote.fields");
@@ -15,7 +15,8 @@ public class TestDebug {
             System.out.println("always");
             count ++;
         } else if (str.equals("asneeded")) {
-            conf.set("fake-config1","15");
+	    System.out.println("asneeded");
+	    conf.set("fake-config1","15");
             count --;
             throw new Exception("Fake Bug");
         }
