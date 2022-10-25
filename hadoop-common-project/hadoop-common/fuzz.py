@@ -14,7 +14,7 @@ def run(input_file, target_dir):
             test_class, test_method = get_test_class_method(line)
             print("======================ConfFuzzing {}#{} =========================".format(test_class, test_method), flush=True)
             log_file = "logs/log_{}_{}".format(test_class, test_method)
-            fuzz_cmd = "JAVA_HOME=\"/usr/lib/jvm/java-11-openjdk-amd64\" mvn jqf:fuzz -Dclass={} -Dmethod={} -Dtarget={}/ -Dconstraint.file=mappingDir/constraint -Dtime=10m -DexitOnCrash -Djqf.failOnDeclaredExceptions -DsetSurefireConfig -DconfigFuzz | tee {}".format(test_class, test_method, target_dir,  log_file)
+            fuzz_cmd = "JAVA_HOME=\"/usr/lib/jvm/java-11-openjdk-amd64\" mvn jqf:fuzz -Dclass={} -Dmethod={} -Dtarget={}/ -Dconstraint.file=mappingDir/constraint -Dtime=10m -Djqf.failOnDeclaredExceptions -DsetSurefireConfig -DconfigFuzz | tee {}".format(test_class, test_method, target_dir,  log_file)
             cmd = shlex.split(fuzz_cmd)
             #print(cmd)
             try:
