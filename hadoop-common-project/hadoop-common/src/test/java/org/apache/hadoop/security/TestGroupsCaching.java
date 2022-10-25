@@ -52,7 +52,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
-@RunWith(JQF.class)
+
 public class TestGroupsCaching {
   public static final Logger TESTLOG =
       LoggerFactory.getLogger(TestGroupsCaching.class);

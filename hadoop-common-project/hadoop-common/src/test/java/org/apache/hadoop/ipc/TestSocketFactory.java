@@ -57,7 +57,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * test StandardSocketFactory and SocksSocketFactory NetUtils
  *
  */
-@RunWith(JQF.class)
+
 public class TestSocketFactory {
 
   private static final int START_STOP_TIMEOUT_SEC = 30;

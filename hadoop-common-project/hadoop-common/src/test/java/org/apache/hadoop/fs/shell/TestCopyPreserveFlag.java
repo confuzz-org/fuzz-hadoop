@@ -44,7 +44,7 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
-@RunWith(JQF.class)
+
 public class TestCopyPreserveFlag {
   private static final int MODIFICATION_TIME = 12345000;
   private static final int ACCESS_TIME = 23456000;

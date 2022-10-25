@@ -50,7 +50,7 @@ import java.util.Enumeration;
 /**
  * Test do as effective user.
  */
-@RunWith(JQF.class)
+
 public class TestDoAsEffectiveUser extends TestRpcBase {
   final private static String REAL_USER_NAME = "realUser1@HADOOP.APACHE.ORG";
   final private static String REAL_USER_SHORT_NAME = "realUser1";

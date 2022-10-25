@@ -46,7 +46,7 @@ import org.apache.hadoop.thirdparty.protobuf.RpcController;
 import org.apache.hadoop.thirdparty.protobuf.ServiceException;
 import org.junit.runner.RunWith;
 
-@RunWith(JQF.class)
+
 public class TestProtoBufRPCCompatibility {
 
   private static final String ADDRESS = "0.0.0.0";

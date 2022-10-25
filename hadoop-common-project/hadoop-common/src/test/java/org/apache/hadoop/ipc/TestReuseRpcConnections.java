@@ -39,7 +39,7 @@ import org.junit.runner.RunWith;
  * This class mainly tests behaviors of reusing RPC connections for various
  * retry policies.
  */
-@RunWith(JQF.class)
+
 public class TestReuseRpcConnections extends TestRpcBase {
   @Before
   public void setup() {

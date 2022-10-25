@@ -70,7 +70,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * This class tests the local file system via the FileSystem abstraction.
  */
-@RunWith(JQF.class)
+
 public class TestLocalFileSystem {
   private static final File base =
       GenericTestUtils.getTestDir("work-dir/localfs");

@@ -46,7 +46,7 @@ import static org.junit.Assert.fail;
 
 /** Split from TestRPC. */
 @SuppressWarnings("deprecation")
-@RunWith(JQF.class)
+
 public class TestRPCServerShutdown extends TestRpcBase {
 
   public static final Logger LOG =

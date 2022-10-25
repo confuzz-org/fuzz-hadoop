@@ -44,7 +44,7 @@ import org.junit.runner.RunWith;
 
 import static org.apache.hadoop.fs.shell.CopyCommandWithMultiThread.DEFAULT_QUEUE_SIZE;
 import static org.junit.Assert.assertEquals;
-@RunWith(JQF.class)
+
 public class TestCpCommand {
 
   private static final String FROM_DIR_NAME = "fromDir";

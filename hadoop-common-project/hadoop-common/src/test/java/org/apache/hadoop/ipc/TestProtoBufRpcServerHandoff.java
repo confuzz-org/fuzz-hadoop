@@ -41,7 +41,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-@RunWith(JQF.class)
+
 public class TestProtoBufRpcServerHandoff {
 
   public static final Logger LOG =

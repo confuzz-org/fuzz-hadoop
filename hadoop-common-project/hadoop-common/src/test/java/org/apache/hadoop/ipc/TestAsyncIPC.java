@@ -50,7 +50,7 @@ import java.util.concurrent.TimeoutException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-@RunWith(JQF.class)
+
 public class TestAsyncIPC {
 
   private static Configuration conf;
@@ -248,7 +248,7 @@ public class TestAsyncIPC {
     internalTestAsyncCall(3, true, 2, 5, 10);
   }
 
-  @Test(timeout = 60000)
+  @Test
   public void testAsyncCall() throws IOException, InterruptedException,
       ExecutionException {
     internalTestAsyncCall(3, false, 2, 5, 100);

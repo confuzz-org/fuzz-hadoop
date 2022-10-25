@@ -44,7 +44,7 @@ import org.junit.runner.RunWith;
 /**
  * Test the codec to raw coder mapping.
  */
-@RunWith(JQF.class)
+
 public class TestCodecRawCoderMapping {
 
   private static Configuration conf;

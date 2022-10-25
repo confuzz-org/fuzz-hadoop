@@ -34,7 +34,7 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
-@RunWith(JQF.class)
+
 public class TestChecksumFileSystem {
   static final String TEST_ROOT_DIR =
       GenericTestUtils.getTempPath("work-dir/localfs");

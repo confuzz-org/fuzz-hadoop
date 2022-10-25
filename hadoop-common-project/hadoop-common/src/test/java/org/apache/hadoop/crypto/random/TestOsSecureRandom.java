@@ -31,7 +31,7 @@ import org.junit.Assume;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(JQF.class)
+
 public class TestOsSecureRandom {
 
   private static OsSecureRandom getOsSecureRandom() throws IOException {

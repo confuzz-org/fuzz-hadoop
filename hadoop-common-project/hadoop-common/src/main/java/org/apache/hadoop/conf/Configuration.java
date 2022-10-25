@@ -816,6 +816,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   
   /** A new configuration. */
   public Configuration() {
+      System.out.println("In the default constrcutor of Configuration()");
     Configuration generatedConfig = ConfigurationGenerator.getGeneratedConfig();
     synchronized(generatedConfig) {
       // Make sure we clone a finalized state

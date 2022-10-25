@@ -58,7 +58,7 @@ import com.pholser.junit.quickcheck.From;
  * Basic test case that the ConfServlet can write configuration
  * to its output in XML and JSON format.
  */
-@RunWith(JQF.class)
+
 public class TestConfServlet {
   private static final String TEST_KEY = "testconfservlet.key";
   private static final String TEST_VAL = "testval";

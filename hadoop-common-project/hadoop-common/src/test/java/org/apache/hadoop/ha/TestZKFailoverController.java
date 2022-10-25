@@ -46,7 +46,7 @@ import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.slf4j.event.Level;
-@RunWith(JQF.class)
+
 public class TestZKFailoverController extends ClientBaseWithFixes {
   private Configuration conf;
   private MiniZKFCCluster cluster;

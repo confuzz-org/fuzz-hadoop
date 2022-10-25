@@ -27,7 +27,7 @@ import org.apache.hadoop.util.ToolRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(JQF.class)
+
 public class TestRPCCallBenchmark {
 
   @Test(timeout=20000)

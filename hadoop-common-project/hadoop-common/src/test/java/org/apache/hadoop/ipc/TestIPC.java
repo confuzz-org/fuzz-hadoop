@@ -114,7 +114,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
 
 import static org.assertj.core.api.Assertions.assertThat;
-@RunWith(JQF.class)
+
 /** Unit tests for IPC. */
 public class TestIPC {
   public static final Logger LOG = LoggerFactory.getLogger(TestIPC.class);

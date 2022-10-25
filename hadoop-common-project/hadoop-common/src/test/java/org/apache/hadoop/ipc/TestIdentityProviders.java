@@ -38,7 +38,7 @@ import edu.berkeley.cs.jqf.fuzz.Fuzz;
 import edu.berkeley.cs.jqf.fuzz.JQF;
 import com.pholser.junit.quickcheck.From;
 
-@RunWith(JQF.class)
+
 public class TestIdentityProviders {
   public class FakeSchedulable implements Schedulable {
     public FakeSchedulable() {

@@ -54,7 +54,7 @@ import java.security.KeyPair;
 import java.security.cert.X509Certificate;
 import java.util.Collections;
 import java.util.Map;
-@RunWith(JQF.class)
+
 public class TestSSLFactory {
   private static final Logger LOG = LoggerFactory
       .getLogger(TestSSLFactory.class);

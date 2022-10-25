@@ -45,7 +45,7 @@ import com.pholser.junit.quickcheck.From;
  * This is intended to be a set of unit tests for the 
  * org.apache.hadoop.ipc.Server class.
  */
-@RunWith(JQF.class)
+
 public class TestServer {
 
   @Fuzz

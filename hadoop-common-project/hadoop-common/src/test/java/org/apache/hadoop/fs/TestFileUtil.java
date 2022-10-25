@@ -81,7 +81,7 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-@RunWith(JQF.class)
+
 public class TestFileUtil {
   private static final Logger LOG = LoggerFactory.getLogger(TestFileUtil.class);
 

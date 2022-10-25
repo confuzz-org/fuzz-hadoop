@@ -44,7 +44,7 @@ import static org.junit.Assert.*;
 /**
  * This class tests the local file system via the FileSystem abstraction.
  */
-@RunWith(JQF.class)
+
 public class TestLocalFileSystemPermission {
 
   public static final Logger LOGGER =

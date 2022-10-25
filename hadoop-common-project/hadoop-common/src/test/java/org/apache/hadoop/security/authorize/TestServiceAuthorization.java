@@ -39,7 +39,7 @@ import org.apache.hadoop.security.token.TokenInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(JQF.class)
+
 public class TestServiceAuthorization {
 
   private static final String ACL_CONFIG = "test.protocol.acl";

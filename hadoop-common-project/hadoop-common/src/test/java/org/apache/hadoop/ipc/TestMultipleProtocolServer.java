@@ -27,7 +27,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(JQF.class)
+
 public class TestMultipleProtocolServer extends TestRpcBase {
 
   private static RPC.Server server;

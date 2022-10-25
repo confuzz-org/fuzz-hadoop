@@ -29,7 +29,7 @@ import org.slf4j.event.Level;
 /**
  * Test {@link MiniRPCBenchmark}
  */
-@RunWith(JQF.class)
+
 public class TestMiniRPCBenchmark {
   @Fuzz
   public void testSimpleFuzz(@From(ConfigurationGenerator.class) Configuration generatedConfig) throws Exception {

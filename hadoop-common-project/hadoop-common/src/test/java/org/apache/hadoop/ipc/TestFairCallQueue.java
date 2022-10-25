@@ -62,7 +62,7 @@ import org.apache.hadoop.ipc.CallQueueManager.CallQueueOverflowException;
 import org.apache.hadoop.ipc.protobuf.RpcHeaderProtos.RpcResponseHeaderProto.RpcStatusProto;
 
 import static org.assertj.core.api.Assertions.assertThat;
-@RunWith(JQF.class)
+
 public class TestFairCallQueue {
   private FairCallQueue<Schedulable> fcq;
 
