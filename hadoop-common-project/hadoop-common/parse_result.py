@@ -11,25 +11,26 @@ def get_csv(test_list_file, fuzz_output_dir, repro_output_dir):
     print(title)
     all_method_set = get_test_method_set(test_list_file)
     success_count, total_failure, method_failure, success_set, failed_method_mapping = get_num(fuzz_output_dir)
-    repro_dict = get_repro(repro_output_dir)
-    
+    repro_dict, _ = get_repro(repro_output_dir)
     for method in all_method_set:
         successfully_fuzzed = method in success_set
         num_failures = failed_method_mapping[method] if method in failed_method_mapping.keys() else 0
         
         if method not in repro_dict:
             csv_str = f"{method},{successfully_fuzzed},{num_failures},null,null,null,null,null,null"
+            print(csv_str)
         else:
             for r in repro_dict[method]:
                 csv_str = f"{method},{successfully_fuzzed},{num_failures},{r[0]},{r[1]},{r[2]},{r[3]},{r[4]},{r[5]}"
-        print(csv_str)
+                print(csv_str)
 
     summary_str = f"Summary,{success_count},{total_failure},null,null,null,null,null,null"
     print(summary_str)
 
+
 def get_repro(repro_output_dir):
     # failure_id, parent_result, parent_exception, failure_result, failure_exception, reproducibility
-    
+    exception_dict = {}  # key: exception_name; value: A set of method that trigger this exception
     repro_dict = {}      # key: method_name; value: A list of lists that stores each failure's detailed info
     for root, dirs, files in os.walk(repro_output_dir):
         for file in files:
@@ -39,12 +40,12 @@ def get_repro(repro_output_dir):
                 if method_name not in repro_dict:
                     repro_dict[method_name] = []
                 log_file_path = os.path.join(root, file)
-                repro_dict[method_name].append(parse_repro_log(log_file_path))
+                repro_dict[method_name].append(parse_repro_log(method_name, log_file_path, exception_dict))
                 
-    return repro_dict
+    return repro_dict, exception_dict
 
 
-def parse_repro_log(log_file):
+def parse_repro_log(method_name, log_file, exception_dict):
     parent_result = False
     parent_exception = "no_exception"
     failure_result = False
@@ -64,7 +65,9 @@ def parse_repro_log(log_file):
                 exception_name = "no_exception"
                 if (len(splited_result) > 1):
                     exception_name = splited_result[1]
-                   
+                    if exception_name not in exception_dict:
+                        exception_dict[exception_name] = set()
+                    exception_dict[exception_name].add(method_name)
                 if "parent" in round:
                     parent_result = True if splited_result[0] == "SUCCESS" else False
                     parent_exception = exception_name
@@ -123,10 +126,18 @@ def get_test_method_set(test_list_file):
     return method_set
 
 
+def get_exception_group(repro_output_dir):
+    _, exception_dict = get_repro(repro_output_dir)
+    print("Exception_name, #_triggered, Method_list")
+    for e, method_set in exception_dict.items():
+        print(f"{e},{len(method_set)},{method_set}")
+
+    
 if __name__ == '__main__':
     fuzz_output_dir = "/home/swang516/xlab/cfuzz/nostring-hadoop/hadoop-common-project/hadoop-common/fuzz_output_all/fuzz-results"
     test_list_file = "/home/swang516/xlab/cfuzz/nostring-hadoop/hadoop-common-project/hadoop-common/test_input_all"
     repro_output_dir = "/home/swang516/xlab/cfuzz/nostring-hadoop/hadoop-common-project/hadoop-common/repro_fuzz_all"
     
     get_csv(test_list_file, fuzz_output_dir, repro_output_dir)
-
+    #get_exception_group(repro_output_dir)
+    
