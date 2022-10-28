@@ -1237,9 +1237,9 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public void trackConfig(String ctestParam, String result, boolean isSet) {
     if (ctestLogEnabled) {
       if (isSet) {
- 	LOG.warn("[CTEST][SET-PARAM] " + ctestParam + " = " + result); //CTEST
+ 	LOG.warn("[CTEST][SET-PARAM] " + ctestParam + " = " + result + " " + getStackTrace()); //CTEST
       } else {
-        LOG.warn("[CTEST][GET-PARAM] " + ctestParam + " = " + result); //CTEST
+        LOG.warn("[CTEST][GET-PARAM] " + ctestParam + " = " + result + " " + getStackTrace()); //CTEST
       }
     }
   }
