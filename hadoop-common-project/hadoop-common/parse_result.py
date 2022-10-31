@@ -10,7 +10,7 @@ def get_csv(test_list_file, fuzz_output_dir, repro_output_dir):
     title = "method_name,successfully_fuzzed,#_failures,failure_id,parent_result,parent_exception,failure_result,failure_exception,reproducibility"
     print(title)
     all_method_set = get_test_method_set(test_list_file)
-    success_count, total_failure, method_failure, success_set, failed_method_mapping = get_num(fuzz_output_dir)
+    success_count, total_failure, method_failure, success_set, failed_method_mapping = get_num(fuzz_output_dir, False)
     repro_dict, _ = get_repro(repro_output_dir)
     for method in all_method_set:
         successfully_fuzzed = method in success_set
@@ -81,7 +81,7 @@ def parse_repro_log(method_name, log_file, exception_dict):
     return [cur_id, parent_result, parent_exception, failure_result, failure_exception, reproducibility]
                     
 
-def get_num(fuzz_output_dir):
+def get_num(fuzz_output_dir, to_print):
     success_method_count = 0   # How many tests have been successfully fuzzed
     total_failure = 0   # How many total failures has been countered (one method could have multiple failures)
     method_failure = 0  # How many method-level failures has been countered (multiple failures in one method counts as one)
@@ -110,10 +110,11 @@ def get_num(fuzz_output_dir):
     for method in success_set:
         if method not in failed_method_mapping:
             failed_method_mapping[method] = 0
-            
-    #print(f"success_method_count = {success_method_count}\ntotal_failure = {total_failure}\nmethod_failure = {method_failure}")
-    #print(f"success_set len = {len(success_set)}, type = {type(success_set)}")
-    #print(f"failed_method_mapping len = {len(failed_method_mapping)}")
+
+    if to_print:
+        print(f"success_method_count = {success_method_count}\ntotal_failure = {total_failure}\nmethod_failure = {method_failure}")
+        print(f"success_set len = {len(success_set)}, type = {type(success_set)}")
+        print(f"failed_method_mapping len = {len(failed_method_mapping)}")
     return success_method_count, total_failure, method_failure, success_set, failed_method_mapping
 
 
