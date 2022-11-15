@@ -1,3 +1,4 @@
 #!/bin/bash
-
-for file in $(find . -name "input*"); do python3 configGen.py $file outputs/; done
+INPUT_DIR=$1
+OUTPUT_DIR=$2
+for file in $(find ${INPUT_DIR} -name "input*"); do python3 configGen.py $file ${OUTPUT_DIR}; done

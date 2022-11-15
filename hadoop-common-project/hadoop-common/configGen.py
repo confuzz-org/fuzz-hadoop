@@ -15,20 +15,27 @@ target_config_file = "target/classes/core-ctest.xml"
 # [PARENT-CONFIG-DIFF] ha.zookeeper.quorum = 127.0.0.1:2221 -> 127.0.0.1:32685
 def parse_same_or_new(line):
     splited = line.strip().split(" ")
-    if "PARENT-CONFIG-SAME" in line or "PARENT-CONFIG-SAME" in line:
+    key = ""
+    value = ""
+    if "PARENT-CONFIG-SAME" in line or "PARENT-CONFIG-NEW" in line:
         key = splited[1]
-        value = splited[3]
+        if len(splited) > 3:
+            value = splited[3]
     elif "PARENT-CONFIG-DIFF" in line:
         key = splited[1]
-        value = splited[5]
+        if len(splited) > 5:
+            value = splited[5]
     return key, value
 
 
 # Initialization phase to put all injected configuration into current_param
 def put_all_param_to_dic(input_config_file):
+    # If file is empty (parent round failure)
+    if not os.path.getsize(input_config_file):
+        exit(0)
     with open(input_config_file, 'r') as f_input:
         for line in f_input: 
-            if "test=" in line:
+            if "[TEST]=" in line or "test=" in line:
                 global test
                 test = line.strip().split("=")[1]
                 continue
@@ -39,16 +46,16 @@ def put_all_param_to_dic(input_config_file):
 
 # Parse generated configuration from input_config_file
 # Put them into target_config_file for debug
-def run (input_config_file, output_dir):
+def run(input_config_file, output_dir):
     put_all_param_to_dic(input_config_file)
     dict_len = len(current_param)
     if len(key_list) != dict_len:
-        print("Length of key list is different from parameter set")
+        print("Length of key list is different from parameter set {} vs {}".format(len(key_list), dict_len))
     else:
         for i in range(dict_len):
             current_key = key_list[i]
             run_and_check(test, current_key)
-        write_dict_to_file(test, output_dir, str(input_config_file.split("/")[-1]))
+        write_dict_to_file(test, output_dir, str(input_config_file.split("-")[-1]))
 
 
 # Run test without current_key injected
@@ -76,8 +83,8 @@ def check_result(check_file, current_key):
             del current_param[current_key]
 
 
-def write_dict_to_file(test, output_dir, name):
-    output_file = os.path.join(output_dir, "{}-{}".format(test, name))
+def write_dict_to_file(test, output_dir, failure_id):
+    output_file = os.path.join(output_dir, "{}-failure_{}".format(test, failure_id))
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
     with open(output_file, 'w') as f:
@@ -92,5 +99,5 @@ def maven_clean_install():
 if __name__ == '__main__':
     input_config_file = sys.argv[1]
     output_dir = sys.argv[2]
-    maven_clean_install()
+    #maven_clean_install()
     run(input_config_file, output_dir)
