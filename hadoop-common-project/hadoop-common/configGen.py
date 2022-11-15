@@ -21,7 +21,7 @@ def build_file(test, run_id, prefix = "", suffix = ".json"):
             / ('_'.join([prefix, f"{run_id}"]) + suffix)
 
 def read_config(test, run_id):
-    failed_config_file = build_file(test, run_id, prefix="failed_config")
+    failed_config_file = build_file(test, run_id, prefix="config")
     parent_config_file = build_file(test, run_id, prefix="parent_config")
     if not failed_config_file.exists() or not parent_config_file.exists():
         trace_file = build_file(test, run_id, prefix="id", suffix="")
@@ -31,7 +31,8 @@ def read_config(test, run_id):
             exit(-1)
         # Run repro again
         print("No config file found. Running repro with config dump...")
-        mvn_cmd = f"cd {fuzzingDir};JAVA_HOME=\"{JAVA11_HOME}\" mvn jqf:repro -Dclass={test.split('#')[0]} -Dtest={test.split('#')[1]} -Dconstraint.file=mappingDir/constraint -Djqf.failOnDeclaredExceptions -DsetSurefireConfig -DconfigFuzz -Dannotation.instrument -Dgenerator.nostring -DdumpConfig -Dinput={str(trace_file)}"
+        mvn_cmd = f"cd {fuzzingDir};JAVA_HOME=\"{JAVA11_HOME}\" mvn jqf:repro -Dclass={test.split('#')[0]} -Dmethod={test.split('#')[1]} -Dconstraint.file=mappingDir/constraint -Djqf.failOnDeclaredExceptions -DsetSurefireConfig -DconfigFuzz -Dannotation.instrument -Dgenerator.nostring -DdumpConfig -Dinput={str(trace_file)}"
+        print(mvn_cmd)
         os.system(mvn_cmd)
         if not failed_config_file.exists() or not parent_config_file.exists():
             print("Repro failed to dump config JSON. Is there something wrong?")
