@@ -3,8 +3,8 @@ package org.apache.hadoop.conf;
 import com.pholser.junit.quickcheck.generator.GenerationStatus;
 import com.pholser.junit.quickcheck.generator.Generator;
 import com.pholser.junit.quickcheck.random.SourceOfRandomness;
-import edu.berkeley.cs.jqf.fuzz.configfuzz.ConfigGenerator;
-import edu.berkeley.cs.jqf.fuzz.configfuzz.ConfigTracker;
+import edu.illinois.confuzz.config.ConfigGenerator;
+import edu.illinois.confuzz.config.ConfigTracker;
 
 import java.io.*;
 import java.nio.file.Path;

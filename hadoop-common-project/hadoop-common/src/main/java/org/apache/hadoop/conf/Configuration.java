@@ -24,7 +24,7 @@ import com.ctc.wstx.io.SystemId;
 import com.ctc.wstx.stax.WstxInputFactory;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
-import edu.berkeley.cs.jqf.fuzz.configfuzz.ConfigTracker;
+import edu.illinois.confuzz.config.ConfigTracker;
 import org.apache.hadoop.thirdparty.com.google.common.annotations.VisibleForTesting;
 
 import java.io.BufferedInputStream;

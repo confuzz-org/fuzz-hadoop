@@ -11,14 +11,17 @@ public class TestDebug {
         Configuration conf = new Configuration();
         int count = 0;
         String str = conf.get("fs.s3a.select.output.csv.quote.fields");
+        //System.out.println(str);
         if (str.equals("always")) {
             System.out.println("always");
             count ++;
         } else if (str.equals("asneeded")) {
-	    System.out.println("asneeded");
-	    conf.set("fake-config1","15");
+            System.out.println("asneeded");
+	        conf.set("fake-config1","15");
             count --;
             throw new Exception("Fake Bug");
+        } else {
+            System.out.println(str);
         }
         //System.out.println("Conf Length : " + conf.size());
     }
