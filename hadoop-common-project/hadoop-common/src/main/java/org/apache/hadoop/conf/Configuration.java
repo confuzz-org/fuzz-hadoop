@@ -1228,7 +1228,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   private String getStackTrace() {
     String stacktrace = " ";
     for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
-      stacktrace = stacktrace.concat(element.getClassName() + "\t");
+      stacktrace = stacktrace.concat(element.getClassName()+ "#" + element.getMethodName() + "\t");
     }
     return stacktrace;
   }
