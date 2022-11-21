@@ -1271,7 +1271,11 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
 
   private boolean ctestLogEnabled = Boolean.getBoolean("ctest.log");
   public void trackConfig(String ctestParam, String result, boolean isSet) {
-    ConfigTracker.track(ctestParam, result);
+    if (isSet) {
+        ConfigTracker.trackSet(ctestParam, result);
+    } else {
+        ConfigTracker.trackGet(ctestParam, result);
+    }
     if (ctestLogEnabled) {
       if (isSet) {
  	      LOG.warn("[CTEST][SET-PARAM] " + ctestParam + " = " + result + " " + getStackTrace()); //CTEST

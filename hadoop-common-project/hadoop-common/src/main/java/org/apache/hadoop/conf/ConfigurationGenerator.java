@@ -52,6 +52,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         ConfigGenerator.debugPrint("Map size before freshMap = " + ConfigTracker.getMapSize());
         curTestMapping = ConfigTracker.getConfigMap();
 
+        // Directly return the default configuration if it's pre-round
         if (Boolean.getBoolean("preround")) {
             ConfigGenerator.debugPrint("Return default configuration conf");
             generatedConf = new Configuration(true);
@@ -59,7 +60,6 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         }
 
         Configuration conf = new Configuration(true);
-        // Directly return the default configuration if it's pre-round
         // Otherwise the curTestMapping size should larger than 0 (if not then there is
         // no configuration parameter need to be fuzzed)
         if (curTestMapping.size() == 0) {
