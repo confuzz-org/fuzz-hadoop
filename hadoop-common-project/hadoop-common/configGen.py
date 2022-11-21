@@ -22,42 +22,25 @@ def build_file(test, run_id, prefix = "", suffix = ".json"):
 
 def read_config(test, run_id):
     failed_config_file = build_file(test, run_id, prefix="config")
-    parent_config_file = build_file(test, run_id, prefix="parent_config")
-    if not failed_config_file.exists() or not parent_config_file.exists():
-        trace_file = build_file(test, run_id, prefix="id", suffix="")
-        print(trace_file)
-        if not trace_file.exists():
-            print("No trace file found. Is there no failure for the fuzzing?")
-            exit(-1)
-        # Run repro again
-        print("No config file found. Running repro with config dump...")
-        mvn_cmd = f"cd {fuzzingDir};JAVA_HOME=\"{JAVA11_HOME}\" mvn jqf:repro -Dclass={test.split('#')[0]} -Dmethod={test.split('#')[1]} -Dconstraint.file=mappingDir/constraint -Djqf.failOnDeclaredExceptions -DsetSurefireConfig -DconfigFuzz -Dannotation.instrument -Dgenerator.nostring -DdumpConfig -Dinput={str(trace_file)}"
-        print(mvn_cmd)
-        os.system(mvn_cmd)
-        if not failed_config_file.exists() or not parent_config_file.exists():
-            print("Repro failed to dump config JSON. Is there something wrong?")
-            exit(-1)
+    if not failed_config_file.exists():
+        print("No trace file found. Is there no failure for the fuzzing?")
+        exit(-1)
     with open(failed_config_file) as f:
         failed_config = json.load(f)
-    with open(parent_config_file) as f:
-        parent_config = json.load(f)
-    return failed_config, parent_config
+    return failed_config
 
 def inject_config(config, without_key = None):
     target_config_file = debuggingDir / "target" / "classes" / "core-ctest.xml"
     with open(target_config_file, "w") as f:
         f.write(header)
         for k, v in config.items():
-            if k == without_key:
+            if k == without_key or v == None:
                 continue
             f.write(conf_str.format(k, v))
         f.write(tile)
 
 def run(test, run_id, output_dir):
-    failed_config, parent_config = read_config(test, run_id)
-    if len(failed_config) != len(parent_config):
-        print("Error: Failed config and parent config have different length!")
-        exit(-1)
+    failed_config = read_config(test, run_id)
     minimal_config = copy.deepcopy(failed_config)
     for key in failed_config.keys():
         # Run test without current_key injected
