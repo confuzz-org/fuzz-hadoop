@@ -62,7 +62,7 @@ def check_result(test):
         print(last_line)
         failureNum = int(last_line.split(",")[1].split(":")[1])
         errorNum = int(last_line.split(",")[2].split(":")[1])
-        return failureNum == 0 and errorNum == 0
+        return not (failureNum == 0 and errorNum == 0)
 
 def maven_clean_install():
     os.system(f"JAVA_HOME=\"{JAVA11_HOME}\" mvn clean install -DskipTests")
