@@ -1,2 +1,0 @@
-Found crash: class java.lang.NumberFormatException - For input string: "[b@e2c627e"
-Saved - /home/shuai/xlab/cfuzz/fuzz-hadoop/hadoop-common-project/hadoop-common/fuzz_output/fuzz-results/org.apache.hadoop.security.TestGroupsCaching/testThreadBlockedWhenExpiredEntryExistsWithoutBackgroundRefreshFuzz/failures/id_000000 random +crash

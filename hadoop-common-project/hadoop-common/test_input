@@ -1,5 +1,0 @@
-org.apache.hadoop.ha.TestZKFailoverController#testFencingMustBeConfigured
-org.apache.hadoop.ipc.TestAsyncIPC#testAsyncCall
-org.apache.hadoop.ha.TestZKFailoverController#testGracefulFailoverMultipleZKfcs
-org.apache.hadoop.security.TestDoAsEffectiveUser#testProxyWithToken
-org.apache.hadoop.ipc.TestMultipleProtocolServer#testPBService

@@ -11,6 +11,8 @@ public class TestDebug {
         Configuration conf = new Configuration();
         int count = 0;
         String str = conf.get("fs.s3a.select.output.csv.quote.fields");
+        conf.set("fake2", "200");
+        conf.set("fake3", "300");
         //System.out.println(str);
         if (str.equals("always")) {
             System.out.println("always");
@@ -19,7 +21,7 @@ public class TestDebug {
             System.out.println("asneeded");
 	        conf.set("fake-config1","15");
             count --;
-            throw new Exception("Fake Bug");
+            throw new Exception("Fake Bug asneeded");
         } else {
             System.out.println(str);
         }
