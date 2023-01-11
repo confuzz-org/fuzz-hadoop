@@ -10,7 +10,12 @@ public class TestDebug {
     public void test(/*@From(ConfigurationGenerator.class) Configuration generatedConfig*/) throws Exception {
         Configuration conf = new Configuration();
         int count = 0;
+        String name = conf.get("myname");
+        String age = conf.get("myage");
+        System.out.println("name: " + name + ", age: " + age);
         String str = conf.get("fs.s3a.select.output.csv.quote.fields");
+        String str2 = conf.get("hadoop.http.staticuser.user");
+        System.out.println(str2);
         conf.set("fake2", "200");
         conf.set("fake3", "300");
         //System.out.println(str);

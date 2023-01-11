@@ -75,20 +75,17 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
         // curTestMapping is a sorted TreeMap
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
-            if (!ConfigGenerator.isNullOrEmpty(entry.getValue())) {
-                try {
-                    String randomValue = ConfigGenerator.randomValue(entry.getKey(), entry.getValue(), random);
+            try {
+                String randomValue = ConfigGenerator.randomValue(entry.getKey(), entry.getValue(), random);
+                ConfigGenerator.debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);
+                if (isReprod) {
                     ConfigGenerator.debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);
-                    if (isReprod) {
-                        ConfigGenerator.debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);
-                    }
-                    conf.set(entry.getKey(), randomValue);
-                } catch (Exception e) {
-                    ConfigGenerator.debugPrint(" Configuration Name: " + entry.getKey() + " value " +
-                            entry.getValue() + " Exception:");
-                    e.printStackTrace();
-                    continue;
                 }
+                conf.set(entry.getKey(), randomValue);
+            } catch (Exception e) {
+                ConfigGenerator.debugPrint(" Configuration Name: " + entry.getKey() + " value " +
+                        entry.getValue() + " Exception:");
+                e.printStackTrace();
             }
         }
         //ConfigTracker.freshMap();  // --> Comment out if we want to incrementally collect exercised config set.
