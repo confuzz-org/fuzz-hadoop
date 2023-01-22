@@ -77,11 +77,11 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             try {
                 String randomValue = ConfigGenerator.randomValue(entry.getKey(), entry.getValue(), random);
-                ConfigGenerator.debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);
-                if (isReprod) {
-                    ConfigGenerator.debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);
+                // Set the configuration parameter only if the random value is not null
+                if (randomValue != null) {
+                    conf.set(entry.getKey(), randomValue);
                 }
-                conf.set(entry.getKey(), randomValue);
+                ConfigGenerator.debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);
             } catch (Exception e) {
                 ConfigGenerator.debugPrint(" Configuration Name: " + entry.getKey() + " value " +
                         entry.getValue() + " Exception:");
