@@ -3,6 +3,8 @@ package org.apache.hadoop.conf;
 import com.pholser.junit.quickcheck.From;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 
 public class TestDebug {
 
@@ -18,10 +20,13 @@ public class TestDebug {
         System.out.println(str2);
         conf.set("fake2", "200");
         conf.set("fake3", "300");
+        assertEquals("200", conf.get("fake2"));
         //System.out.println(str);
         if (str.equals("always")) {
             System.out.println("always");
             count ++;
+            // This should fail if the fuzzer is not specificed with -DexpectedException=java.lang.AssertionError
+            assertEquals("200", conf.get("fake3"));
         } else if (str.equals("asneeded")) {
             System.out.println("asneeded");
 	        conf.set("fake-config1","15");
