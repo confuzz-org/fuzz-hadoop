@@ -80,8 +80,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
                 // Set the configuration parameter only if the random value is not null
                 if (randomValue != null) {
                     conf.set(entry.getKey(), randomValue);
+                    ConfigGenerator.debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);
                 }
-                ConfigGenerator.debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);
             } catch (Exception e) {
                 ConfigGenerator.debugPrint(" Configuration Name: " + entry.getKey() + " value " +
                         entry.getValue() + " Exception:");
