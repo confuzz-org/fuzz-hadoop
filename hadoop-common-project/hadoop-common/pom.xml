@@ -382,6 +382,12 @@
       <groupId>edu.illinois.confuzz</groupId>
       <artifactId>confuzz-guidance</artifactId>
       <version>1.0.0-SNAPSHOT</version>
+      <exclusions>
+          <exclusion>
+              <groupId>com.squareup.okio</groupId>
+              <artifactId>okio</artifactId>
+          </exclusion>
+      </exclusions>
     </dependency>
     <!-- JUnit-QuickCheck: API to write generators -->
     <dependency>
