@@ -377,6 +377,16 @@
       <groupId>edu.berkeley.cs.jqf</groupId>
       <artifactId>jqf-fuzz</artifactId>
       <version>1.9</version>
+        <exclusions>
+          <exclusion>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm-tree</artifactId>
+          </exclusion>
+          <exclusion>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm-commons</artifactId>
+          </exclusion>
+        </exclusions>
     </dependency>
     <dependency>
       <groupId>edu.illinois.confuzz</groupId>
@@ -386,6 +396,10 @@
           <exclusion>
               <groupId>com.squareup.okio</groupId>
               <artifactId>okio</artifactId>
+          </exclusion>
+          <exclusion>
+              <groupId>org.ow2.asm</groupId>
+              <artifactId>asm-commons</artifactId>
           </exclusion>
       </exclusions>
     </dependency>
