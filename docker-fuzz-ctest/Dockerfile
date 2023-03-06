@@ -4,13 +4,121 @@ LABEL Tony Wang<tony.wanghao@stu.pku.edu.cn>
 
 ARG USER_HOME_DIR="/root"
 
-# Setup Basic Tools
-RUN apt-get update
-RUN apt-get -y install openjdk-8-jdk
-RUN apt-get -y install wget curl git
-RUN apt-get -y install openjdk-11-jdk
+WORKDIR /root
 
-# Setup Maven
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+#####
+# Disable suggests/recommends
+#####
+RUN echo APT::Install-Recommends "0"\; > /etc/apt/apt.conf.d/10disableextras
+RUN echo APT::Install-Suggests "0"\; >>  /etc/apt/apt.conf.d/10disableextras
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_TERSE true
+
+######
+# Install common dependencies from packages. Versions here are either
+# sufficient or irrelevant.
+#
+# WARNING: DO NOT PUT JAVA APPS HERE! Otherwise they will install default
+# Ubuntu Java.  See Java section below!
+######
+# hadolint ignore=DL3008
+
+RUN apt-get -q update \
+    && apt-get -q install -y --no-install-recommends \
+        apt-utils \
+        bats \
+        build-essential \
+        bzip2 \
+        clang \
+        cmake \
+        curl \
+        doxygen \
+        fuse \
+        g++ \
+        gcc \
+        git \
+        gnupg-agent \
+        libbz2-dev \
+        libcurl4-openssl-dev \
+        libfuse-dev \
+        libprotobuf-dev \
+        libprotoc-dev \
+        libsasl2-dev \
+        libsnappy-dev \
+        libssl-dev \
+        libsnappy-dev \
+        libtool \
+        libzstd1-dev \
+        locales \
+        make \
+        pinentry-curses \
+        pkg-config \
+        python3 \
+        python3-pip \
+        python3-pkg-resources \
+        python3-setuptools \
+        python3-wheel \
+        rsync \
+        shellcheck \
+        software-properties-common \
+        sudo \
+        valgrind \
+        wget \
+        zlib1g-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen en_US.UTF-8
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+ENV PYTHONIOENCODING=utf-8
+
+
+#######
+# Install SpotBugs 4.2.2
+#######
+RUN mkdir -p /opt/spotbugs \
+    && curl -L -s -S https://github.com/spotbugs/spotbugs/releases/download/4.2.2/spotbugs-4.2.2.tgz \
+      -o /opt/spotbugs.tgz \
+    && tar xzf /opt/spotbugs.tgz --strip-components 1 -C /opt/spotbugs \
+    && chmod +x /opt/spotbugs/bin/*
+ENV SPOTBUGS_HOME /opt/spotbugs
+
+#######
+# OpenJDK 8 and 11
+#######
+# hadolint ignore=DL3008
+RUN apt-get -q update \
+    && apt-get -q install -y --no-install-recommends openjdk-8-jdk libbcprov-java \
+    && apt-get -q install -y --no-install-recommends openjdk-11-jdk libbcprov-java \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+######
+# Install Google Protobuf 3.7.1 (3.0.0 ships with Bionic)
+######
+# hadolint ignore=DL3003
+RUN mkdir -p /opt/protobuf-src \
+    && curl -L -s -S \
+      https://github.com/protocolbuffers/protobuf/releases/download/v3.7.1/protobuf-java-3.7.1.tar.gz \
+      -o /opt/protobuf.tar.gz \
+    && tar xzf /opt/protobuf.tar.gz --strip-components 1 -C /opt/protobuf-src \
+    && cd /opt/protobuf-src \
+    && ./configure --prefix=/opt/protobuf \
+    && make "-j$(nproc)" \
+    && make install \
+    && cd /root \
+    && rm -rf /opt/protobuf-src
+ENV PROTOBUF_HOME /opt/protobuf
+ENV PATH "${PATH}:/opt/protobuf/bin"
+
+######
+# Install Apache Maven 3.6.0 (3.6.0 ships with Bionic)
+######
+ENV MAVEN_HOME /usr/share/maven
+ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 ARG MAVEN_VERSION=3.8.6
 
 RUN wget https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
@@ -23,10 +131,48 @@ RUN echo "Cleaning and setting links"
 RUN rm -f apache-maven-${MAVEN_VERSION}-bin.tar.gz 
 RUN ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
-ENV MAVEN_HOME /usr/share/maven
-ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
+# Install pylint and python-dateutil
+RUN pip3 install pylint==2.6.0 python-dateutil==2.8.1
 
-WORKDIR /root
+###
+# Install hadolint
+####
+RUN curl -L -s -S \
+        https://github.com/hadolint/hadolint/releases/download/v1.11.1/hadolint-Linux-x86_64 \
+        -o /bin/hadolint \
+   && chmod a+rx /bin/hadolint \
+   && shasum -a 512 /bin/hadolint | \
+        awk '$1!="734e37c1f6619cbbd86b9b249e69c9af8ee1ea87a2b1ff71dccda412e9dac35e63425225a95d71572091a3f0a11e9a04c2fc25d9e91b840530c26af32b9891ca" {exit(1)}'
+
+######
+# Intel ISA-L 2.29.0
+######
+# hadolint ignore=DL3003,DL3008
+RUN mkdir -p /opt/isa-l-src \
+    && apt-get -q update \
+    && apt-get install -y --no-install-recommends automake yasm \
+    && apt-get clean \
+    && curl -L -s -S \
+      https://github.com/intel/isa-l/archive/v2.29.0.tar.gz \
+      -o /opt/isa-l.tar.gz \
+    && tar xzf /opt/isa-l.tar.gz --strip-components 1 -C /opt/isa-l-src \
+    && cd /opt/isa-l-src \
+    && ./autogen.sh \
+    && ./configure \
+    && make "-j$(nproc)" \
+    && make install \
+    && cd /root \
+    && rm -rf /opt/isa-l-src
+
+###
+# Avoid out of memory errors in builds
+###
+ENV MAVEN_OPTS -Xms256m -Xmx1536m
+
+# Skip gpg verification when downloading Yetus via yetus-wrapper
+ENV HADOOP_SKIP_YETUS_VERIFICATION true
+
+
 # Clone Confuzz
 RUN git clone https://github.com/xlab-uiuc/confuzz/
 # Clone Meringue
@@ -36,14 +182,15 @@ RUN git clone https://github.com/neu-se/meringue/
 RUN git clone https://github.com/shuaiwang516/fuzz-hadoop
 
 # use java11 for the install next
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
+
 WORKDIR /root/meringue
-RUN JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/ mvn install -DskipTests
+RUN mvn install -DskipTests
 
 WORKDIR /root/confuzz
-RUN JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/ mvn install -DskipTests
+RUN mvn install -DskipTests
 
 WORKDIR /root/fuzz-hadoop
-# RUN mvn install -DskipTests
 RUN git checkout 2facf6724d5590c2dd7977fc6aad286990c3bccd
 RUN mvn install -pl hadoop-common-project/hadoop-common,hadoop-hdfs-project/hadoop-hdfs -am -DskipTests
 
