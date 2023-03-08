@@ -185,18 +185,19 @@ WORKDIR /home/ctestfuzz
 RUN git clone https://github.com/xlab-uiuc/confuzz/
 # Clone Meringue
 RUN git clone https://github.com/neu-se/meringue/
-#ARG CACHEBUST=1 
 # Clone the forked hadoop repository
 RUN git clone https://github.com/shuaiwang516/fuzz-hadoop
 
 # use java11 for the install next
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 
-WORKDIR /home/ctestfuzz/meringue
-RUN mvn install -DskipTests
+RUN cd /home/ctestfuzz/meringue \
+    && git checkout 5536d19cc6c5dff87bdc644b0efa994ca508abaa \
+    && mvn install -DskipTests
 
-WORKDIR /home/ctestfuzz/confuzz
-RUN mvn install -DskipTests
+RUN cd /home/ctestfuzz/confuzz \
+    && git checkout 6415fe874e45a68030e5f54e2aceddc33a3fcfe9 \
+    && mvn install -DskipTests
 
 WORKDIR /home/ctestfuzz/fuzz-hadoop
 RUN git checkout 2facf6724d5590c2dd7977fc6aad286990c3bccd
