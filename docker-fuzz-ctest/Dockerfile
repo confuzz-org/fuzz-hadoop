@@ -172,6 +172,14 @@ ENV MAVEN_OPTS -Xms256m -Xmx1536m
 # Skip gpg verification when downloading Yetus via yetus-wrapper
 ENV HADOOP_SKIP_YETUS_VERIFICATION true
 
+# prepare for user mode
+RUN rm -f /var/log/faillog /var/log/lastlog
+RUN groupadd --non-unique -g ctestfuzz ctestfuzz
+RUN useradd -g ctestfuzz -u 1 -k /root -m ctestfuzz -d "/home/ctestfuzz"
+RUN echo "ctestfuzz ALL=NOPASSWD: ALL" > "/etc/sudoers.d/hadoop-build"
+ENV HOME "/home/ctestfuzz"
+
+WORKDIR /home/ctestfuzz
 
 # Clone Confuzz
 RUN git clone https://github.com/xlab-uiuc/confuzz/
@@ -184,13 +192,13 @@ RUN git clone https://github.com/shuaiwang516/fuzz-hadoop
 # use java11 for the install next
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 
-WORKDIR /root/meringue
+WORKDIR /home/ctestfuzz/meringue
 RUN mvn install -DskipTests
 
-WORKDIR /root/confuzz
+WORKDIR /home/ctestfuzz/confuzz
 RUN mvn install -DskipTests
 
-WORKDIR /root/fuzz-hadoop
+WORKDIR /home/ctestfuzz/fuzz-hadoop
 RUN git checkout 2facf6724d5590c2dd7977fc6aad286990c3bccd
 RUN mvn install -pl hadoop-common-project/hadoop-common,hadoop-hdfs-project/hadoop-hdfs -am -DskipTests
 
