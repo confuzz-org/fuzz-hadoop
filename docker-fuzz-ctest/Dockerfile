@@ -174,8 +174,8 @@ ENV HADOOP_SKIP_YETUS_VERIFICATION true
 
 # prepare for user mode
 RUN rm -f /var/log/faillog /var/log/lastlog
-RUN groupadd --non-unique -g ctestfuzz ctestfuzz
-RUN useradd -g ctestfuzz -u 1 -k /root -m ctestfuzz -d "/home/ctestfuzz"
+RUN groupadd --non-unique -g 1 ctestfuzz
+RUN useradd -g ctestfuzz -u 11 -k /root -m ctestfuzz -d "/home/ctestfuzz"
 RUN echo "ctestfuzz ALL=NOPASSWD: ALL" > "/etc/sudoers.d/hadoop-build"
 ENV HOME "/home/ctestfuzz"
 
