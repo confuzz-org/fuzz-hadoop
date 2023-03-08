@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:bionic
 
 LABEL Tony Wang<tony.wanghao@stu.pku.edu.cn>
 
