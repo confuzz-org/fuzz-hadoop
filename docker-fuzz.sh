@@ -1,4 +1,6 @@
 # first run 'docker build -t 'hadoop-build' -f Dockerfile .' from the docker dir
+# Usage: bash docker.sh <testModule> <testClass> <testMethod> <duration>
+# assumes that constraintFile is named constraint and regex file name
 containerName=fuzzingcon
 testModule=$1
 testClass=$2
