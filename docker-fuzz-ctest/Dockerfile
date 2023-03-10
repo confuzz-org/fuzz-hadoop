@@ -203,5 +203,6 @@ RUN git checkout 2facf6724d5590c2dd7977fc6aad286990c3bccd
 RUN mvn install -pl hadoop-common-project/hadoop-common,hadoop-hdfs-project/hadoop-hdfs -am -DskipTests
 
 RUN cp -r /root/.m2 /home/ctestfuzz
+RUN chmod -R a+rwX /home/ctestfuzz
 
 CMD [""]
