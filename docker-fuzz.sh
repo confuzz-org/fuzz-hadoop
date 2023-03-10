@@ -6,9 +6,9 @@ constraintFile=constraint
 regexFile=regex
 duration=$4
 
-docker run --name ${containerName} -u ctestfuzz "hadoop-fuzz-ctests" bash
+docker run --name ${containerName} -u ctestfuzz -d -i -t "hadoop-build" bash
 docker exec -u ctestfuzz ${containerName} \
-    "cd ${testModule} && mvn confuzz:fuzz -Dmeringue.testClass=${testClass} -Dmeringue.testMethod=${testMethod} -DconstraintFile=${constraintFile} -DregexFile=${regexFile} -Dmeringue.duration=${duration}" # Do not run in detached mode!
+    "cd fuzz-hadoop/${testModule} && mvn confuzz:fuzz -Dmeringue.testClass=${testClass} -Dmeringue.testMethod=${testMethod} -DconstraintFile=${constraintFile} -DregexFile=${regexFile} -Dmeringue.duration=${duration}" # Do not run in detached mode!
 docker exec -u ctestfuzz ${containerName} \
     "cd ${testModule} && mvn confuzz:analyze -Dmeringue.testClass=${testClass} -Dmeringue.testMethod=${testMethod} -DconstraintFile=${constraintFile} -DregexFile=${regexFile} -Dmeringue.duration=${duration}" # Do not run in detached mode!
 mkdir -p result/$testClass/$testMethod/output

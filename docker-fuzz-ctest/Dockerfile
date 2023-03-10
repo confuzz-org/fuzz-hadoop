@@ -2,8 +2,6 @@ FROM ubuntu:bionic
 
 LABEL Tony Wang<tony.wanghao@stu.pku.edu.cn>
 
-ARG USER_HOME_DIR="/root"
-
 WORKDIR /root
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -118,7 +116,6 @@ ENV PATH "${PATH}:/opt/protobuf/bin"
 # Install Apache Maven 3.6.0 (3.6.0 ships with Bionic)
 ######
 ENV MAVEN_HOME /usr/share/maven
-ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 ARG MAVEN_VERSION=3.8.6
 
 RUN wget https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
@@ -179,6 +176,8 @@ RUN useradd -g ctestfuzz -u 11 -k /root -m ctestfuzz -d "/home/ctestfuzz"
 RUN echo "ctestfuzz ALL=NOPASSWD: ALL" > "/etc/sudoers.d/hadoop-build"
 ENV HOME "/home/ctestfuzz"
 
+ENV MAVEN_CONFIG "/home/ctestfuzz/.m2"
+
 WORKDIR /home/ctestfuzz
 
 # Clone Confuzz
@@ -202,5 +201,7 @@ RUN cd /home/ctestfuzz/confuzz \
 WORKDIR /home/ctestfuzz/fuzz-hadoop
 RUN git checkout 2facf6724d5590c2dd7977fc6aad286990c3bccd
 RUN mvn install -pl hadoop-common-project/hadoop-common,hadoop-hdfs-project/hadoop-hdfs -am -DskipTests
+
+RUN cp -r /root/.m2 /home/ctestfuzz
 
 CMD [""]
