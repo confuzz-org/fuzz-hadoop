@@ -1,3 +1,4 @@
+# first run 'docker build -t 'hadoop-build' -f Dockerfile .' from the docker dir
 containerName=fuzzingcon
 testModule=$1
 testClass=$2
