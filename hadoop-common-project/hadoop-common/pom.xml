@@ -40,6 +40,37 @@
 
   <dependencies>
     <dependency>
+      <groupId>edu.illinois.confuzz</groupId>
+      <artifactId>confuzz-guidance</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.squareup.okio</groupId>
+          <artifactId>okio</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.asm</groupId>
+          <artifactId>asm-commons</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <!-- JQF: test dependency for @Fuzz annotation -->
+    <dependency>
+      <groupId>edu.berkeley.cs.jqf</groupId>
+      <artifactId>jqf-fuzz</artifactId>
+      <version>1.9</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.ow2.asm</groupId>
+          <artifactId>asm-tree</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.ow2.asm</groupId>
+          <artifactId>asm-commons</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
       <groupId>org.apache.hadoop</groupId>
       <artifactId>hadoop-annotations</artifactId>
       <scope>compile</scope>
@@ -338,6 +369,13 @@
       <artifactId>dnsjava</artifactId>
       <scope>compile</scope>
     </dependency>
+    <!-- JUnit-QuickCheck: API to write generators -->
+    <dependency>
+      <groupId>com.pholser</groupId>
+      <artifactId>junit-quickcheck-generators</artifactId>
+      <version>1.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -365,6 +403,16 @@
       </resource>
     </resources>
     <plugins>
+      <plugin>
+        <groupId>edu.illinois.confuzz</groupId>
+        <artifactId>confuzz-maven-plugin</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+      </plugin>
+      <plugin>
+        <groupId>edu.berkeley.cs.jqf</groupId>
+        <artifactId>jqf-maven-plugin</artifactId>
+        <version>1.9</version>
+      </plugin>
       <plugin>
         <groupId>org.xolstice.maven.plugins</groupId>
         <artifactId>protobuf-maven-plugin</artifactId>
