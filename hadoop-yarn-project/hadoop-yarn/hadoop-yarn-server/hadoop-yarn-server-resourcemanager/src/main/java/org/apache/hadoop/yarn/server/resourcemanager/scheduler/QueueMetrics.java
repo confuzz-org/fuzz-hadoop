@@ -289,7 +289,7 @@ public class QueueMetrics implements MetricsSource {
       metrics =
           new QueueMetrics(metricsSystem, queueName, null, false, conf);
       users.put(userName, metrics);
-      metricsSystem.register(
+      registerMetrics(
           sourceName(queueName).append(",user=").append(userName).toString(),
           "Metrics for user '"+ userName +"' in queue '"+ queueName +"'",
           metrics.tag(QUEUE_INFO, queueName).tag(USER_INFO, userName));
@@ -314,7 +314,7 @@ public class QueueMetrics implements MetricsSource {
    *  QueueMetrics (B)
    *    metrics
    *
-   * @param partition
+   * @param partition Node Partition
    * @return QueueMetrics
    */
   public synchronized QueueMetrics getPartitionQueueMetrics(String partition) {
@@ -334,7 +334,7 @@ public class QueueMetrics implements MetricsSource {
       QueueMetrics queueMetrics =
           new PartitionQueueMetrics(metricsSystem, this.queueName, parentQueue,
               this.enableUserMetrics, this.conf, partition);
-      metricsSystem.register(
+      registerMetrics(
           pSourceName(partitionJMXStr).append(qSourceName(this.queueName))
               .toString(),
           "Metrics for queue: " + this.queueName,
@@ -378,7 +378,7 @@ public class QueueMetrics implements MetricsSource {
 
       // Register with the MetricsSystems
       if (metricsSystem != null) {
-        metricsSystem.register(pSourceName(partitionJMXStr).toString(),
+        registerMetrics(pSourceName(partitionJMXStr).toString(),
             "Metrics for partition: " + partitionJMXStr,
             (PartitionQueueMetrics) metrics.tag(PARTITION_INFO,
                 partitionJMXStr));
@@ -603,7 +603,7 @@ public class QueueMetrics implements MetricsSource {
   /**
    * Set Available resources with support for resource vectors.
    *
-   * @param limit
+   * @param limit Resource.
    */
   public void setAvailableResources(Resource limit) {
     availableMB.set(limit.getMemorySize());
@@ -631,7 +631,7 @@ public class QueueMetrics implements MetricsSource {
    * resources become available.
    *
    * @param partition Node Partition
-   * @param user
+   * @param user Name of the user.
    * @param limit resource limit
    */
   public void setAvailableResourcesToUser(String partition, String user,
@@ -657,8 +657,8 @@ public class QueueMetrics implements MetricsSource {
    * Increment pending resource metrics
    *
    * @param partition Node Partition
-   * @param user
-   * @param containers
+   * @param user Name of the user.
+   * @param containers containers count.
    * @param res the TOTAL delta of resources note this is different from the
    *          other APIs which use per container resource
    */
@@ -852,8 +852,8 @@ public class QueueMetrics implements MetricsSource {
   /**
    * Allocate Resource for container size change.
    * @param partition Node Partition
-   * @param user
-   * @param res
+   * @param user Name of the user
+   * @param res Resource.
    */
   public void allocateResources(String partition, String user, Resource res) {
     allocatedMB.incr(res.getMemorySize());
@@ -1358,5 +1358,16 @@ public class QueueMetrics implements MetricsSource {
         metric.parentQueue = parentQueue;
       }
     }
+  }
+
+  protected void registerMetrics(String sourceName, String desc, QueueMetrics metrics) {
+    MetricsSource source = metricsSystem.getSource(sourceName);
+    // Unregister metrics if a source is already present
+    if (source != null) {
+      LOG.info("Unregistering source " + sourceName);
+      metricsSystem.unregisterSource(sourceName);
+    }
+
+    metricsSystem.register(sourceName, desc, metrics);
   }
 }
