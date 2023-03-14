@@ -61,3 +61,4 @@ report.html
 
 
 .mvn
+**/confuzz-failure.temp

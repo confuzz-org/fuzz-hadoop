@@ -1438,7 +1438,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   }
 
   public void set(String name, String value, String source) {
-    set(name, value, source, true);
+    set(name, value, source, true, true);
   }
 
   /** 
@@ -1453,6 +1453,10 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public void set(String name, String value) {
     set(name, value, null);
   }
+
+  public void generatorSet(String name, String value) {
+    set(name, value, null, false, false);
+  }
   
   /** 
    * Set the <code>value</code> of the <code>name</code> property. If 
@@ -1466,7 +1470,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    * (For debugging).
    * @throws IllegalArgumentException when the value or name is null.
    */
-  public void set(String name, String value, String source,  boolean log_enabled) {
+  public void set(String name, String value, String source,  boolean log_enabled, boolean notGenerator) {
     Preconditions.checkArgument(
         name != null,
         "Property name must not be null");
@@ -1478,7 +1482,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     if (deprecations.getDeprecatedKeyMap().isEmpty()) {
       getProps();
     }
-    trackConfig(name, value, true);
+    trackConfig(name, value, notGenerator);
     getOverlay().setProperty(name, value);
     getProps().setProperty(name, value);
     String newSource = (source == null ? "programmatically" : source);
@@ -1489,7 +1493,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       if(altNames != null) {
         for(String n: altNames) {
           if(!n.equals(name)) {
-            trackConfig(n, value, true);
+            trackConfig(n, value, notGenerator);
 	          getOverlay().setProperty(n, value);
             getProps().setProperty(n, value);
             putIntoUpdatingResource(n, new String[] {newSource});
@@ -1501,7 +1505,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       String[] names = handleDeprecation(deprecationContext.get(), name);
       String altSource = "because " + name + " is deprecated";
       for(String n : names) {
-        trackConfig(n, value, true);
+        trackConfig(n, value, notGenerator);
 	      getOverlay().setProperty(n, value);
         getProps().setProperty(n, value);
         putIntoUpdatingResource(n, new String[] {altSource});
