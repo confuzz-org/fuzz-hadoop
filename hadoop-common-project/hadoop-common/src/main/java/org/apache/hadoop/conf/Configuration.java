@@ -1271,7 +1271,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
 
   private boolean ctestLogEnabled = Boolean.getBoolean("ctest.log");
   public void trackConfig(String ctestParam, String result, boolean isSet) {
-    ConfigTracker.track(ctestParam, result);
+    ConfigTracker.track(ctestParam, result, isSet);
     if (ctestLogEnabled) {
       if (isSet) {
  	      LOG.warn("[CTEST][SET-PARAM] " + ctestParam + " = " + result + " " + getStackTrace()); //CTEST
@@ -1379,7 +1379,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public String getTrimmed(String name, String defaultValue) {
     String ret = getTrimmed(name);
     if (ret == null) {
-      ConfigTracker.track(name, defaultValue);
+      trackConfig(name, defaultValue, false);
     }
     return ret == null ? defaultValue : ret;
   }
@@ -1438,7 +1438,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   }
 
   public void set(String name, String value, String source) {
-    set(name, value, source, true);
+    set(name, value, source, true, true);
   }
 
   /** 
@@ -1453,6 +1453,10 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public void set(String name, String value) {
     set(name, value, null);
   }
+
+  public void generatorSet(String name, String value) {
+    set(name, value, null, false, false);
+  }
   
   /** 
    * Set the <code>value</code> of the <code>name</code> property. If 
@@ -1466,7 +1470,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    * (For debugging).
    * @throws IllegalArgumentException when the value or name is null.
    */
-  public void set(String name, String value, String source,  boolean log_enabled) {
+  public void set(String name, String value, String source,  boolean log_enabled, boolean notGenerator) {
     Preconditions.checkArgument(
         name != null,
         "Property name must not be null");
@@ -1478,7 +1482,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     if (deprecations.getDeprecatedKeyMap().isEmpty()) {
       getProps();
     }
-    trackConfig(name, value, true);
+    trackConfig(name, value, notGenerator);
     getOverlay().setProperty(name, value);
     getProps().setProperty(name, value);
     String newSource = (source == null ? "programmatically" : source);
@@ -1489,7 +1493,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       if(altNames != null) {
         for(String n: altNames) {
           if(!n.equals(name)) {
-            trackConfig(n, value, true);
+            trackConfig(n, value, notGenerator);
 	          getOverlay().setProperty(n, value);
             getProps().setProperty(n, value);
             putIntoUpdatingResource(n, new String[] {newSource});
@@ -1501,7 +1505,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       String[] names = handleDeprecation(deprecationContext.get(), name);
       String altSource = "because " + name + " is deprecated";
       for(String n : names) {
-        trackConfig(n, value, true);
+        trackConfig(n, value, notGenerator);
 	      getOverlay().setProperty(n, value);
         getProps().setProperty(n, value);
         putIntoUpdatingResource(n, new String[] {altSource});
@@ -1601,7 +1605,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public int getInt(String name, int defaultValue) {
     String valueString = getTrimmed(name);
     if (valueString == null) {
-      ConfigTracker.track(name, String.valueOf(defaultValue));
+      trackConfig(name, String.valueOf(defaultValue), false);
       return defaultValue;
     }
     String hexString = getHexDigits(valueString);
@@ -1656,7 +1660,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public long getLong(String name, long defaultValue) {
     String valueString = getTrimmed(name);
     if (valueString == null) {
-      ConfigTracker.track(name, String.valueOf(defaultValue));
+      trackConfig(name, String.valueOf(defaultValue), false);
       return defaultValue;
     }
     String hexString = getHexDigits(valueString);
@@ -1730,7 +1734,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public float getFloat(String name, float defaultValue) {
     String valueString = getTrimmed(name);
     if (valueString == null) {
-      ConfigTracker.track(name, String.valueOf(defaultValue));
+      trackConfig(name, String.valueOf(defaultValue), false);
       return defaultValue;
     }
     return Float.parseFloat(valueString);
@@ -1761,7 +1765,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public double getDouble(String name, double defaultValue) {
     String valueString = getTrimmed(name);
     if (valueString == null) {
-      ConfigTracker.track(name, String.valueOf(defaultValue));
+      trackConfig(name, String.valueOf(defaultValue), false);
       return defaultValue;
     }
     return Double.parseDouble(valueString);
@@ -1790,7 +1794,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public boolean getBoolean(String name, boolean defaultValue) {
     String valueString = getTrimmed(name);
     if (null == valueString || valueString.isEmpty()) {
-      ConfigTracker.track(name, String.valueOf(defaultValue));
+      trackConfig(name, String.valueOf(defaultValue), false);
       return defaultValue;
     }
 
@@ -1844,7 +1848,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public <T extends Enum<T>> T getEnum(String name, T defaultValue) {
     final String val = getTrimmed(name);
     if (val == null) {
-      ConfigTracker.track(name, defaultValue.toString());
+      trackConfig(name, defaultValue.toString(), false);
     }
     return null == val
       ? defaultValue
@@ -1950,7 +1954,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       TimeUnit defaultUnit, TimeUnit returnUnit) {
     String vStr = get(name);
     if (null == vStr) {
-      ConfigTracker.track(name, String.valueOf(defaultValue));
+      trackConfig(name, String.valueOf(defaultValue), false);
       return returnUnit.convert(defaultValue, defaultUnit);
     } else {
       return getTimeDurationHelper(name, vStr, defaultUnit, returnUnit);
@@ -1961,7 +1965,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
       TimeUnit defaultUnit, TimeUnit returnUnit) {
     String vStr = get(name);
     if (null == vStr) {
-      ConfigTracker.track(name, defaultValue);
+      trackConfig(name, defaultValue, false);
       return getTimeDurationHelper(name, defaultValue, defaultUnit, returnUnit);
     } else {
       return getTimeDurationHelper(name, vStr, defaultUnit, returnUnit);
@@ -2033,7 +2037,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     Preconditions.checkState(isNotBlank(name), "Key cannot be blank.");
     String vString = get(name);
     if (isBlank(vString)) {
-      ConfigTracker.track(name, defaultValue);
+      trackConfig(name, defaultValue, false);
       vString = defaultValue;
     }
 
@@ -2064,7 +2068,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     Preconditions.checkState(isNotBlank(name), "Name cannot be blank.");
     String vString = get(name);
     if (isBlank(vString)) {
-      ConfigTracker.track(name, String.valueOf(defaultValue));
+      trackConfig(name, String.valueOf(defaultValue), false);
       return targetUnit.getDefault(defaultValue);
     }
 
@@ -2112,7 +2116,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   public Pattern getPattern(String name, Pattern defaultValue) {
     String valString = get(name);
     if (null == valString || valString.isEmpty()) {
-      ConfigTracker.track(name, defaultValue.pattern());
+      trackConfig(name, defaultValue.pattern(), false);
       return defaultValue;
     }
     try {
