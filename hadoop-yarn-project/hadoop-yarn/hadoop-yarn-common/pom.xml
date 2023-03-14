@@ -380,6 +380,10 @@
           </filesets>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>edu.illinois.confuzz</groupId>
+        <artifactId>confuzz-maven-plugin</artifactId>
+      </plugin>
     </plugins>
   </build>
   <!-- TODO: Remove this profile when hamlet was removed. -->
