@@ -2,6 +2,8 @@
 # Usage: bash docker.sh <testModule> <testClass> <testMethod> <rootDir> <duration>
 # assumes that constraintFile is named constraint and regex file name
 # root dir is where the two files are stored
+
+# Note that fuzz-hadoop is stored in /home/ctestfuzz/ in the docker
 containerName=fuzzingcon
 testModule=$1
 testClass=$2
