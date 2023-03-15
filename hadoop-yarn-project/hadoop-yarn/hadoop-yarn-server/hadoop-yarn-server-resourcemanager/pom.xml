@@ -266,7 +266,10 @@
 
 
     <plugins>
-
+      <plugin>
+        <groupId>edu.illinois.confuzz</groupId>
+        <artifactId>confuzz-maven-plugin</artifactId>
+      </plugin>
       <!-- Publish tests jar -->
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
