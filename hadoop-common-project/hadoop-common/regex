@@ -35,4 +35,14 @@ rpc.metrics.timeunit=NANOSECONDS|MICROSECONDS|MILLISECONDS|SECONDS|MINUTES|HOURS
 hadoop.security.kms.client.encrypted.key.cache.low-watermark=0\.[0-9]{1,3}f|1f
 fs.adl.oauth2.access.token.provider.type=ClientCredential|RefreshToken|MSI|DeviceCode|Custom
 adl.ssl.channel.mode=OpenSSL|Default_JSE|Default
-fs.getspaceused.classname=org\.apache\.hadoop\.fs\.DU|org\.apache\.hadoop\.fs\.WindowsGetSpaceUsed|org\.apache\.hadoop\.fs\.DFCachingGetSpaceUsed|org\.apache\.hadoop\.hdfs\.server\.datanode\.fsdataset\.impl\.ReplicaCachingGetSpaceUsed
+fs.getspaceused.classname=org\.apache\.hadoop\.fs\.DU|org\.apache\.hadoop\.fs\.WindowsGetSpaceUsed|org\.apache\.hadoop\.fs\.DFCachingGetSpaceUsed|org\.apache\.hadoop\.hdfs\.server\.datanode\.fsdataset\.impl\.ReplicaCachingGetSpaceUsedfs.s3a.fast.upload.buffer=disk|array|bytebuffer
+fs.s3a.committer.name=file|directory|partitioned|magic
+fs.s3a.committer.staging.conflict-mode=append|fail|replace
+fs.s3a.select.input.csv.header=none|ignore|use
+fs.s3a.select.input.compression=none|gzip
+fs.s3a.select.output.csv.quote.fields=always|asneeded
+fs.s3a.list.version=2|1
+fs.s3a.change.detection.mode=server|client|warn|none
+fs.s3a.ssl.channel.mode=default_jsse|default_jsse_with_gcm|default|openssl
+hadoop.security.random.device.file.path=/dev/urandom|/dev/random
+ha.zookeeper.parent-znode=/hadoop-ha|/shuai|/uiuc
