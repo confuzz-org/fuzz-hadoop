@@ -8,7 +8,7 @@ public class TestDebug {
     public void test(/*@From(ConfigurationGenerator.class) Configuration generatedConfig*/) throws Exception {
         JobConf conf = new JobConf();
         int count = 0;
-        conf.set('test', '5')
+        conf.set("test", "5");
         String str = conf.get("yarn.app.mapreduce.am.log.level");
         System.out.println(str);
         if (str.equals("OFF")) {

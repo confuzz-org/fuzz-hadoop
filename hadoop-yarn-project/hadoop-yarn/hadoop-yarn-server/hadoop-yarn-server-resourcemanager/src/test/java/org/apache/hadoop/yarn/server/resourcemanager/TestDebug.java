@@ -10,11 +10,11 @@ public class TestDebug {
         int count = 0;
         String str = conf.get("yarn.http.policy");
         System.out.println(str);
-        if (str.equals("HTTP_ONLY")) {
-            System.out.println("HTTP_ONLY");
-            count ++;
-        } else if (str.equals("HTTPS_ONLY")) {
+        if (str.equals("HTTPS_ONLY")) {
             System.out.println("HTTPS_ONLY");
+            count ++;
+        } else if (str.equals("HTTP_ONLY")) {
+            System.out.println("HTTP_ONLY");
             conf.set("fake-config1","15");
             count --;
             throw new Exception("Fake Bug HTTP_AND_HTTPS");
