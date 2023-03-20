@@ -118,15 +118,13 @@ ENV PATH "${PATH}:/opt/protobuf/bin"
 ENV MAVEN_HOME /usr/share/maven
 ARG MAVEN_VERSION=3.8.6
 
-RUN wget https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz
-
-RUN echo "Unziping maven" 
-RUN mkdir /usr/share/maven
-RUN tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /usr/share/maven --strip-components=1 
-
-RUN echo "Cleaning and setting links" 
-RUN rm -f apache-maven-${MAVEN_VERSION}-bin.tar.gz 
-RUN ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+RUN wget https://archive.apache.org/dist/maven/maven-3/${MAVEN_VERSION}/binaries/apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+    && echo "Unziping maven" \
+    && mkdir /usr/share/maven \
+    && tar -xzf apache-maven-${MAVEN_VERSION}-bin.tar.gz -C /usr/share/maven --strip-components=1 \
+    && echo "Cleaning and setting links" \
+    && rm -f apache-maven-${MAVEN_VERSION}-bin.tar.gz \
+    && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 # Install pylint and python-dateutil
 RUN pip3 install pylint==2.6.0 python-dateutil==2.8.1
@@ -169,40 +167,32 @@ ENV MAVEN_OPTS -Xms256m -Xmx1536m
 # Skip gpg verification when downloading Yetus via yetus-wrapper
 ENV HADOOP_SKIP_YETUS_VERIFICATION true
 
-# prepare for user mode
-RUN rm -f /var/log/faillog /var/log/lastlog
-RUN groupadd --non-unique -g 1 ctestfuzz
-RUN useradd -g ctestfuzz -u 11 -k /root -m ctestfuzz -d "/home/ctestfuzz"
-RUN echo "ctestfuzz ALL=NOPASSWD: ALL" > "/etc/sudoers.d/hadoop-build"
+# Prepare for user mode
+RUN rm -f /var/log/faillog /var/log/lastlog \
+    && groupadd --non-unique -g 1 ctestfuzz \
+    && useradd -g ctestfuzz -u 11 -k /root -m ctestfuzz -d "/home/ctestfuzz" \
+    &&  echo "ctestfuzz ALL=NOPASSWD: ALL" > "/etc/sudoers.d/hadoop-build"
 ENV HOME "/home/ctestfuzz"
 
 ENV MAVEN_CONFIG "/home/ctestfuzz/.m2"
 
 WORKDIR /home/ctestfuzz
 
-# Clone Confuzz
-RUN git clone https://github.com/xlab-uiuc/confuzz/
-# Clone Meringue
-RUN git clone https://github.com/neu-se/meringue/
-# Clone the forked hadoop repository
-RUN git clone https://github.com/shuaiwang516/fuzz-hadoop
+# Clone Confuzz and fuzz-hadoop
+RUN git clone https://github.com/xlab-uiuc/confuzz \
+    && git clone https://github.com/shuaiwang516/fuzz-hadoop
 
 # use java11 for the install next
 ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
 
-RUN cd /home/ctestfuzz/meringue \
-    && git checkout 5536d19cc6c5dff87bdc644b0efa994ca508abaa \
-    && mvn install -DskipTests
-
+# Install confuzz
 RUN cd /home/ctestfuzz/confuzz \
-    && git checkout 6415fe874e45a68030e5f54e2aceddc33a3fcfe9 \
     && mvn install -DskipTests
 
 WORKDIR /home/ctestfuzz/fuzz-hadoop
-RUN git checkout 2facf6724d5590c2dd7977fc6aad286990c3bccd
-RUN mvn install -pl hadoop-common-project/hadoop-common,hadoop-hdfs-project/hadoop-hdfs -am -DskipTests
+RUN git checkout confuzz \
+    && mvn install -pl hadoop-common-project/hadoop-common,hadoop-hdfs-project/hadoop-hdfs,hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-core,hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common -am -DskipTests
 
-RUN cp -r /root/.m2 /home/ctestfuzz
-RUN chmod -R a+rwX /home/ctestfuzz
+RUN cp -r /root/.m2 /home/ctestfuzz && chmod -R a+rwX /home/ctestfuzz
 
 CMD [""]
