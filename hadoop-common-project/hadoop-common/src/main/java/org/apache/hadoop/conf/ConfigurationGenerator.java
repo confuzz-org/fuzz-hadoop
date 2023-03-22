@@ -88,7 +88,8 @@ public class ConfigurationGenerator extends Generator<Configuration> {
                 e.printStackTrace();
             }
         }
-        //ConfigTracker.freshMap();  // --> Comment out if we want to incrementally collect exercised config set.
+        //ConfigTracker.clearConfigMap();  // --> Comment out if we want to incrementally collect exercised config set.
+        ConfigTracker.clearSetConfigMap();  // Necessary for replay !
         generatedConf = conf;
 	    return generatedConf;
     }
