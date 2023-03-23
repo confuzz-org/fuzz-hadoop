@@ -94,7 +94,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     }
 
     public static Configuration getGeneratedConfig() {
-        return generatedConf;
+        return new Configuration(generatedConf);
     }
 
     // Internal test
