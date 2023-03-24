@@ -765,7 +765,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     // Add default resources
     addDefaultResource("core-default.xml");
     addDefaultResource("core-site.xml");
-
+    addDefaultResource("ctest.xml");
     // print deprecation warning if hadoop-site.xml is found in classpath
     ClassLoader cL = Thread.currentThread().getContextClassLoader();
     if (cL == null) {
@@ -902,14 +902,14 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    * @param name file name. File should be present in the classpath.
    */
   public static synchronized void addDefaultResource(String name) {
-    if(!defaultResources.contains(name)) {
-      defaultResources.add(name);
-      for(Configuration conf : REGISTRY.keySet()) {
-        if(conf.loadDefaults) {
-          conf.reloadConfiguration();
-        }
+    //if(!defaultResources.contains(name)) {
+    defaultResources.add(name);
+    for(Configuration conf : REGISTRY.keySet()) {
+      if(conf.loadDefaults) {
+        conf.reloadConfiguration();
       }
     }
+    //}
   }
 
   public static void setRestrictSystemPropertiesDefault(boolean val) {
