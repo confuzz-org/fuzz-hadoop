@@ -787,11 +787,8 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     // Add default resources
     addDefaultResource("core-default.xml");
     addDefaultResource("core-site.xml");
-    addDefaultResource("core-ctest.xml");
-    addDefaultResource("yarn-ctest.xml");
-    addDefaultResource("hdfs-ctest.xml");
-    addDefaultResource("mapred-ctest.xml");
-    addDefaultResource("hbase-ctest.xml");
+    // Confuzz: add ctest.xml for configuration injection in confuzz:debug goal
+    addDefaultResource("ctest.xml");
 
     // print deprecation warning if hadoop-site.xml is found in classpath
     ClassLoader cL = Thread.currentThread().getContextClassLoader();
@@ -929,14 +926,15 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    * @param name file name. File should be present in the classpath.
    */
   public static synchronized void addDefaultResource(String name) {
-    if(!defaultResources.contains(name)) {
-      defaultResources.add(name);
-      for(Configuration conf : REGISTRY.keySet()) {
-        if(conf.loadDefaults) {
-          conf.reloadConfiguration();
-        }
+    // Confuzz: this is a hack to forcely reload the configuration value from the given resource by ORDER
+    //if(!defaultResources.contains(name)) {
+    defaultResources.add(name);
+    for(Configuration conf : REGISTRY.keySet()) {
+      if(conf.loadDefaults) {
+        conf.reloadConfiguration();
       }
     }
+    //}
   }
 
   public static void setRestrictSystemPropertiesDefault(boolean val) {

@@ -44,7 +44,7 @@ public class ConfigUtil {
     Configuration.addDefaultResource("mapred-site.xml");
     Configuration.addDefaultResource("yarn-default.xml");
     Configuration.addDefaultResource("yarn-site.xml");
-    Configuration.addDefaultResource("mapred-ctest.xml"); // cover yarn configs here also
+    Configuration.addDefaultResource("ctest.xml"); // cover yarn configs here also
   }
   
   /**
