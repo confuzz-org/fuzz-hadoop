@@ -89,11 +89,15 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             }
         }
         //ConfigTracker.freshMap();  // --> Comment out if we want to incrementally collect exercised config set.
+        ConfigTracker.clearSetConfigMap();  
         generatedConf = conf;
 	    return generatedConf;
     }
 
     public static Configuration getGeneratedConfig() {
+        if (generatedConf == null) {
+            return null;
+        }
         return new Configuration(generatedConf);
     }
 
