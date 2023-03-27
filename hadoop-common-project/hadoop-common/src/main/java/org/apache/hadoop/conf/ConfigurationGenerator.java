@@ -79,8 +79,6 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             try {
                 String randomValue = ConfigGenerator.randomValue(entry.getKey(), entry.getValue(), random);
                 // Set the configuration parameter only if the random value is not null
-                // record also the null generated
-                ConfigTracker.trackGenerated(entry.getKey(), randomValue);
                 if (randomValue != null) {
                     conf.generatorSet(entry.getKey(), randomValue);
                     ConfigGenerator.debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);

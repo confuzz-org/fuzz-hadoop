@@ -1428,6 +1428,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   }
 
   public void generatorSet(String name, String value) {
+    ConfigTracker.trackGenerated(name, value);
     set(name, value, null, false, false);
   }
   
