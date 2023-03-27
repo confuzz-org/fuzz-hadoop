@@ -74,10 +74,13 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         }
 
         // curTestMapping is a sorted TreeMap
+        ConfigTracker.clearGenerated();
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             try {
                 String randomValue = ConfigGenerator.randomValue(entry.getKey(), entry.getValue(), random);
                 // Set the configuration parameter only if the random value is not null
+                // record also the null generated
+                ConfigTracker.trackGenerated(entry.getKey(), randomValue);
                 if (randomValue != null) {
                     conf.generatorSet(entry.getKey(), randomValue);
                     ConfigGenerator.debugPrint("Setting conf " + entry.getKey() + " = " + randomValue);
@@ -89,7 +92,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             }
         }
         //ConfigTracker.freshMap();  // --> Comment out if we want to incrementally collect exercised config set.
-        ConfigTracker.clearSetConfigMap();  
+        ConfigTracker.clearSetConfigMap();
         generatedConf = conf;
 	    return generatedConf;
     }
