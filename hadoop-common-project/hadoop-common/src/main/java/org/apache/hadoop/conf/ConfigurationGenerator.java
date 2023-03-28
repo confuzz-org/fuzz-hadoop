@@ -74,6 +74,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         }
 
         // curTestMapping is a sorted TreeMap
+        ConfigTracker.clearGenerated();
         for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
             try {
                 String randomValue = ConfigGenerator.randomValue(entry.getKey(), entry.getValue(), random);
@@ -89,12 +90,16 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             }
         }
         //ConfigTracker.freshMap();  // --> Comment out if we want to incrementally collect exercised config set.
+        ConfigTracker.clearSetConfigMap();
         generatedConf = conf;
 	    return generatedConf;
     }
 
     public static Configuration getGeneratedConfig() {
-        return generatedConf;
+        if (generatedConf == null) {
+            return null;
+        }
+        return new Configuration(generatedConf);
     }
 
     // Internal test

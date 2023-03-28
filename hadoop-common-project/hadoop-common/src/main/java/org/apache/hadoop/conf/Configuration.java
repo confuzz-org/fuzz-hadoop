@@ -787,7 +787,8 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
     // Add default resources
     addDefaultResource("core-default.xml");
     addDefaultResource("core-site.xml");
-    addDefaultResource("core-ctest.xml");
+    // Confuzz: add ctest.xml for configuration injection in confuzz:debug goal
+    addDefaultResource("ctest.xml");
 
     // print deprecation warning if hadoop-site.xml is found in classpath
     ClassLoader cL = Thread.currentThread().getContextClassLoader();
@@ -816,40 +817,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   
   /** A new configuration. */
   public Configuration() {
-    Configuration generatedConfig = ConfigurationGenerator.getGeneratedConfig();
-    if (generatedConfig == null) {
-      generatedConfig = new Configuration(true);
-    }
-    synchronized(generatedConfig) {
-      // Make sure we clone a finalized state
-      // Resources like input streams can be processed only once
-      generatedConfig.getProps();
-      this.resources = (ArrayList<Resource>) generatedConfig.resources.clone();
-      if (generatedConfig.properties != null) {
-        this.properties = (Properties)generatedConfig.properties.clone();
-      }
-
-      if (generatedConfig.overlay!=null) {
-        this.overlay = (Properties)generatedConfig.overlay.clone();
-      }
-
-      this.restrictSystemProps = generatedConfig.restrictSystemProps;
-      if (generatedConfig.updatingResource != null) {
-        this.updatingResource = new ConcurrentHashMap<String, String[]>(
-                generatedConfig.updatingResource);
-      }
-      this.finalParameters = Collections.newSetFromMap(
-              new ConcurrentHashMap<String, Boolean>());
-      this.finalParameters.addAll(generatedConfig.finalParameters);
-      this.propertyTagsMap.putAll(generatedConfig.propertyTagsMap);
-    }
-
-    synchronized(Configuration.class) {
-      REGISTRY.put(this, null);
-    }
-    this.classLoader = generatedConfig.classLoader;
-    this.loadDefaults = generatedConfig.loadDefaults;
-    setQuietMode(generatedConfig.getQuietMode());
+    this(ConfigurationGenerator.getGeneratedConfig());
   }
 
   /** A new configuration where the behavior of reading from the default 
@@ -874,36 +842,40 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    */
   @SuppressWarnings("unchecked")
   public Configuration(Configuration other) {
-    synchronized(other) {
-      // Make sure we clone a finalized state
-      // Resources like input streams can be processed only once
-      other.getProps();
-      this.resources = (ArrayList<Resource>) other.resources.clone();
-      if (other.properties != null) {
-        this.properties = (Properties)other.properties.clone();
-      }
+    if (other != null) {
+      synchronized (other) {
+        // Make sure we clone a finalized state
+        // Resources like input streams can be processed only once
+        other.getProps();
+        this.resources = (ArrayList<Resource>) other.resources.clone();
+        if (other.properties != null) {
+          this.properties = (Properties) other.properties.clone();
+        }
 
-      if (other.overlay!=null) {
-        this.overlay = (Properties)other.overlay.clone();
-      }
+        if (other.overlay != null) {
+          this.overlay = (Properties) other.overlay.clone();
+        }
 
-      this.restrictSystemProps = other.restrictSystemProps;
-      if (other.updatingResource != null) {
-        this.updatingResource = new ConcurrentHashMap<String, String[]>(
-           other.updatingResource);
+        this.restrictSystemProps = other.restrictSystemProps;
+        if (other.updatingResource != null) {
+          this.updatingResource = new ConcurrentHashMap<String, String[]>(
+                  other.updatingResource);
+        }
+        this.finalParameters = Collections.newSetFromMap(
+                new ConcurrentHashMap<String, Boolean>());
+        this.finalParameters.addAll(other.finalParameters);
+        this.propertyTagsMap.putAll(other.propertyTagsMap);
       }
-      this.finalParameters = Collections.newSetFromMap(
-          new ConcurrentHashMap<String, Boolean>());
-      this.finalParameters.addAll(other.finalParameters);
-      this.propertyTagsMap.putAll(other.propertyTagsMap);
+      this.classLoader = other.classLoader;
+      this.loadDefaults = other.loadDefaults;
+      setQuietMode(other.getQuietMode());
+    } else {
+      this.loadDefaults = true;
     }
 
     synchronized(Configuration.class) {
       REGISTRY.put(this, null);
     }
-    this.classLoader = other.classLoader;
-    this.loadDefaults = other.loadDefaults;
-    setQuietMode(other.getQuietMode());
   }
 
   /**
@@ -925,14 +897,15 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    * @param name file name. File should be present in the classpath.
    */
   public static synchronized void addDefaultResource(String name) {
-    if(!defaultResources.contains(name)) {
-      defaultResources.add(name);
-      for(Configuration conf : REGISTRY.keySet()) {
-        if(conf.loadDefaults) {
-          conf.reloadConfiguration();
-        }
+    // Confuzz: this is a hack to forcely reload the configuration value from the given resource by ORDER
+    //if(!defaultResources.contains(name)) {
+    defaultResources.add(name);
+    for(Configuration conf : REGISTRY.keySet()) {
+      if(conf.loadDefaults) {
+        conf.reloadConfiguration();
       }
     }
+    //}
   }
 
   public static void setRestrictSystemPropertiesDefault(boolean val) {
@@ -1455,6 +1428,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   }
 
   public void generatorSet(String name, String value) {
+    ConfigTracker.trackGenerated(name, value);
     set(name, value, null, false, false);
   }
   

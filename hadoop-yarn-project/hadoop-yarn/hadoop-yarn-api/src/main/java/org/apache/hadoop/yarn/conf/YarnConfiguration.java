@@ -62,8 +62,8 @@ public class YarnConfiguration extends Configuration {
   private static final String YARN_DEFAULT_CONFIGURATION_FILE =
       "yarn-default.xml";
 
-  private static final String YARN_CTEST_CONFIGURATION_FILE =
-      "yarn-ctest.xml";
+  private static final String CTEST_CONFIGURATION_FILE =
+      "ctest.xml";
 
   @Private
   public static final String CORE_SITE_CONFIGURATION_FILE = "core-site.xml";
@@ -107,7 +107,7 @@ public class YarnConfiguration extends Configuration {
     Configuration.addDefaultResource(YARN_DEFAULT_CONFIGURATION_FILE);
     Configuration.addDefaultResource(YARN_SITE_CONFIGURATION_FILE);
     Configuration.addDefaultResource(RESOURCE_TYPES_CONFIGURATION_FILE);
-    Configuration.addDefaultResource(YARN_CTEST_CONFIGURATION_FILE);
+    Configuration.addDefaultResource(CTEST_CONFIGURATION_FILE);
   }
 
   private static void addDeprecatedKeys() {
