@@ -793,40 +793,7 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
   
   /** A new configuration. */
   public Configuration() {
-    Configuration generatedConfig = ConfigurationGenerator.getGeneratedConfig();
-    if (generatedConfig == null) {
-      generatedConfig = new Configuration(true);
-    }
-    synchronized(generatedConfig) {
-      // Make sure we clone a finalized state
-      // Resources like input streams can be processed only once
-      generatedConfig.getProps();
-      this.resources = (ArrayList<Resource>) generatedConfig.resources.clone();
-      if (generatedConfig.properties != null) {
-        this.properties = (Properties)generatedConfig.properties.clone();
-      }
-
-      if (generatedConfig.overlay!=null) {
-        this.overlay = (Properties)generatedConfig.overlay.clone();
-      }
-
-      this.restrictSystemProps = generatedConfig.restrictSystemProps;
-      if (generatedConfig.updatingResource != null) {
-        this.updatingResource = new ConcurrentHashMap<String, String[]>(
-                generatedConfig.updatingResource);
-      }
-      this.finalParameters = Collections.newSetFromMap(
-              new ConcurrentHashMap<String, Boolean>());
-      this.finalParameters.addAll(generatedConfig.finalParameters);
-      this.propertyTagsMap.putAll(generatedConfig.propertyTagsMap);
-    }
-
-    synchronized(Configuration.class) {
-      REGISTRY.put(this, null);
-    }
-    this.classLoader = generatedConfig.classLoader;
-    this.loadDefaults = generatedConfig.loadDefaults;
-    setQuietMode(generatedConfig.getQuietMode());
+    this(ConfigurationGenerator.getGeneratedConfig());
   }
 
   /** A new configuration where the behavior of reading from the default 
@@ -849,39 +816,43 @@ public class Configuration implements Iterable<Map.Entry<String,String>>,
    * 
    * @param other the configuration from which to clone settings.
    */
-  @SuppressWarnings("unchecked")
   public Configuration(Configuration other) {
-    synchronized(other) {
-      // Make sure we clone a finalized state
-      // Resources like input streams can be processed only once
-      other.getProps();
-      this.resources = (ArrayList<Resource>) other.resources.clone();
-      if (other.properties != null) {
-        this.properties = (Properties)other.properties.clone();
-      }
+    if (other != null) {
+      synchronized (other) {
+        // Make sure we clone a finalized state
+        // Resources like input streams can be processed only once
+        other.getProps();
+        this.resources = (ArrayList<Resource>) other.resources.clone();
+        if (other.properties != null) {
+          this.properties = (Properties) other.properties.clone();
+        }
 
-      if (other.overlay!=null) {
-        this.overlay = (Properties)other.overlay.clone();
-      }
+        if (other.overlay != null) {
+          this.overlay = (Properties) other.overlay.clone();
+        }
 
-      this.restrictSystemProps = other.restrictSystemProps;
-      if (other.updatingResource != null) {
-        this.updatingResource = new ConcurrentHashMap<String, String[]>(
-           other.updatingResource);
+        this.restrictSystemProps = other.restrictSystemProps;
+        if (other.updatingResource != null) {
+          this.updatingResource = new ConcurrentHashMap<String, String[]>(
+                  other.updatingResource);
+        }
+        this.finalParameters = Collections.newSetFromMap(
+                new ConcurrentHashMap<String, Boolean>());
+        this.finalParameters.addAll(other.finalParameters);
+        this.propertyTagsMap.putAll(other.propertyTagsMap);
       }
-      this.finalParameters = Collections.newSetFromMap(
-          new ConcurrentHashMap<String, Boolean>());
-      this.finalParameters.addAll(other.finalParameters);
-      this.propertyTagsMap.putAll(other.propertyTagsMap);
+      this.classLoader = other.classLoader;
+      this.loadDefaults = other.loadDefaults;
+      setQuietMode(other.getQuietMode());
+    } else {
+      this.loadDefaults = true;
     }
 
     synchronized(Configuration.class) {
       REGISTRY.put(this, null);
     }
-    this.classLoader = other.classLoader;
-    this.loadDefaults = other.loadDefaults;
-    setQuietMode(other.getQuietMode());
   }
+
 
   /**
    * Reload existing configuration instances.
