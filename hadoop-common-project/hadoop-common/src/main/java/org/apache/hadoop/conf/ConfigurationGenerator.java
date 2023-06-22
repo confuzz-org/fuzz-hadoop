@@ -92,7 +92,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         //ConfigTracker.freshMap();  // --> Comment out if we want to incrementally collect exercised config set.
         ConfigTracker.clearSetConfigMap();
         generatedConf = conf;
-	    return generatedConf;
+        return generatedConf;
     }
 
     public static Configuration getGeneratedConfig() {
@@ -119,7 +119,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             //     }
             // }
         } catch(Exception e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
     }
 }

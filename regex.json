@@ -619,5 +619,9 @@
     "name": "dfs.datanode.http.internal-proxy.port",
     "lower": 0,
     "upper": 65536
+  },
+  {
+    "name": "hadoop.security.groups.cache.secs",
+    "lower": 1
   }
 ]
