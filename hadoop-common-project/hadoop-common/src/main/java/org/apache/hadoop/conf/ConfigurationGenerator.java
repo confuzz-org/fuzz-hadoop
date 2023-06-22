@@ -19,7 +19,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
     private static String methodName = null;
 
     /* Mapping that let generator know which configuration parameter to fuzz */
-    private static Map<String, String> curTestMapping = null;
+    private static Map<String, Object> curTestMapping = null;
     private static boolean debugEnabled = Boolean.getBoolean("generator.debug");
 
     private static boolean isReprod = Boolean.getBoolean("repro.info");
@@ -75,9 +75,9 @@ public class ConfigurationGenerator extends Generator<Configuration> {
 
         // curTestMapping is a sorted TreeMap
         ConfigTracker.clearGenerated();
-        for (Map.Entry<String, String> entry : curTestMapping.entrySet()) {
+        for (Map.Entry<String, Object> entry : curTestMapping.entrySet()) {
             try {
-                String randomValue = ConfigGenerator.randomValue(entry.getKey(), entry.getValue(), random);
+                String randomValue = (String) ConfigGenerator.generate(entry.getKey(), entry.getValue(), random);
                 // Set the configuration parameter only if the random value is not null
                 if (randomValue != null) {
                     conf.generatorSet(entry.getKey(), randomValue);
