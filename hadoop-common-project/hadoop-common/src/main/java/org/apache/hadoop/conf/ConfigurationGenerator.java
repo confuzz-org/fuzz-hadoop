@@ -34,7 +34,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
         methodName = System.getProperty("method");
         /* Use TreeMap to sort the configuration set to prevent ordering inconsistency;
            Initialize the mapping with all default configuration set for the first round */
-        curTestMapping = ConfigTracker.getConfigMap();
+        curTestMapping = ConfigTracker.getTotalConfigMap();
     }
 
     /**
@@ -50,7 +50,7 @@ public class ConfigurationGenerator extends Generator<Configuration> {
             throw new RuntimeException("Must specify test class name and test method name!");
         }
         ConfigGenerator.debugPrint("Map size before freshMap = " + ConfigTracker.getMapSize());
-        curTestMapping = ConfigTracker.getConfigMap();
+        curTestMapping = ConfigTracker.getTotalConfigMap();
 
         if (Boolean.getBoolean("preround")) {
             ConfigGenerator.debugPrint("Return default configuration conf");
