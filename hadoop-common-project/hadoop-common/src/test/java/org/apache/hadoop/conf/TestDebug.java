@@ -1,6 +1,5 @@
 package org.apache.hadoop.conf;
 
-import com.pholser.junit.quickcheck.From;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,6 +15,15 @@ public class TestDebug {
         String str = "hello";
         assertTrue(str.length() == -1);
     }
+
+    @Test
+    public void testECFuzzFail() throws Exception {
+        Configuration conf = new Configuration();
+        String ms = conf.get("fs.s3a.multipart.threshold");
+        if (ms.equals("2147483647")) {
+            throw new Exception("Fake Bug");
+        }
+    }g
 
     @Test
     public void test(/*@From(ConfigurationGenerator.class) Configuration generatedConfig*/) throws Exception {
