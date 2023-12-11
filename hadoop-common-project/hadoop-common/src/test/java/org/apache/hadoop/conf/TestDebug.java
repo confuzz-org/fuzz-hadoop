@@ -23,7 +23,7 @@ public class TestDebug {
         if (ms.equals("2147483647")) {
             throw new Exception("Fake Bug");
         }
-    }g
+    }
 
     @Test
     public void test(/*@From(ConfigurationGenerator.class) Configuration generatedConfig*/) throws Exception {
