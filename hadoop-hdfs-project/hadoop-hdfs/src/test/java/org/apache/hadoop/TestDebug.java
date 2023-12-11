@@ -22,4 +22,13 @@ public class TestDebug {
             System.out.println(str);
         }
     }
+
+    @Test
+    public void testECFuzzFail() {
+        Configuration conf = new Configuration();
+        String ms = conf.get("dfs.balancer.block-move.timeout");
+        if (ms != null && ms.equals("4294967295")) {
+            throw new RuntimeException("Fake Bug");
+        }
+    }
 }
